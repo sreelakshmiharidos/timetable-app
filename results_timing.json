@@ -1,0 +1,51 @@
+[
+ [
+  1,
+  "max_consecutive<=4",
+  "OPTIMAL",
+  2.42,
+  2.5
+ ],
+ [
+  2,
+  "no_consecutive_subject",
+  "OPTIMAL",
+  2.53,
+  2.6
+ ],
+ [
+  3,
+  "subject<=2 per day",
+  "OPTIMAL",
+  2.52,
+  2.7
+ ],
+ [
+  4,
+  "no games period 1",
+  "OPTIMAL",
+  3.95,
+  4.1
+ ],
+ [
+  5,
+  "labs after period 4",
+  "OPTIMAL",
+  3.07,
+  3.2
+ ],
+ [
+  6,
+  "gaps<=3 per day",
+  "OPTIMAL",
+  30.95,
+  31.3
+ ],
+ [
+  7,
+  "midday gap (>=2 lessons)",
+  "OPTIMAL",
+  184.88,
+  185.2
+ ]
+]

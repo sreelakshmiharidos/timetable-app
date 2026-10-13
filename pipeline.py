@@ -7,6 +7,7 @@ Layer 3  describe(), explain_conflict()   plain-English echo + conflict explanat
 Research bit: sample the AI N times per rule; disagreement = ambiguity -> ask.
 """
 import json, os, re, time, itertools
+from concurrent.futures import ThreadPoolExecutor
 from collections import Counter
 from ortools.sat.python import cp_model
 
@@ -83,13 +84,15 @@ def _gemini(prompt, key, temperature=1.0):
 
 def _gemini_call(url, prompt, key, temperature):
     import requests
-    body = {"contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": temperature,
-                                 "responseMimeType": "application/json"}}
-    for attempt in range(5):
-        r = requests.post(url, headers={"x-goog-api-key": key}, json=body, timeout=60)
+    cfg = {"temperature": temperature, "responseMimeType": "application/json",
+           "maxOutputTokens": 600}
+    if "2.5" in url: cfg["thinkingConfig"] = {"thinkingBudget": 0}   # speed: no thinking step
+    body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg}
+    for attempt in range(3):
+        r = requests.post(url, headers={"x-goog-api-key": key}, json=body, timeout=45)
         if r.status_code in (429, 503):          # free-tier rate limit: wait and retry
-            time.sleep(8 * (attempt + 1)); continue
+            if attempt == 2: raise RuntimeError("Gemini is rate limiting us. Wait a minute and try again.")
+            time.sleep(5 * (attempt + 1)); continue
         if r.status_code == 404: raise FileNotFoundError
         if not r.ok: raise RuntimeError(f"Gemini error {r.status_code}: {r.text[:300]}")
         return r.json()["candidates"][0]["content"]["parts"][0]["text"]
@@ -195,12 +198,15 @@ def read_rule(sentence, reader=None, samples=3):
     if reader is None:
         forms = [clean(_offline(sentence))]
     else:
-        forms = []
-        for _ in range(samples):
-            txt = reader(_prompt(sentence))
-            txt = txt[txt.find("{"): txt.rfind("}") + 1]
-            try: forms.append(clean(json.loads(txt)))
-            except Exception as e: forms.append({"type": "error", "why": str(e)})
+        def one(_):
+            try:
+                txt = reader(_prompt(sentence))
+                txt = txt[txt.find("{"): txt.rfind("}") + 1]
+                return clean(json.loads(txt))
+            except Exception as e:
+                return {"type": "error", "why": str(e)}
+        with ThreadPoolExecutor(max_workers=samples) as pool:   # all readings at once
+            forms = list(pool.map(one, range(samples)))
     good = [f for f in forms if f.get("type") != "error"]
     if not good: raise ValueError(forms[0]["why"])
     votes = Counter(_key(f) for f in good)

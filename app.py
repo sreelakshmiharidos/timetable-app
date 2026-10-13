@@ -111,11 +111,18 @@ st.markdown('<div class="muted">Understands: periods in a row, periods per day, 
 sentences = [l.strip() for l in text.splitlines() if l.strip()]
 
 if st.button("Read my rules", type="primary"):
-    with st.spinner("Reading each rule a few times…"):
-        for s in sentences:
-            if s not in ss.parsed:
-                try: ss.parsed[s] = P.interpretations(s, READER)
-                except Exception as e: ss.parsed[s] = str(e)
+    todo = [s for s in sentences if s not in ss.parsed]
+    bar = st.progress(0.0, text="Reading your rules…")
+    from concurrent.futures import ThreadPoolExecutor
+    def read_one(s):
+        try: return s, P.interpretations(s, READER)
+        except Exception as e: return s, str(e)
+    done = 0
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for s, got in pool.map(read_one, todo):
+            ss.parsed[s] = got; done += 1
+            bar.progress(done / max(len(todo), 1), text=f"Read {done} of {len(todo)} rules…")
+    bar.empty()
     ss.read_for = sentences; ss.result = None
 
 # ------------------------------------------------------------------ 3. check
