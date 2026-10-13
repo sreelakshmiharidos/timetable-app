@@ -78,6 +78,21 @@ def test_infeasible_reports_conflict():
     assert not r["ok"] and r["conflict"]
 
 
+
+
+def test_double_period():
+    r = holds([("d", {"type": "double_period", "subject": "MTS", "sections": "ALL",
+                      "across_break": False, "hard": True})])
+    assert r["ok"]
+    for sec, g in r["grids"].items():
+        for d in range(2):
+            col = [g[p][d] for p in range(4)]
+            idx = [i for i, v in enumerate(col) if v == "MTS"]
+            assert len(idx) % 2 == 0
+            for a, b in zip(idx[::2], idx[1::2]):
+                assert b == a + 1 and not (a < 2 <= b)      # consecutive, not across lunch
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

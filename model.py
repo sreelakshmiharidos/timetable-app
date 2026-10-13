@@ -13,6 +13,7 @@ RULE_TYPES = {
     "max_gaps_per_day":         ["teacher", "max"],
     "require_midday_gap":       ["teacher", "periods", "min_lessons"],
     "fixed_slot":               ["subject", "sections", "days", "periods"],
+    "double_period":            ["subject", "sections", "across_break"],
 }
 
 
@@ -150,6 +151,23 @@ class Build:
                     d = self.s.days.index(dn)
                     for p in f["periods"]:
                         self.m.Add(self.x[c, d, p - 1, f["subject"]] == 1).OnlyEnforceIf(on)
+        elif t_ == "double_period":
+            # every lesson of this subject is part of a block of exactly two consecutive
+            # periods; blocks may not straddle the lunch break unless across_break is set.
+            P_ = self.s.periods
+            for c in secs:
+                sub = f["subject"]
+                if sub not in self.s.req[c]: continue
+                for d in D:
+                    st = {}
+                    for p in range(P_ - 1):
+                        if not f.get("across_break") and self.s.lunch_after and \
+                           p + 1 == self.s.lunch_after:
+                            continue          # a block starting here would cross the break
+                        st[p] = self.m.NewBoolVar(f"dbl_{label}_{c}_{d}_{p}")
+                    for p in range(P_):
+                        cover = [st[q] for q in (p - 1, p) if q in st]
+                        self.m.Add(self.x[c, d, p, sub] == sum(cover)).OnlyEnforceIf(on)
         else:
             raise ValueError(f"unknown rule type {t_}")
         return on

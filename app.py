@@ -1,209 +1,192 @@
-import html, os
+import html, time
 import streamlit as st
+from school import School
+import reader as R
+from solve import solve
 
-st.set_page_config(page_title="Timetable, described", page_icon="🗓️", layout="centered")
+VERSION = "v0.3"
+SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
+SCHOOLS = {"KMBVM Pottore, grades 9 and 10 (real data)": "data/kmbvm_9_10.json",
+           "Sample school (small and fast)": "data/sample.json"}
+EXAMPLES = {
+ "data/kmbvm_9_10.json": "No teacher should teach more than 4 periods in a row\n"
+                          "No subject more than twice a day\n"
+                          "PHY must be taught as a double period\n"
+                          "No PT in the first period",
+ "data/sample.json": "No teacher should teach more than 3 periods in a row\n"
+                      "Suma is not available on Monday\n"
+                      "No PE in the first period\n"
+                      "No subject more than twice a day",
+}
 
-# secrets -> env so pipeline.get_reader() finds them
-for k in ("GEMINI_API_KEY", "ANTHROPIC_API_KEY"):
-    try:
-        if k in st.secrets: os.environ[k] = st.secrets[k]
-    except Exception:
-        pass
-import pipeline as P
-
-# ------------------------------------------------------------------ style
+st.set_page_config(page_title="Chalk n Duster", page_icon="🗓️", layout="centered")
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-html, body, [class*="css"], .stMarkdown, button, input, textarea, .stTextArea textarea { font-family: 'Inter', sans-serif !important; }
-header[data-testid="stHeader"] { background: transparent; }
-#MainMenu, footer { visibility: hidden; }
-.block-container { max-width: 860px; padding-top: 3rem; padding-bottom: 4rem; }
-.eyebrow { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: #6B6B63; font-weight: 600; }
-h1.hero { font-size: 2.3rem; line-height: 1.15; font-weight: 700; letter-spacing: -.02em; margin: .35rem 0 .6rem; color:#1C1C1A; }
-p.sub { color: #55554E; font-size: 1.05rem; max-width: 620px; margin-bottom: 1.8rem; }
-.step { display:flex; align-items:center; gap:.6rem; margin: 2.2rem 0 .7rem; }
-.step .n { width:1.6rem; height:1.6rem; border-radius:50%; background:#2F5D50; color:#fff; font-size:.8rem;
-           display:flex; align-items:center; justify-content:center; font-weight:600; }
-.step .t { font-weight:600; font-size:1.1rem; }
-.card { background:#fff; border:1px solid #E6E4DD; border-radius:12px; padding:1rem 1.1rem; margin-bottom:.4rem; }
-.card.warn { border-left: 4px solid #C98A2B; }
-.card.ok { border-left: 4px solid #2F5D50; }
-.card.bad { border-left: 4px solid #B5483B; }
-.quote { color:#6B6B63; font-size:.9rem; margin-bottom:.3rem; }
-.meaning { font-size:1rem; color:#1C1C1A; }
-.badge { display:inline-block; font-size:.7rem; font-weight:600; padding:.12rem .5rem; border-radius:999px; margin-left:.4rem; vertical-align:middle; }
-.b-must { background:#E4EEEA; color:#2F5D50; } .b-pref { background:#F1F0EB; color:#6B6B63; }
-.b-ask { background:#FBEFD9; color:#8A5A12; }
-.muted { color:#6B6B63; font-size:.85rem; }
-.chips span { display:inline-block; background:#fff; border:1px solid #E6E4DD; border-radius:999px; padding:.2rem .65rem; margin:.15rem .2rem .15rem 0; font-size:.85rem; }
-table.tt, table.tt th, table.tt td, table.tt tr { border:none !important; }
-table.tt { width:100%; border-collapse:separate; border-spacing:4px; table-layout:fixed; }
-table.tt th { font-size:.75rem; color:#6B6B63; font-weight:600; text-align:left; padding:.2rem .3rem; }
-table.tt td { border-radius:8px; padding:.45rem .5rem; font-size:.82rem; height:2.9rem; vertical-align:top; }
-table.tt th:first-child { width:2.6rem; }
-table.tt td.p { background:transparent; color:#6B6B63; font-weight:600; width:2.6rem; }
-table.tt td .who { display:block; font-size:.7rem; color:#55554E; }
-table.tt td.free { background:#F4F3EF; color:#A5A49C; }
-table.tt tr.lunch td { height:auto; padding:.1rem; text-align:center; font-size:.68rem; letter-spacing:.08em; color:#A5A49C; background:transparent; }
-.how { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:.6rem; }
-.how div { background:#fff; border:1px solid #E6E4DD; border-radius:12px; padding:.9rem; font-size:.88rem; color:#55554E; }
-.how b { display:block; color:#1C1C1A; margin-bottom:.25rem; }
-@media (max-width: 640px) { .how { grid-template-columns:1fr; } h1.hero { font-size:1.8rem; } table.tt td { font-size:.7rem; } }
-</style>
-""", unsafe_allow_html=True)
+html, body, [class*="css"], .stMarkdown, button, input, textarea, .stTextArea textarea { font-family:'Inter',sans-serif !important; }
+header[data-testid="stHeader"]{background:transparent;} #MainMenu, footer{visibility:hidden;}
+.block-container{max-width:900px;padding-top:3rem;padding-bottom:4rem;}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#6B6B63;font-weight:600;}
+h1.hero{font-size:2.2rem;line-height:1.15;font-weight:700;letter-spacing:-.02em;margin:.35rem 0 .6rem;}
+p.sub{color:#55554E;font-size:1.03rem;max-width:640px;margin-bottom:1.6rem;}
+.step{display:flex;align-items:center;gap:.6rem;margin:2rem 0 .7rem;}
+.step .n{width:1.6rem;height:1.6rem;border-radius:50%;background:#2F5D50;color:#fff;font-size:.8rem;display:flex;align-items:center;justify-content:center;font-weight:600;}
+.step .t{font-weight:600;font-size:1.08rem;}
+.card{background:#fff;border:1px solid #E6E4DD;border-radius:12px;padding:.9rem 1rem;margin-bottom:.4rem;}
+.card.ok{border-left:4px solid #2F5D50;} .card.warn{border-left:4px solid #C98A2B;} .card.bad{border-left:4px solid #B5483B;}
+.quote{color:#6B6B63;font-size:.88rem;margin-bottom:.25rem;} .meaning{font-size:1rem;}
+.muted{color:#6B6B63;font-size:.85rem;}
+.chips span{display:inline-block;background:#fff;border:1px solid #E6E4DD;border-radius:999px;padding:.15rem .6rem;margin:.12rem .18rem .12rem 0;font-size:.82rem;}
+table.tt{width:100%;border-collapse:separate;border-spacing:4px;table-layout:fixed;}
+table.tt,table.tt th,table.tt td,table.tt tr{border:none !important;}
+table.tt th{font-size:.72rem;color:#6B6B63;font-weight:600;text-align:left;padding:.15rem .25rem;}
+table.tt th:first-child{width:2.4rem;}
+table.tt td{border-radius:8px;padding:.35rem .4rem;font-size:.74rem;height:2.4rem;vertical-align:top;background:#EDEFF3;}
+table.tt td.p{background:transparent;color:#6B6B63;font-weight:600;}
+table.tt td.free{background:#F4F3EF;color:#A5A49C;}
+table.tt td .who{display:block;font-size:.64rem;color:#55554E;}
+</style>""", unsafe_allow_html=True)
 
-COLORS = {"Maths": "#E3ECF7", "English": "#F6E7D8", "Science": "#E2F0E6",
-          "Malayalam": "#F3E3EC", "Social": "#ECE8F6", "PE": "#F7F1D6"}
-EXAMPLE = """No teacher should teach more than 3 periods in a row
-Suma is not available on Monday
-No PE in the first period
-No subject more than twice a day"""
+ss = st.session_state
+ss.setdefault("parsed", {}); ss.setdefault("result", None); ss.setdefault("read_for", None)
 
-# ------------------------------------------------------------------ password gate
-def _secret(name):
-    try: return st.secrets.get(name)
-    except Exception: return None
-
-pw = _secret("APP_PASSWORD")
-if pw and not st.session_state.get("authed"):
-    st.markdown('<div class="eyebrow">Private prototype</div><h1 class="hero">Timetable, described</h1>', unsafe_allow_html=True)
-    entered = st.text_input("Access code", type="password")
-    if entered:
-        if entered == pw: st.session_state.authed = True; st.rerun()
+pw = None
+try: pw = st.secrets.get("APP_PASSWORD")
+except Exception: pass
+if pw and not ss.get("authed"):
+    st.markdown('<div class="eyebrow">Private prototype</div><h1 class="hero">Chalk n Duster</h1>', unsafe_allow_html=True)
+    e = st.text_input("Access code", type="password")
+    if e:
+        if e == pw: ss.authed = True; st.rerun()
         else: st.error("That code isn't right.")
     st.stop()
 
-ss = st.session_state
-ss.setdefault("parsed", {})      # sentence -> (options, reason) or error string
-ss.setdefault("result", None)
-ss.setdefault("read_for", None)
-
-AI_NAME, READER = P.get_reader()
-
-# ------------------------------------------------------------------ hero
-st.markdown(f"""
-<div class="eyebrow">Prototype v1</div>
+st.markdown(f"""<div class="eyebrow">Chalk n Duster · {VERSION}</div>
 <h1 class="hero">Describe the timetable.<br>We'll build it.</h1>
-<p class="sub">Type your school's rules the way you'd say them to a colleague. The system shows what it understood,
-asks when it's unsure, and builds a timetable. If none is possible, it tells you which rules clash.</p>
-""", unsafe_allow_html=True)
+<p class="sub">Type the rules the way you'd say them to a colleague. The system shows what it understood,
+asks when it's unsure, and builds a timetable. If none is possible, it names the rules that clash.</p>""",
+unsafe_allow_html=True)
 
-def step(n, title):
-    st.markdown(f'<div class="step"><div class="n">{n}</div><div class="t">{title}</div></div>', unsafe_allow_html=True)
+def step(n, t): st.markdown(f'<div class="step"><div class="n">{n}</div><div class="t">{t}</div></div>', unsafe_allow_html=True)
 
-# ------------------------------------------------------------------ 1. school
+# ---------------------------------------------------------------- 1. school
 step(1, "The school")
-st.markdown(
-    f'<div class="muted">A sample school: {len(P.CLASSES)} classes, {len(P.DAYS)} days, '
-    f'{P.PERIODS} periods a day, lunch after period {P.LUNCH_AFTER}.</div>'
-    '<div class="chips" style="margin-top:.5rem">' +
-    "".join(f"<span><b>{t}</b> · {s} · {P.LESSONS_PER_WEEK[s]}/week</span>" for t, s in P.TEACHERS.items()) +
-    "</div>", unsafe_allow_html=True)
+pick = st.radio("School", list(SCHOOLS), label_visibility="collapsed", horizontal=False)
+path = SCHOOLS[pick]
+school = School.load(path)
+if ss.get("school_path") != path:
+    ss.school_path, ss.parsed, ss.result, ss.read_for = path, {}, None, None
+st.markdown(f'<div class="muted">{len(school.sections)} sections · {len(school.days)} days · '
+            f'{school.periods} periods a day · lunch after period {school.lunch_after} · '
+            f'{len(school.teachers)} teachers</div>'
+            '<div class="chips" style="margin-top:.45rem">'
+            + "".join(f"<span>{s}</span>" for s in school.sections) + "</div>", unsafe_allow_html=True)
+if school.unstaffed:
+    st.markdown(f'<div class="muted" style="margin-top:.4rem">{len(school.unstaffed)} (section, subject) '
+                'pairs in the real data name a group of teachers rather than one, so they are scheduled '
+                'without a teacher constraint for now.</div>', unsafe_allow_html=True)
 
-# ------------------------------------------------------------------ 2. rules
+# ---------------------------------------------------------------- 2. rules
 step(2, "Your rules")
-text = st.text_area("One rule per line", EXAMPLE, height=130, label_visibility="collapsed")
-st.markdown('<div class="muted">Understands: periods in a row, periods per day, when a teacher is unavailable, '
-            'subjects kept out of certain periods, and how often a subject repeats in a day. '
-            'Words like <i>ideally</i> or <i>if possible</i> make a rule a preference.</div>'
-            '<div style="height:.6rem"></div>', unsafe_allow_html=True)
+text = st.text_area("One rule per line", EXAMPLES[path], height=130, label_visibility="collapsed")
+st.markdown('<div class="muted">Understands: periods in a row, periods per day, teacher availability, '
+            'subjects kept out of periods, repeats per day, no same subject back to back, free-period '
+            'limits, a required mid-day break, fixed slots, and double periods. Words like <i>ideally</i> '
+            'make a rule a preference.</div><div style="height:.6rem"></div>', unsafe_allow_html=True)
 sentences = [l.strip() for l in text.splitlines() if l.strip()]
+name, READER = R.get_reader()
 
 if st.button("Read my rules", type="primary"):
     todo = [s for s in sentences if s not in ss.parsed]
     bar = st.progress(0.0, text="Reading your rules…")
     from concurrent.futures import ThreadPoolExecutor
-    def read_one(s):
-        try: return s, P.interpretations(s, READER)
+    def one(s):
+        try: return s, R.interpretations(school, s, READER)
         except Exception as e: return s, str(e)
     done = 0
     with ThreadPoolExecutor(max_workers=4) as pool:
-        for s, got in pool.map(read_one, todo):
+        for s, got in pool.map(one, todo):
             ss.parsed[s] = got; done += 1
-            bar.progress(done / max(len(todo), 1), text=f"Read {done} of {len(todo)} rules…")
-    bar.empty()
-    ss.read_for = sentences; ss.result = None
+            bar.progress(done / max(len(todo), 1), text=f"Read {done} of {len(todo)}…")
+    bar.empty(); ss.read_for, ss.result = sentences, None
 
-# ------------------------------------------------------------------ 3. check
-if ss.read_for and ss.read_for == sentences:
+# ---------------------------------------------------------------- 3. check
+if ss.read_for == sentences and sentences:
     step(3, "Check what I understood")
     rules = []
     for i, s in enumerate(sentences, 1):
         got = ss.parsed.get(s)
         q = f'<div class="quote">Rule {i} · “{html.escape(s)}”</div>'
         if isinstance(got, str) or got is None:
-            st.markdown(f'<div class="card bad">{q}<div class="meaning">I couldn\'t turn this into a rule I know. '
-                        f'It will be skipped.</div><div class="muted">{html.escape(got or "")}</div></div>',
-                        unsafe_allow_html=True)
-            continue
+            st.markdown(f'<div class="card bad">{q}<div class="meaning">Skipped: {html.escape(got or "")}</div></div>',
+                        unsafe_allow_html=True); continue
         opts, why = got
         key = f"r{i}_{abs(hash(s))}"
         if why is None:
             f = opts[0][0]
-            st.markdown(f'<div class="card ok">{q}<div class="meaning">{html.escape(P.describe(f, notes=False))}</div></div>',
+            st.markdown(f'<div class="card ok">{q}<div class="meaning">{html.escape(R.describe(school, f, False))}</div></div>',
                         unsafe_allow_html=True)
         else:
             total = sum(n for _, n in opts)
-            st.markdown(f'<div class="card warn">{q}<div class="meaning">I\'m not sure what you meant here'
-                        f'<span class="badge b-ask">Needs your input</span></div>'
-                        f'<div class="muted">Why I\'m asking: {why}.</div></div>', unsafe_allow_html=True)
-            labels = [P.describe(f, notes=False) + (f"  ·  {n} of {total} readings" if n and total > 1 else "") for f, n in opts]
-            pick = st.radio("Which did you mean?", range(len(opts)), format_func=lambda j: labels[j], key=key + "_pick")
-            f = opts[pick][0]
-        hard = st.toggle("Must hold (off = preference)", value=f["hard"], key=key + "_hard")
+            st.markdown(f'<div class="card warn">{q}<div class="meaning">I\'m not sure what you meant here.</div>'
+                        f'<div class="muted">Why: {why}.</div></div>', unsafe_allow_html=True)
+            labels = [R.describe(school, of, False) + (f"  ·  {n} of {total} readings"
+                                                       if n and total > 1 else "")
+                      for of, n in opts]
+            chosen = st.radio("Which did you mean?", labels, key=key + "_p")
+            f = opts[labels.index(chosen)][0]
+        hard = st.toggle("Must hold (off = preference)", value=f["hard"], key=key + "_h")
         rules.append((f"Rule {i}", {**f, "hard": hard}))
 
     step(4, "Timetable")
     if st.button("Build timetable", type="primary", disabled=not rules):
-        with st.spinner("Solving…"):
-            ss.result = (P.solve(rules), rules, dict(zip([l for l, _ in rules], sentences)))
+        with st.spinner(f"Solving (up to {SOLVE_CAP}s)…"):
+            t0 = time.time()
+            ss.result = (solve(school, rules, seconds=SOLVE_CAP), rules,
+                         {f"Rule {i}": s for i, s in enumerate(sentences, 1)}, round(time.time() - t0, 1))
 
     if ss.result:
-        res, used, _ = ss.result
-        texts = {f"Rule {i}": s for i, s in enumerate(sentences, 1)}
-        if res["ok"]:
-            msg = "All rules satisfied." if not res["broken"] else "Built, but some preferences couldn't be met."
-            st.markdown(f'<div class="card ok"><div class="meaning">{msg}</div>' +
-                        "".join(f'<div class="muted">{l}: {html.escape(texts[l])}</div>' for l in res["broken"]) +
-                        "</div>", unsafe_allow_html=True)
-            tabs = st.tabs([f"Class {c}" for c in P.CLASSES])
-            for tab, c in zip(tabs, P.CLASSES):
+        res, used, texts, took = ss.result
+        if res.get("ok"):
+            msg = "All rules satisfied." if not res["broken"] else "Built, but some preferences could not be met."
+            st.markdown(f'<div class="card ok"><div class="meaning">{msg}</div>'
+                        f'<div class="muted">solved in {took}s</div>'
+                        + "".join(f'<div class="muted">{l}: {html.escape(texts[l])}</div>' for l in res["broken"])
+                        + "</div>", unsafe_allow_html=True)
+            tabs = st.tabs(school.sections)
+            for tab, c in zip(tabs, school.sections):
                 g = res["grids"][c]
-                rows = "<tr><th></th>" + "".join(f"<th>{d}</th>" for d in P.DAYS) + "</tr>"
+                rows = "<tr><th></th>" + "".join(f"<th>{d}</th>" for d in school.days) + "</tr>"
                 for p, row in enumerate(g):
-                    if p == P.LUNCH_AFTER:
-                        rows += f'<tr class="lunch"><td></td><td colspan="{len(P.DAYS)}">LUNCH</td></tr>'
+                    if school.lunch_after and p == school.lunch_after:
+                        rows += f'<tr><td class="p"></td><td class="free" colspan="{len(school.days)}" style="height:1rem">lunch</td></tr>'
                     cells = "".join(
-                        f'<td style="background:{COLORS[s]}">{s}<span class="who">{P.SUBJECT_TEACHER[s]}</span></td>'
-                        if s else '<td class="free">free</td>' for s in row)
+                        f'<td>{x}<span class="who">{school.teacher_of(c, x) or ""}</span></td>' if x
+                        else '<td class="free">free</td>' for x in row)
                     rows += f'<tr><td class="p">P{p+1}</td>{cells}</tr>'
                 tab.markdown(f'<table class="tt">{rows}</table>', unsafe_allow_html=True)
         else:
             core = res.get("conflict")
             if core:
-                head = ("This rule can't fit the lesson counts on its own." if len(core) == 1 else
+                head = ("This rule cannot be satisfied on its own." if len(core) == 1 else
                         "No timetable can satisfy these rules together. Relax or remove any one of them.")
-                body = "".join(f'<div style="margin-top:.5rem"><b>{l}</b> · “{html.escape(texts[l])}”'
-                               f'<div class="muted">{html.escape(P.describe(dict(used)[l], notes=False))}</div></div>'
+                body = "".join(f'<div style="margin-top:.45rem"><b>{l}</b> · “{html.escape(texts[l])}”'
+                               f'<div class="muted">{html.escape(R.describe(school, dict(used)[l], False))}</div></div>'
                                for l in core)
                 st.markdown(f'<div class="card bad"><div class="meaning">{head}</div>{body}'
-                            f'<div class="muted" style="margin-top:.7rem">Tip: your answers in step 3 can change this. '
-                            f'Try the other reading of a rule, or make one a preference.</div></div>',
+                            '<div class="muted" style="margin-top:.6rem">Your answers in step 3 can change this: '
+                            'try the other reading of a rule, or make one a preference.</div></div>',
                             unsafe_allow_html=True)
             else:
-                st.markdown(f'<div class="card bad"><div class="meaning">No timetable found.</div>'
-                            f'<div class="muted">{res.get("note", "The lesson counts themselves do not fit.")}</div></div>',
+                st.markdown(f'<div class="card bad"><div class="meaning">No timetable found in {SOLVE_CAP}s.</div>'
+                            '<div class="muted">Rules about teachers\' free periods are the expensive ones. '
+                            'Try removing one, or run it from the command line with a longer limit.</div></div>',
                             unsafe_allow_html=True)
 
-# ------------------------------------------------------------------ how it works
-st.markdown("<div style='height:2.5rem'></div>", unsafe_allow_html=True)
-st.markdown("""
-<div class="eyebrow">How it works</div>
-<div class="how">
-  <div><b>1 · Read</b>An AI turns each sentence into a fixed, checkable form. It never writes solver code.</div>
-  <div><b>2 · Ask</b>Each rule is read several times. Where readings disagree, or a detail was never said, it asks you.</div>
-  <div><b>3 · Solve & explain</b>A constraint solver builds the timetable, or finds the smallest set of rules that clash.</div>
-</div>
-""", unsafe_allow_html=True)
-st.markdown(f'<div class="muted" style="margin-top:1.2rem">Rule reader: {AI_NAME}</div>', unsafe_allow_html=True)
+st.markdown("<div style='height:2rem'></div><div class='eyebrow'>How it works</div>"
+            "<div class='muted' style='margin-top:.4rem'>An AI turns each sentence into a fixed, checkable "
+            "form and never writes solver code. Each rule is read three times: where the readings disagree, "
+            "or a detail was never stated, the system asks. A constraint solver then builds the timetable, "
+            "or finds the smallest set of rules that clash.</div>", unsafe_allow_html=True)
+st.markdown(f'<div class="muted" style="margin-top:1rem">{VERSION} · 10 rule types · rule reader: {name}</div>',
+            unsafe_allow_html=True)

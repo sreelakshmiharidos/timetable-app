@@ -1,0 +1,95 @@
+{
+ "name": "Sample school",
+ "days": [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri"
+ ],
+ "periods": 6,
+ "lunch_after": 3,
+ "sections": [
+  "6A",
+  "6B",
+  "7A",
+  "7B"
+ ],
+ "subjects": [
+  "Maths",
+  "English",
+  "Science",
+  "Malayalam",
+  "Social",
+  "PE"
+ ],
+ "requirements": {
+  "6A": {
+   "Maths": 6,
+   "English": 5,
+   "Science": 5,
+   "Malayalam": 4,
+   "Social": 4,
+   "PE": 2
+  },
+  "6B": {
+   "Maths": 6,
+   "English": 5,
+   "Science": 5,
+   "Malayalam": 4,
+   "Social": 4,
+   "PE": 2
+  },
+  "7A": {
+   "Maths": 6,
+   "English": 5,
+   "Science": 5,
+   "Malayalam": 4,
+   "Social": 4,
+   "PE": 2
+  },
+  "7B": {
+   "Maths": 6,
+   "English": 5,
+   "Science": 5,
+   "Malayalam": 4,
+   "Social": 4,
+   "PE": 2
+  }
+ },
+ "assignment": {
+  "6A": {
+   "Maths": "Suma",
+   "English": "Ravi",
+   "Science": "Anita",
+   "Malayalam": "Joseph",
+   "Social": "Priya",
+   "PE": "Deepa"
+  },
+  "6B": {
+   "Maths": "Suma",
+   "English": "Ravi",
+   "Science": "Anita",
+   "Malayalam": "Joseph",
+   "Social": "Priya",
+   "PE": "Deepa"
+  },
+  "7A": {
+   "Maths": "Suma",
+   "English": "Ravi",
+   "Science": "Anita",
+   "Malayalam": "Joseph",
+   "Social": "Priya",
+   "PE": "Deepa"
+  },
+  "7B": {
+   "Maths": "Suma",
+   "English": "Ravi",
+   "Science": "Anita",
+   "Malayalam": "Joseph",
+   "Social": "Priya",
+   "PE": "Deepa"
+  }
+ },
+ "unstaffed": []
+}

@@ -13,7 +13,8 @@ it reports the smallest set of rules that cannot hold together.
     experiments.py   system-evaluation runs (timings)
     tests/           one test per constraint type
     data/            derived school instances
-    app.py           Streamlit interface (v0.1, being ported to the new model)
+    reader.py        Layer 1: sentence -> validated constraint form (LLM or offline)
+    app.py           Streamlit interface, running the current engine
     pipeline.py      v0.1 single-file prototype (kept for reference)
 
 ## Run
@@ -43,3 +44,4 @@ subject, and which teacher takes which (section, subject) pair.
 | `max_gaps_per_day` | teacher, max |
 | `require_midday_gap` | teacher, periods, min_lessons |
 | `fixed_slot` | subject, sections, days, periods |
+| `double_period` | subject, sections, across_break |
