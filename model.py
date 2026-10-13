@@ -14,6 +14,8 @@ RULE_TYPES = {
     "require_midday_gap":       ["teacher", "periods", "min_lessons"],
     "fixed_slot":               ["subject", "sections", "days", "periods"],
     "double_period":            ["subject", "sections", "across_break"],
+    "parallel_block":           ["subject", "sections"],
+    "shared_resource":          ["subject", "sections", "max_at_once"],
 }
 
 
@@ -168,6 +170,26 @@ class Build:
                     for p in range(P_):
                         cover = [st[q] for q in (p - 1, p) if q in st]
                         self.m.Add(self.x[c, d, p, sub] == sum(cover)).OnlyEnforceIf(on)
+        elif t_ == "parallel_block":
+            # the listed sections take this subject in the same periods as each other, so that
+            # students can be re-grouped across sections (elective and language blocks).
+            sub = f["subject"]
+            have = [c for c in secs if sub in self.s.req[c]]
+            for d in D:
+                for p in P:
+                    for c in have[1:]:
+                        self.m.Add(self.x[c, d, p, sub] == self.x[have[0], d, p, sub]
+                                   ).OnlyEnforceIf(on)
+
+        elif t_ == "shared_resource":
+            # one specialist (or room) serves the whole school: at most `max_at_once`
+            # sections may take this subject in any one period.
+            sub, cap = f["subject"], int(f.get("max_at_once", 1))
+            have = [c for c in secs if sub in self.s.req[c]]
+            for d in D:
+                for p in P:
+                    self.m.Add(sum(self.x[c, d, p, sub] for c in have) <= cap).OnlyEnforceIf(on)
+
         else:
             raise ValueError(f"unknown rule type {t_}")
         return on

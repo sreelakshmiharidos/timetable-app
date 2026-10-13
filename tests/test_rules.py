@@ -93,6 +93,26 @@ def test_double_period():
                 assert b == a + 1 and not (a < 2 <= b)      # consecutive, not across lunch
 
 
+
+
+def test_parallel_block():
+    r = holds([("p", {"type": "parallel_block", "subject": "MTS",
+                      "sections": ["A", "B"], "hard": True})])
+    assert r["ok"]
+    a, b = r["grids"]["A"], r["grids"]["B"]
+    assert [[c == "MTS" for c in row] for row in a] == [[c == "MTS" for c in row] for row in b]
+
+
+def test_shared_resource():
+    r = holds([("s", {"type": "shared_resource", "subject": "MTS",
+                      "sections": "ALL", "max_at_once": 1, "hard": True})])
+    assert r["ok"]
+    a, b = r["grids"]["A"], r["grids"]["B"]
+    for p in range(4):
+        for d in range(2):
+            assert not (a[p][d] == "MTS" and b[p][d] == "MTS")
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

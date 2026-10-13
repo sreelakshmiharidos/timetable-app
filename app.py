@@ -4,7 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.3"
+VERSION = "v0.4"
 SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
 SCHOOLS = {"KMBVM Pottore, grades 9 and 10 (real data)": "data/kmbvm_9_10.json",
            "Sample school (small and fast)": "data/sample.json"}
@@ -188,5 +188,5 @@ st.markdown("<div style='height:2rem'></div><div class='eyebrow'>How it works</d
             "form and never writes solver code. Each rule is read three times: where the readings disagree, "
             "or a detail was never stated, the system asks. A constraint solver then builds the timetable, "
             "or finds the smallest set of rules that clash.</div>", unsafe_allow_html=True)
-st.markdown(f'<div class="muted" style="margin-top:1rem">{VERSION} · 10 rule types · rule reader: {name}</div>',
+st.markdown(f'<div class="muted" style="margin-top:1rem">{VERSION} · 12 rule types · rule reader: {name}</div>',
             unsafe_allow_html=True)

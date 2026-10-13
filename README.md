@@ -45,3 +45,5 @@ subject, and which teacher takes which (section, subject) pair.
 | `require_midday_gap` | teacher, periods, min_lessons |
 | `fixed_slot` | subject, sections, days, periods |
 | `double_period` | subject, sections, across_break |
+| `parallel_block` | subject, sections |
+| `shared_resource` | subject, sections, max_at_once |

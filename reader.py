@@ -35,6 +35,13 @@ MENU = {
   "fixed_slot": {"fields": {"subject": "subject name", "sections": "list of sections or ALL",
       "days": "list of day names", "periods": "list of period numbers"},
       "eg": "Assembly is Friday period 1 for every section"},
+  "parallel_block": {"fields": {"subject": "subject name",
+      "sections": "list of sections that are grouped together"},
+      "eg": "11E, 11F and 11G take their elective at the same time"},
+  "shared_resource": {"fields": {"subject": "subject name",
+      "sections": "list of sections or ALL",
+      "max_at_once": "how many sections may use it in one period (usually 1)"},
+      "eg": "Only one class can be in the library at a time"},
   "double_period": {"fields": {"subject": "subject name",
       "sections": "list of sections or ALL",
       "across_break": "true if a double may straddle the lunch break"},
@@ -113,6 +120,13 @@ def offline(school, s):
         subject = best
     hard = not any(w in t for w in ("prefer", "ideally", "if possible", "try to"))
     un = [] if any(w in t for w in ("must", "never", "prefer", "ideally")) else ["hard"]
+    if subject and ("at the same time" in t or "parallel" in t or "same period" in t):
+        secs = [c for c in school.sections if c.lower() in t] or "ALL"
+        return {"type": "parallel_block", "subject": subject, "sections": secs,
+                "hard": hard, "unstated": un}
+    if subject and ("only one" in t or "at a time" in t or "one class" in t):
+        return {"type": "shared_resource", "subject": subject, "sections": "ALL",
+                "max_at_once": 1, "hard": hard, "unstated": un}
     if "double" in t and subject:
         return {"type": "double_period", "subject": subject, "sections": "ALL",
                 "across_break": False, "hard": hard, "unstated": un + ["across_break"]}
@@ -193,6 +207,18 @@ def clean(school, form):
     if t == "max_consecutive": f["lunch_breaks_run"] = bool(f.get("lunch_breaks_run", False))
     if t == "double_period": f["across_break"] = bool(f.get("across_break", False))
     if t == "require_midday_gap": f["min_lessons"] = int(f.get("min_lessons", 2))
+    if t == "shared_resource": f["max_at_once"] = int(f.get("max_at_once", 1))
+    if t == "parallel_block":
+        # cheap check the solver would take a long time to prove: sections can only run a
+        # subject in parallel if they have the same number of lessons of it.
+        secs = school.sections if f["sections"] == "ALL" else f["sections"]
+        counts = {c: school.req[c].get(f["subject"]) for c in secs if f["subject"] in school.req[c]}
+        if len(counts) < 2:
+            raise ValueError(f"fewer than two sections take {f['subject']}")
+        if len(set(counts.values())) > 1:
+            detail = ", ".join(f"{c} has {n}" for c, n in counts.items())
+            raise ValueError(f"these sections cannot run {f['subject']} in parallel: {detail} "
+                             "lessons a week")
     return {k: f[k] for k in ["type", *RULE_TYPES[t], "hard", "unstated"]}
 
 
@@ -258,6 +284,13 @@ def describe(school, f, notes=True):
              f"on days with at least {f['min_lessons']} lessons")
     elif t == "fixed_slot":
         s = f"{f['subject']} is fixed for {secs} on {', '.join(f['days'])}, {per(f['periods'])}"
+    elif t == "parallel_block":
+        s = (f"{', '.join(f['sections']) if f['sections'] != 'ALL' else 'every section'} "
+             f"take {f['subject']} in the same periods as each other")
+    elif t == "shared_resource":
+        n = f.get("max_at_once", 1)
+        s = (f"At most {n} section{'' if n == 1 else 's'} can have {f['subject']} in any one period"
+             + ("" if f["sections"] == "ALL" else f" (among {', '.join(f['sections'])})"))
     elif t == "double_period":
         s = (f"{f['subject']} always runs as a double period for {secs}"
              + ("" if f["across_break"] else "; a double may not cross the lunch break"))

@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.4 - parallel blocks and shared specialists
+- `parallel_block`: named sections take a subject in the same periods as each other, so students can
+  be re-grouped across sections. This is the elective and language block structure that the school
+  uses throughout grades 9 to 12, and that existing tools make hardest to express.
+- `shared_resource`: at most N sections (default 1) may take a subject in any one period, for a
+  specialist or room serving the whole school. In the primary school, dance, music, drawing, craft,
+  library, robotics and computing each behave this way.
+- Sections can only run a subject in parallel if they have the same number of lessons of it, so the
+  translator rejects a mismatch with the counts rather than leaving the solver to grind on it
+  (9C has 4 LANG lessons, 10A has 6: the system says so instead of timing out).
+- Both encode cheaply: the full set of four rules including a parallel block solves the real
+  grade 9-10 instance in about 5 seconds.
+- Tests for both; 10 tests in total.
+
 ## v0.3 - double periods, and the web app on real data
 - New constraint type `double_period`: every lesson of a subject runs as a block of two
   consecutive periods, and a block may not straddle the lunch break unless `across_break` is set.
