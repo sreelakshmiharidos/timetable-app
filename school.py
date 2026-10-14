@@ -14,10 +14,20 @@ class School:
         self.sections = d["sections"]
         self.subjects = d["subjects"]
         self.req = {s: dict(v) for s, v in d["requirements"].items()}
-        # a (section, subject) may name several teachers: when the class splits, all of them
-        # are busy in that period.
-        self.assign = {s: {k: (v if isinstance(v, list) else [v]) for k, v in m.items()}
-                       for s, m in d.get("assignment", {}).items()}
+        # A (section, subject) may name several teachers: when the class splits, all of them
+        # are busy in that period. Older instance files hold a single name, so accept both.
+        raw = d.get("assignment") or {}
+        if not isinstance(raw, dict):
+            raise ValueError("this school file's 'assignment' should be "
+                             "{section: {subject: teacher or [teachers]}}")
+        self.assign = {}
+        for sec, m in raw.items():
+            if not isinstance(m, dict):
+                raise ValueError(f"assignment for section {sec} should be "
+                                 f"{{subject: teacher or [teachers]}}, found {type(m).__name__}")
+            self.assign[sec] = {k: ([x for x in v if x] if isinstance(v, (list, tuple))
+                                    else ([v] if v else []))
+                                for k, v in m.items()}
         self.unstaffed = [tuple(x) for x in d.get("unstaffed", [])]
         self.committed = {t: {tuple(x) for x in v} for t, v in d.get("committed", {}).items()}
         self.teachers = sorted({t for v in self.assign.values() for ts in v.values() for t in ts})

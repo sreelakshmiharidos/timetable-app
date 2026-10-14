@@ -94,7 +94,14 @@ if pick == UPLOAD:
     school = School(bands[which]); path = f"upload:{which}"
 else:
     path = SCHOOLS[pick]
-    school = School.load(path)
+    try:
+        school = School.load(path)
+    except FileNotFoundError:
+        st.error(f"{path} is missing from the deployment. Upload the data/ folder to the repository.")
+        st.stop()
+    except Exception as e:
+        st.error(f"Could not read {path}: {e}")
+        st.stop()
 if ss.get("school_path") != path:
     ss.school_path, ss.parsed, ss.result, ss.read_for = path, {}, None, None
 st.markdown(f'<div class="muted">{len(school.sections)} sections · {len(school.days)} days · '
