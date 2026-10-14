@@ -14,14 +14,18 @@ class School:
         self.sections = d["sections"]
         self.subjects = d["subjects"]
         self.req = {s: dict(v) for s, v in d["requirements"].items()}
-        self.assign = {s: dict(v) for s, v in d.get("assignment", {}).items()}
+        # a (section, subject) may name several teachers: when the class splits, all of them
+        # are busy in that period.
+        self.assign = {s: {k: (v if isinstance(v, list) else [v]) for k, v in m.items()}
+                       for s, m in d.get("assignment", {}).items()}
         self.unstaffed = [tuple(x) for x in d.get("unstaffed", [])]
         self.committed = {t: {tuple(x) for x in v} for t, v in d.get("committed", {}).items()}
-        self.teachers = sorted({t for v in self.assign.values() for t in v.values()})
+        self.teachers = sorted({t for v in self.assign.values() for ts in v.values() for t in ts})
         self.taught = defaultdict(list)          # teacher -> [(section, subject)]
         for sec, m in self.assign.items():
-            for sub, t in m.items():
-                self.taught[t].append((sec, sub))
+            for sub, ts in m.items():
+                for t in ts:
+                    self.taught[t].append((sec, sub))
 
     @classmethod
     def load(cls, path):
@@ -31,8 +35,12 @@ class School:
     def slots(self):
         return len(self.days) * self.periods
 
+    def teachers_of(self, section, subject):
+        return self.assign.get(section, {}).get(subject, [])
+
     def teacher_of(self, section, subject):
-        return self.assign.get(section, {}).get(subject)
+        ts = self.teachers_of(section, subject)
+        return "/".join(ts) if ts else None
 
     def subset(self, sections, committed=None):
         """A school containing only these sections, optionally with teacher time already

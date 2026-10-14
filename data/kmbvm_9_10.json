@@ -8,7 +8,7 @@
   "Fri"
  ],
  "periods": 9,
- "lunch_after": 4,
+ "lunch_after": 5,
  "sections": [
   "9A",
   "9B",
@@ -21,16 +21,27 @@
  ],
  "subjects": [
   "AI",
-  "ART",
+  "ANR",
+  "ART/ CRAFT",
+  "ART/CRAFT",
   "BIO",
   "CHE",
-  "COMP",
+  "COMP/ CRAFT",
+  "COMP/ YOGA",
+  "COMP/CRAFT",
+  "COMP/YOGA",
   "D/M",
+  "D/M/D",
   "ENG",
-  "ENG LAB",
+  "ENG LAB/ ROB",
+  "ENG LAB/ROB",
   "HIN",
   "KV",
-  "KV LAB",
+  "KV LAB/ COMP",
+  "KV LAB/COMP",
+  "KV LAB/YOGA",
+  "KV/AI",
+  "KVLAB/ YOGA",
   "LANG",
   "LIB",
   "MAL",
@@ -51,13 +62,14 @@
    "PHY": 2,
    "SS": 8,
    "SCI LAB": 1,
-   "KV LAB": 2,
+   "KV LAB/YOGA": 1,
    "D/M": 1,
    "PT": 4,
    "KV": 1,
    "CHE": 2,
+   "KV LAB/COMP": 1,
    "R3": 1,
-   "ART": 1,
+   "ART/CRAFT": 1,
    "SS ID": 2,
    "LIB": 1
   },
@@ -68,32 +80,34 @@
    "CHE": 2,
    "MAL": 4,
    "PT": 4,
-   "ART": 1,
+   "ART/CRAFT": 1,
    "KV": 1,
    "SCI LAB": 1,
    "BIO": 2,
    "PHY": 2,
-   "KV LAB": 2,
+   "KV LAB/ COMP": 1,
    "LIB": 1,
    "SS ID": 2,
    "R3": 1,
-   "D/M": 1
+   "D/M": 1,
+   "KV LAB/YOGA": 1
   },
   "9C": {
    "MTS": 7,
    "CHE": 2,
    "SS": 8,
    "ENG": 6,
-   "KV LAB": 1,
+   "KVLAB/ YOGA": 1,
    "LANG": 4,
-   "KV": 2,
+   "KV": 1,
    "BIO": 2,
    "PT": 4,
    "SS ID": 2,
    "PHY": 2,
    "D/M": 1,
    "R3": 1,
-   "ART": 1,
+   "ART/CRAFT": 1,
+   "KV/AI": 1,
    "LIB": 1,
    "SCI LAB": 1
   },
@@ -101,11 +115,11 @@
    "SS": 8,
    "MTS": 7,
    "BIO": 2,
-   "KV": 2,
+   "KV": 1,
    "ENG": 6,
-   "KV LAB": 1,
+   "KVLAB/ YOGA": 1,
    "LANG": 4,
-   "ART": 1,
+   "ART/ CRAFT": 1,
    "PT": 4,
    "CHE": 2,
    "D/M": 1,
@@ -113,12 +127,13 @@
    "LIB": 1,
    "SS ID": 2,
    "R3": 1,
-   "PHY": 2
+   "PHY": 2,
+   "KV/AI": 1
   },
   "10A": {
    "CHE": 2,
    "SS": 8,
-   "COMP": 2,
+   "COMP/ CRAFT": 1,
    "LANG": 6,
    "ENG": 6,
    "LIB": 1,
@@ -127,25 +142,28 @@
    "PT": 4,
    "PHY": 2,
    "BIO": 2,
-   "ENG LAB": 1,
+   "ENG LAB/ ROB": 1,
    "SCI LAB": 1,
-   "D/M": 1
+   "COMP/YOGA": 1,
+   "D/M/D": 1
   },
   "10B": {
-   "ENG": 7,
+   "ENG": 6,
    "MTS": 6,
    "SS": 8,
    "LANG": 6,
    "PHY": 2,
    "PT": 4,
    "CHE": 2,
-   "COMP": 2,
+   "COMP/ YOGA": 1,
    "BIO": 2,
    "LIB": 1,
    "AI": 2,
-   "ENG LAB": 1,
+   "ANR": 1,
+   "ENG LAB/ROB": 1,
    "SCI LAB": 1,
-   "D/M": 1
+   "COMP/CRAFT": 1,
+   "D/M/D": 1
   },
   "10C": {
    "SS": 8,
@@ -157,11 +175,12 @@
    "ENG": 6,
    "CHE": 2,
    "SCI LAB": 1,
-   "COMP": 2,
+   "COMP/ YOGA": 1,
    "BIO": 2,
-   "D/M": 1,
-   "ENG LAB": 1,
-   "LIB": 1
+   "D/M/D": 1,
+   "ENG LAB/ROB": 1,
+   "LIB": 1,
+   "COMP/CRAFT": 1
   },
   "10D": {
    "HIN": 6,
@@ -172,257 +191,492 @@
    "ENG": 6,
    "MTS": 7,
    "AI": 2,
-   "COMP": 2,
+   "COMP/ CRAFT": 1,
    "PHY": 2,
-   "ENG LAB": 1,
-   "D/M": 1,
+   "ENG LAB/ ROB": 1,
+   "D/M/D": 1,
    "CHE": 2,
+   "COMP/YOGA": 1,
    "SCI LAB": 1
   }
  },
  "assignment": {
   "9A": {
-   "MAL": "HCN",
-   "MTS": "VJB",
-   "BIO": "TSD",
-   "ENG": "BIN",
-   "PHY": "UPR",
-   "SS": "AVR",
-   "KV LAB": "UPR",
-   "PT": "RKM",
-   "KV": "UPR",
-   "R3": "HCN",
-   "SS ID": "AVR"
+   "MAL": [
+    "HCN"
+   ],
+   "MTS": [
+    "VJB"
+   ],
+   "BIO": [
+    "TSD"
+   ],
+   "ENG": [
+    "BIN"
+   ],
+   "PHY": [
+    "UPR"
+   ],
+   "SS": [
+    "AVR"
+   ],
+   "SCI LAB": [
+    " TSD",
+    "REM",
+    "UPR"
+   ],
+   "KV LAB/YOGA": [
+    " ASK",
+    "UPR"
+   ],
+   "D/M": [
+    " SMC",
+    "VIS"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "KV": [
+    "UPR"
+   ],
+   "CHE": [
+    "REM"
+   ],
+   "KV LAB/COMP": [
+    "NPR",
+    "UPR"
+   ],
+   "R3": [
+    "MAL HCN"
+   ],
+   "ART/CRAFT": [
+    "AJK",
+    "SIG"
+   ],
+   "SS ID": [
+    "AVR"
+   ],
+   "LIB": [
+    "PRC"
+   ]
   },
   "9B": {
-   "MTS": "DKP",
-   "ENG": "ANP",
-   "SS": "APK",
-   "MAL": "APA",
-   "PT": "RKM",
-   "KV": "TSD",
-   "BIO": "TSD",
-   "PHY": "UPR",
-   "SS ID": "AVR",
-   "R3": "ANG",
-   "KV LAB": "TSD"
+   "MTS": [
+    "DKP"
+   ],
+   "ENG": [
+    "ANP"
+   ],
+   "SS": [
+    "APK"
+   ],
+   "CHE": [
+    "REM"
+   ],
+   "MAL": [
+    "APA"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "ART/CRAFT": [
+    "AJK",
+    "SIG"
+   ],
+   "KV": [
+    "TSD"
+   ],
+   "SCI LAB": [
+    " REM",
+    " TSD",
+    "UPR"
+   ],
+   "BIO": [
+    "TSD"
+   ],
+   "PHY": [
+    "UPR"
+   ],
+   "KV LAB/ COMP": [
+    " NPR",
+    "TSD"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "SS ID": [
+    "AVR"
+   ],
+   "R3": [
+    "HIN ANG"
+   ],
+   "D/M": [
+    "SMC",
+    "VIS"
+   ],
+   "KV LAB/YOGA": [
+    "ASK",
+    "TSD"
+   ]
   },
   "9C": {
-   "MTS": "SNS",
-   "CHE": "DPK",
-   "SS": "JJN",
-   "ENG": "SLK",
-   "KV LAB": "SRM",
-   "KV": "SRM",
-   "BIO": "SRM",
-   "PT": "RKM",
-   "SS ID": "JJN",
-   "PHY": "DSH",
-   "R3": "MSM"
+   "MTS": [
+    "SNS"
+   ],
+   "CHE": [
+    "DPK"
+   ],
+   "SS": [
+    "JJN"
+   ],
+   "ENG": [
+    "SLK"
+   ],
+   "KVLAB/ YOGA": [
+    " ASK",
+    "SRM"
+   ],
+   "LANG": [
+    "DVM",
+    "JPR",
+    "MSM"
+   ],
+   "KV": [
+    "SRM"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "SS ID": [
+    "JJN"
+   ],
+   "PHY": [
+    "DSH"
+   ],
+   "D/M": [
+    "SMC",
+    "VIS"
+   ],
+   "R3": [
+    "HIN MSM"
+   ],
+   "ART/CRAFT": [
+    "AJK",
+    "SIG"
+   ],
+   "KV/AI": [
+    "NPT",
+    "SRM"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "SCI LAB": [
+    "DPK",
+    "DSH",
+    "SRM"
+   ]
   },
   "9D": {
-   "SS": "MJD",
-   "MTS": "SPS",
-   "BIO": "SRM",
-   "KV": "NMV",
-   "ENG": "DPU",
-   "KV LAB": "NMV",
-   "PT": "RKM",
-   "CHE": "DPK",
-   "SS ID": "AVR",
-   "R3": "JPR",
-   "PHY": "AMB"
+   "SS": [
+    "MJD"
+   ],
+   "MTS": [
+    "SPS"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "KV": [
+    "NMV"
+   ],
+   "ENG": [
+    "DPU"
+   ],
+   "KVLAB/ YOGA": [
+    " ASK",
+    "NMV"
+   ],
+   "LANG": [
+    "DVM",
+    "JPR",
+    "MSM"
+   ],
+   "ART/ CRAFT": [
+    " SIG",
+    "AJK"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "CHE": [
+    "DPK"
+   ],
+   "D/M": [
+    " SMC",
+    "VIS"
+   ],
+   "SCI LAB": [
+    " DPK",
+    " SRM",
+    "AMB"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "SS ID": [
+    "AVR",
+    "AVR ID"
+   ],
+   "R3": [
+    "SAN JPR"
+   ],
+   "PHY": [
+    "AMB"
+   ],
+   "KV/AI": [
+    "NMV",
+    "NPR"
+   ]
   },
   "10A": {
-   "CHE": "NMV",
-   "SS": "MJD",
-   "COMP": "JYP",
-   "ENG": "ANR",
-   "MTS": "DKP",
-   "AI": "JYP",
-   "PT": "SNV",
-   "PHY": "DSH",
-   "BIO": "SRM",
-   "ENG LAB": "ANR"
+   "CHE": [
+    "NMV"
+   ],
+   "SS": [
+    "MJD"
+   ],
+   "COMP/ CRAFT": [
+    " SIG",
+    "JYP"
+   ],
+   "LANG": [
+    " JPR",
+    "DVM",
+    "DVM ",
+    "JPR"
+   ],
+   "ENG": [
+    "ANR"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "MTS": [
+    "DKP"
+   ],
+   "AI": [
+    "JYP"
+   ],
+   "PT": [
+    "SNV"
+   ],
+   "PHY": [
+    "DSH"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "ENG LAB/ ROB": [
+    " MMN",
+    "ANR"
+   ],
+   "SCI LAB": [
+    " SRM",
+    "DSH",
+    "NMV"
+   ],
+   "COMP/YOGA": [
+    "ASK",
+    "JYP"
+   ],
+   "D/M/D": [
+    "AJK"
+   ]
   },
   "10B": {
-   "ENG": "DPU",
-   "MTS": "ADS",
-   "SS": "BBK",
-   "PHY": "DSH",
-   "PT": "SNV",
-   "CHE": "DPK",
-   "COMP": "JYP",
-   "BIO": "SRM",
-   "AI": "JYP",
-   "ENG LAB": "DPU"
+   "ENG": [
+    "DPU"
+   ],
+   "MTS": [
+    "ADS"
+   ],
+   "SS": [
+    "BBK"
+   ],
+   "LANG": [
+    " JPR",
+    "APA",
+    "JPR"
+   ],
+   "PHY": [
+    "DSH"
+   ],
+   "PT": [
+    "SNV"
+   ],
+   "CHE": [
+    "DPK"
+   ],
+   "COMP/ YOGA": [
+    " ASK",
+    "JYP"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "AI": [
+    "JYP"
+   ],
+   "ANR": [
+    "ADS"
+   ],
+   "ENG LAB/ROB": [
+    "DPU",
+    "MMN"
+   ],
+   "SCI LAB": [
+    "DPK",
+    "DSH",
+    "SRM"
+   ],
+   "COMP/CRAFT": [
+    "JYP",
+    "SIG"
+   ],
+   "D/M/D": [
+    "SMC"
+   ]
   },
   "10C": {
-   "SS": "JJN",
-   "PHY": "UPR",
-   "MTS": "SNS",
-   "AI": "NPR",
-   "PT": "SNV",
-   "ENG": "ANP",
-   "CHE": "NMV",
-   "COMP": "NPR",
-   "BIO": "TSD",
-   "ENG LAB": "ANP"
+   "SS": [
+    "JJN"
+   ],
+   "PHY": [
+    "UPR"
+   ],
+   "MTS": [
+    "SNS"
+   ],
+   "LANG": [
+    "HCN",
+    "JPR"
+   ],
+   "AI": [
+    "NPR"
+   ],
+   "PT": [
+    "SNV"
+   ],
+   "ENG": [
+    "ANP"
+   ],
+   "CHE": [
+    "NMV"
+   ],
+   "SCI LAB": [
+    " NMY",
+    " TSD",
+    "UPR"
+   ],
+   "COMP/ YOGA": [
+    " ASK",
+    "NPR"
+   ],
+   "BIO": [
+    "TSD"
+   ],
+   "D/M/D": [
+    "VIS"
+   ],
+   "ENG LAB/ROB": [
+    "ANP",
+    "MMN"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COMP/CRAFT": [
+    "NPR",
+    "SIG"
+   ]
   },
   "10D": {
-   "HIN": "MSM",
-   "BIO": "TSD",
-   "SS": "JAV",
-   "PT": "RKM",
-   "ENG": "SLK",
-   "MTS": "RMY",
-   "AI": "NPR",
-   "COMP": "NPR",
-   "PHY": "UPR",
-   "ENG LAB": "SLK",
-   "CHE": "DPK"
+   "HIN": [
+    "MSM"
+   ],
+   "BIO": [
+    "TSD"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "SS": [
+    "JAV"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "ENG": [
+    "SLK"
+   ],
+   "MTS": [
+    "RMY"
+   ],
+   "AI": [
+    "NPR"
+   ],
+   "COMP/ CRAFT": [
+    " SIG",
+    "NPR"
+   ],
+   "PHY": [
+    "UPR"
+   ],
+   "ENG LAB/ ROB": [
+    " MMN",
+    "SLK"
+   ],
+   "D/M/D": [
+    "X-D/M/D-4"
+   ],
+   "CHE": [
+    "DPK"
+   ],
+   "COMP/YOGA": [
+    "ASK",
+    "NPR"
+   ],
+   "SCI LAB": [
+    "DPK",
+    "TSD",
+    "UPR"
+   ]
   }
  },
- "unstaffed": [
-  [
-   "9A",
-   "SCI LAB"
+ "unstaffed": [],
+ "assumed": {
+  "break_after_period": 5,
+  "all_named_teachers_busy": true,
+  "blank_after_lab_is_a_double": false,
+  "double_subjects": [],
+  "blocks": {
+   "D/M/D": [
+    "10A",
+    "10B",
+    "10C",
+    "10D"
+   ]
+  },
+  "block_teachers_shared_out": [
+   "D/M/D"
   ],
-  [
-   "9A",
-   "D/M"
-  ],
-  [
-   "9A",
-   "CHE"
-  ],
-  [
-   "9A",
-   "ART"
-  ],
-  [
-   "9A",
-   "LIB"
-  ],
-  [
-   "9B",
-   "CHE"
-  ],
-  [
-   "9B",
-   "ART"
-  ],
-  [
-   "9B",
-   "SCI LAB"
-  ],
-  [
-   "9B",
-   "LIB"
-  ],
-  [
-   "9B",
-   "D/M"
-  ],
-  [
-   "9C",
-   "LANG"
-  ],
-  [
-   "9C",
-   "D/M"
-  ],
-  [
-   "9C",
-   "ART"
-  ],
-  [
-   "9C",
-   "LIB"
-  ],
-  [
-   "9C",
-   "SCI LAB"
-  ],
-  [
-   "9D",
-   "LANG"
-  ],
-  [
-   "9D",
-   "ART"
-  ],
-  [
-   "9D",
-   "D/M"
-  ],
-  [
-   "9D",
-   "SCI LAB"
-  ],
-  [
-   "9D",
-   "LIB"
-  ],
-  [
-   "10A",
-   "LANG"
-  ],
-  [
-   "10A",
-   "LIB"
-  ],
-  [
-   "10A",
-   "SCI LAB"
-  ],
-  [
-   "10A",
-   "D/M"
-  ],
-  [
-   "10B",
-   "LANG"
-  ],
-  [
-   "10B",
-   "LIB"
-  ],
-  [
-   "10B",
-   "SCI LAB"
-  ],
-  [
-   "10B",
-   "D/M"
-  ],
-  [
-   "10C",
-   "LANG"
-  ],
-  [
-   "10C",
-   "SCI LAB"
-  ],
-  [
-   "10C",
-   "D/M"
-  ],
-  [
-   "10C",
-   "LIB"
-  ],
-  [
-   "10D",
-   "LIB"
-  ],
-  [
-   "10D",
-   "D/M"
-  ],
-  [
-   "10D",
-   "SCI LAB"
-  ]
- ]
+  "split_cells_book_every_teacher": true
+ }
 }

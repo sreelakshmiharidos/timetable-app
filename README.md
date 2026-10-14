@@ -7,6 +7,8 @@ it reports the smallest set of rules that cannot hold together.
 ## Layout
 
     derive.py        timetable grid -> machine-readable school (sections, requirements, teachers)
+    derive1112.py    the same for the senior grid: doubles, streams, elective blocks
+    run_1112.py      solves 11-12 and then 9-10 against its teacher commitments
     school.py        the data model
     model.py         Layer 2: the translator (constraint forms -> CP-SAT)
     solve.py         solving, conflict extraction, printing
@@ -16,6 +18,13 @@ it reports the smallest set of rules that cannot hold together.
     reader.py        Layer 1: sentence -> validated constraint form (LLM or offline)
     app.py           Streamlit interface, running the current engine
     pipeline.py      v0.1 single-file prototype (kept for reference)
+
+## Input format
+
+A school fills one workbook: Structure, Sections, Curriculum, Allocation, Groups, Rules
+(`template.py`, example in `data/kmbvm_input_template.xlsx`). That is the production input. Reading a
+school's finished timetable (`parse_xl.py`, `derive_all.py`) is how the example was produced and how a
+school with no template can start.
 
 ## Bands
 

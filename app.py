@@ -4,15 +4,23 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.5"
+VERSION = "v0.6"
 SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
-SCHOOLS = {"KMBVM Pottore, grades 9 and 10 (real data)": "data/kmbvm_9_10.json",
+SCHOOLS = {"KMBVM, grades 11 and 12 (streams, labs, elective blocks)": "data/kmbvm_11_12.json",
+           "KMBVM, grades 9 and 10": "data/kmbvm_9_10.json",
+           "KMBVM, grades 6 to 8": "data/kmbvm_6_8.json",
            "Sample school (small and fast)": "data/sample.json"}
+UPLOAD = "Upload our own workbook"
 EXAMPLES = {
  "data/kmbvm_9_10.json": "No teacher should teach more than 4 periods in a row\n"
                           "No subject more than twice a day\n"
                           "PHY must be taught as a double period\n"
                           "No PT in the first period",
+ "data/kmbvm_11_12.json": "11E, 11F and 11G take M/IP/P at the same time\n"
+                           "No teacher should teach more than 4 periods in a row\n"
+                           "Only one class can be in the LIB at a time",
+ "data/kmbvm_6_8.json": "No teacher should teach more than 4 periods in a row\n"
+                        "No subject more than twice a day",
  "data/sample.json": "No teacher should teach more than 3 periods in a row\n"
                       "Suma is not available on Monday\n"
                       "No PE in the first period\n"
@@ -71,9 +79,22 @@ def step(n, t): st.markdown(f'<div class="step"><div class="n">{n}</div><div cla
 
 # ---------------------------------------------------------------- 1. school
 step(1, "The school")
-pick = st.radio("School", list(SCHOOLS), label_visibility="collapsed", horizontal=False)
-path = SCHOOLS[pick]
-school = School.load(path)
+pick = st.radio("School", list(SCHOOLS) + [UPLOAD], label_visibility="collapsed")
+sheet_rules = []
+if pick == UPLOAD:
+    st.markdown('<div class="muted">One workbook, six tabs: Structure, Sections, Curriculum, '
+                'Allocation, Groups and Rules. Download the filled KMBVM example from the repo '
+                'to see the shape.</div>', unsafe_allow_html=True)
+    up = st.file_uploader("School workbook (.xlsx)", type=["xlsx"], label_visibility="collapsed")
+    if not up: st.stop()
+    import template
+    bands, sheet_rules = template.read_workbook(up)
+    if not bands: st.error("No bands found. Check the Structure and Sections tabs."); st.stop()
+    which = st.selectbox("Which band do you want to build?", list(bands))
+    school = School(bands[which]); path = f"upload:{which}"
+else:
+    path = SCHOOLS[pick]
+    school = School.load(path)
 if ss.get("school_path") != path:
     ss.school_path, ss.parsed, ss.result, ss.read_for = path, {}, None, None
 st.markdown(f'<div class="muted">{len(school.sections)} sections · {len(school.days)} days · '
@@ -88,7 +109,12 @@ if school.unstaffed:
 
 # ---------------------------------------------------------------- 2. rules
 step(2, "Your rules")
-text = st.text_area("One rule per line", EXAMPLES[path], height=130, label_visibility="collapsed")
+default = ("\n".join(r[1] for r in sheet_rules) if sheet_rules
+           else EXAMPLES.get(path, "No teacher should teach more than 4 periods in a row"))
+if sheet_rules:
+    st.markdown(f'<div class="muted">{len(sheet_rules)} rules came from the workbook\'s Rules tab. '
+                'Edit them here if you want.</div>', unsafe_allow_html=True)
+text = st.text_area("One rule per line", default, height=130, label_visibility="collapsed")
 st.markdown('<div class="muted">Understands: periods in a row, periods per day, teacher availability, '
             'subjects kept out of periods, repeats per day, no same subject back to back, free-period '
             'limits, a required mid-day break, fixed slots, and double periods. Words like <i>ideally</i> '

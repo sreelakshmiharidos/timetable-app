@@ -1,0 +1,906 @@
+{
+ "name": "KMBVM Pottore (grades 6 and 8)",
+ "days": [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri"
+ ],
+ "periods": 9,
+ "lunch_after": 5,
+ "sections": [
+  "6A",
+  "6B",
+  "6C",
+  "6D",
+  "7A",
+  "7B",
+  "7C",
+  "7D",
+  "8A",
+  "8B",
+  "8C",
+  "8D"
+ ],
+ "subjects": [
+  "APA",
+  "BIO",
+  "CC/GK",
+  "CCGK",
+  "CLAB/ CFT",
+  "CLAB/CFT",
+  "COM",
+  "COM/CFT",
+  "COMP",
+  "DMD",
+  "ELAB/ GITA",
+  "ENG",
+  "HIN",
+  "LIB",
+  "MAL",
+  "MAL/ SAN",
+  "MAL/ SKT",
+  "MAL/SKT",
+  "MTS",
+  "PT",
+  "ROBO",
+  "SCI",
+  "SS",
+  "Y/KB"
+ ],
+ "requirements": {
+  "6A": {
+   "MTS": 7,
+   "COMP": 1,
+   "HIN": 5,
+   "ENG": 5,
+   "SCI": 6,
+   "DMD": 1,
+   "SS": 6,
+   "Y/KB": 1,
+   "MAL": 5,
+   "ROBO": 1,
+   "ELAB/ GITA": 1,
+   "PT": 3,
+   "CC/GK": 1,
+   "LIB": 1,
+   "COM/CFT": 1
+  },
+  "6B": {
+   "MAL": 5,
+   "MTS": 7,
+   "Y/KB": 1,
+   "ENG": 5,
+   "SS": 6,
+   "DMD": 1,
+   "HIN": 5,
+   "LIB": 1,
+   "SCI": 6,
+   "COMP": 1,
+   "ELAB/ GITA": 1,
+   "ROBO": 1,
+   "PT": 3,
+   "CLAB/ CFT": 1,
+   "CC/GK": 1
+  },
+  "6C": {
+   "SCI": 6,
+   "MAL/ SKT": 5,
+   "COMP": 1,
+   "MTS": 7,
+   "ENG": 5,
+   "HIN": 5,
+   "PT": 3,
+   "SS": 6,
+   "DMD": 1,
+   "LIB": 1,
+   "CLAB/ CFT": 1,
+   "ROBO": 1,
+   "CC/GK": 1,
+   "Y/KB": 1,
+   "ELAB/ GITA": 1
+  },
+  "6D": {
+   "SS": 6,
+   "MAL/ SKT": 4,
+   "ENG": 5,
+   "SCI": 6,
+   "MTS": 7,
+   "HIN": 5,
+   "CC/GK": 1,
+   "PT": 3,
+   "DMD": 1,
+   "LIB": 1,
+   "COMP": 1,
+   "CLAB/ CFT": 1,
+   "Y/KB": 1,
+   "MAL/ SAN": 1,
+   "ELAB/ GITA": 1,
+   "ROBO": 1
+  },
+  "7A": {
+   "ENG": 5,
+   "HIN": 5,
+   "DMD": 1,
+   "SS": 6,
+   "MTS": 7,
+   "CLAB/ CFT": 1,
+   "MAL": 5,
+   "SCI": 6,
+   "ELAB/ GITA": 1,
+   "Y/KB": 1,
+   "PT": 3,
+   "CCGK": 1,
+   "COMP": 1,
+   "ROBO": 1,
+   "LIB": 1
+  },
+  "7B": {
+   "MTS": 7,
+   "CLAB/ CFT": 1,
+   "DMD": 1,
+   "SS": 6,
+   "HIN": 5,
+   "SCI": 6,
+   "ENG": 5,
+   "MAL": 5,
+   "ROBO": 1,
+   "PT": 3,
+   "Y/KB": 1,
+   "CC/GK": 1,
+   "LIB": 1,
+   "COM": 1,
+   "ELAB/ GITA": 1
+  },
+  "7C": {
+   "SCI": 6,
+   "SS": 6,
+   "ENG": 5,
+   "ROBO": 1,
+   "MTS": 7,
+   "MAL/ SKT": 5,
+   "ELAB/ GITA": 1,
+   "HIN": 5,
+   "PT": 3,
+   "COMP": 1,
+   "CLAB/ CFT": 1,
+   "Y/KB": 1,
+   "CC/GK": 1,
+   "DMD": 1,
+   "LIB": 1
+  },
+  "7D": {
+   "HIN": 5,
+   "ENG": 5,
+   "SCI": 6,
+   "MTS": 7,
+   "LIB": 1,
+   "MAL/ SKT": 5,
+   "CLAB/ CFT": 1,
+   "SS": 6,
+   "PT": 3,
+   "COMP": 1,
+   "CC/GK": 1,
+   "ELAB/ GITA": 1,
+   "Y/KB": 1,
+   "ROBO": 1,
+   "DMD": 1
+  },
+  "8A": {
+   "HIN": 5,
+   "DMD": 1,
+   "SCI": 4,
+   "MTS": 7,
+   "SS": 6,
+   "ENG": 5,
+   "MAL": 5,
+   "PT": 3,
+   "ROBO": 1,
+   "ELAB/ GITA": 1,
+   "BIO": 2,
+   "Y/KB": 1,
+   "CLAB/CFT": 1,
+   "LIB": 1,
+   "COM": 1,
+   "CC/GK": 1
+  },
+  "8B": {
+   "SCI": 4,
+   "DMD": 1,
+   "PT": 3,
+   "MTS": 7,
+   "SS": 6,
+   "HIN": 5,
+   "MAL": 4,
+   "ENG": 5,
+   "BIO": 2,
+   "APA": 1,
+   "ROBO": 1,
+   "CC/GK": 1,
+   "LIB": 1,
+   "COMP": 1,
+   "CLAB/ CFT": 1,
+   "Y/KB": 1,
+   "ELAB/ GITA": 1
+  },
+  "8C": {
+   "SCI": 4,
+   "BIO": 2,
+   "ENG": 5,
+   "PT": 3,
+   "MTS": 7,
+   "HIN": 5,
+   "SS": 6,
+   "ROBO": 1,
+   "MAL/ SKT": 5,
+   "LIB": 1,
+   "CLAB/ CFT": 1,
+   "COMP": 1,
+   "ELAB/ GITA": 1,
+   "CC/GK": 1,
+   "Y/KB": 1,
+   "DMD": 1
+  },
+  "8D": {
+   "SS": 6,
+   "SCI": 4,
+   "PT": 3,
+   "HIN": 5,
+   "ENG": 5,
+   "ROBO": 1,
+   "BIO": 2,
+   "MTS": 7,
+   "MAL/ SKT": 4,
+   "COMP": 1,
+   "LIB": 1,
+   "Y/KB": 1,
+   "MAL/SKT": 1,
+   "ELAB/ GITA": 1,
+   "CC/GK": 1,
+   "DMD": 1,
+   "CLAB/ CFT": 1
+  }
+ },
+ "assignment": {
+  "6A": {
+   "MTS": [
+    "VJB"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "HIN": [
+    "SDG"
+   ],
+   "ENG": [
+    "UDK"
+   ],
+   "SCI": [
+    "REM"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "SS": [
+    "JJN",
+    "SJJN"
+   ],
+   "Y/KB": [
+    " NH CFT",
+    "ASK"
+   ],
+   "MAL": [
+    "HCN"
+   ],
+   "ROBO": [
+    " DPU",
+    "AVANI"
+   ],
+   "ELAB/ GITA": [
+    " HCN",
+    "UDK"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "CC/GK": [
+    "SBB"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COM/CFT": [
+    "NPR",
+    "SIG"
+   ]
+  },
+  "6B": {
+   "MAL": [
+    "DVM"
+   ],
+   "MTS": [
+    "RMY"
+   ],
+   "Y/KB": [
+    " NH CFT",
+    "ASK"
+   ],
+   "ENG": [
+    "ARY"
+   ],
+   "SS": [
+    "APK"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "HIN": [
+    "ANG"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "SCI": [
+    "SMG"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "ELAB/ GITA": [
+    " JPR",
+    "ARY"
+   ],
+   "ROBO": [
+    " SJN",
+    "AVANI"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "NPR"
+   ],
+   "CC/GK": [
+    "ANR"
+   ]
+  },
+  "6C": {
+   "SCI": [
+    "DPK"
+   ],
+   "MAL/ SKT": [
+    " JPR"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "MTS": [
+    "SNA",
+    "SNS"
+   ],
+   "ENG": [
+    "ANP"
+   ],
+   "HIN": [
+    "ANG",
+    "ANP"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "SS": [
+    "APK"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "NPR"
+   ],
+   "ROBO": [
+    " BIN",
+    "AVANI"
+   ],
+   "CC/GK": [
+    "ANR"
+   ],
+   "Y/KB": [
+    " NH CFT",
+    "ASK"
+   ],
+   "ELAB/ GITA": [
+    " APA",
+    "ANP"
+   ]
+  },
+  "6D": {
+   "SS": [
+    "AVR"
+   ],
+   "MAL/ SKT": [
+    " MNK"
+   ],
+   "ENG": [
+    "ANR",
+    "PMN"
+   ],
+   "SCI": [
+    "SMG"
+   ],
+   "MTS": [
+    "PMN"
+   ],
+   "HIN": [
+    "SDG"
+   ],
+   "CC/GK": [
+    "BIN"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "NPR"
+   ],
+   "Y/KB": [
+    "ASK",
+    "SIG"
+   ],
+   "MAL/ SAN": [
+    " JPR",
+    " MNK",
+    "APA"
+   ],
+   "ELAB/ GITA": [
+    " JPR",
+    "ANR"
+   ],
+   "ROBO": [
+    " BIN",
+    "AVANI"
+   ]
+  },
+  "7A": {},
+  "7B": {
+   "MTS": [
+    "SPS"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "JYP"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "SS": [
+    "APK"
+   ],
+   "HIN": [
+    "MSM"
+   ],
+   "SCI": [
+    "DPK"
+   ],
+   "ENG": [
+    "ANR"
+   ],
+   "MAL": [
+    "DVM"
+   ],
+   "ROBO": [
+    " MSM",
+    "AVANI"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "Y/KB": [
+    " SIG",
+    "ASK"
+   ],
+   "CC/GK": [
+    "SBB"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COM": [
+    "JYP"
+   ],
+   "ELAB/ GITA": [
+    " JPR",
+    "ANR"
+   ]
+  },
+  "7C": {
+   "SCI": [
+    "TSD"
+   ],
+   "SS": [
+    "AVR"
+   ],
+   "ENG": [
+    "SLK"
+   ],
+   "ROBO": [
+    " MSM",
+    "AVANI"
+   ],
+   "MTS": [
+    "VJB"
+   ],
+   "MAL/ SKT": [
+    "APA"
+   ],
+   "ELAB/ GITA": [
+    " JPR",
+    "SLK"
+   ],
+   "HIN": [
+    "ANG"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "COMP": [
+    "JYP"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "JYP"
+   ],
+   "Y/KB": [
+    " NH CFT",
+    "ASK"
+   ],
+   "CC/GK": [
+    "BIN"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "LIB": [
+    "PRC"
+   ]
+  },
+  "7D": {
+   "HIN": [
+    "SDG"
+   ],
+   "ENG": [
+    "DPU"
+   ],
+   "SCI": [
+    "SMG"
+   ],
+   "MTS": [
+    "PMN"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "MAL/ SKT": [
+    "DVM"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "NPR"
+   ],
+   "SS": [
+    "BBK"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "CC/GK": [
+    "BIN"
+   ],
+   "ELAB/ GITA": [
+    " APA",
+    "DPU"
+   ],
+   "Y/KB": [
+    " SIG",
+    "ASK"
+   ],
+   "ROBO": [
+    " ADS",
+    "AVANI"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ]
+  },
+  "8A": {
+   "HIN": [
+    "ANG"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "SCI": [
+    "REM"
+   ],
+   "MTS": [
+    "VJB"
+   ],
+   "SS": [
+    "MJD"
+   ],
+   "ENG": [
+    "ANP"
+   ],
+   "MAL": [
+    "HCN"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "ROBO": [
+    " ADS",
+    "AVANI"
+   ],
+   "ELAB/ GITA": [
+    " HCN",
+    "ANP"
+   ],
+   "BIO": [
+    "TSD"
+   ],
+   "Y/KB": [
+    "ASK",
+    "NH CFT"
+   ],
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COM": [
+    "JYP"
+   ],
+   "CC/GK": [
+    "DPU"
+   ]
+  },
+  "8B": {
+   "SCI": [
+    "AMB"
+   ],
+   "DMD": [
+    "VAS"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "MTS": [
+    "SPS"
+   ],
+   "SS": [
+    "AVR"
+   ],
+   "HIN": [
+    "SDG"
+   ],
+   "MAL": [
+    "APA"
+   ],
+   "ENG": [
+    "DPU"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "APA": [
+    "MAL"
+   ],
+   "ROBO": [
+    "AVANI",
+    "MSM"
+   ],
+   "CC/GK": [
+    "DPU"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "COMP": [
+    "JYP"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "JYP"
+   ],
+   "Y/KB": [
+    "ASK",
+    "NHCR"
+   ],
+   "ELAB/ GITA": [
+    " APA",
+    "DPU"
+   ]
+  },
+  "8C": {
+   "SCI": [
+    "UPR"
+   ],
+   "BIO": [
+    "SRM"
+   ],
+   "ENG": [
+    "ANP"
+   ],
+   "PT": [
+    "RKM"
+   ],
+   "MTS": [
+    "RMY"
+   ],
+   "HIN": [
+    "MSM"
+   ],
+   "SS": [
+    "JAV"
+   ],
+   "ROBO": [
+    " RMJ",
+    "AVANI"
+   ],
+   "MAL/ SKT": [
+    "HCN"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "JYP"
+   ],
+   "COMP": [
+    "JYP"
+   ],
+   "ELAB/ GITA": [
+    " APA",
+    "ANP"
+   ],
+   "CC/GK": [
+    "MSM"
+   ],
+   "Y/KB": [
+    " NH CFT",
+    "ASK"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ]
+  },
+  "8D": {
+   "SS": [
+    "APK"
+   ],
+   "SCI": [
+    "REM"
+   ],
+   "PT": [
+    "SNV"
+   ],
+   "HIN": [
+    "ANG"
+   ],
+   "ENG": [
+    "SLK"
+   ],
+   "ROBO": [
+    " DPU",
+    "AVANI"
+   ],
+   "BIO": [
+    "SMG"
+   ],
+   "MTS": [
+    "SNS"
+   ],
+   "MAL/ SKT": [
+    "X-MAL/ S-6"
+   ],
+   "COMP": [
+    "JYP"
+   ],
+   "LIB": [
+    "PRC"
+   ],
+   "Y/KB": [
+    "ASK",
+    "SIG"
+   ],
+   "MAL/SKT": [
+    " JPR",
+    " MNK",
+    "DVM"
+   ],
+   "ELAB/ GITA": [
+    " HCN",
+    "SLK"
+   ],
+   "CC/GK": [
+    "X-CC/GK-4"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "CLAB/ CFT": [
+    " SIGMA",
+    "JYP"
+   ]
+  }
+ },
+ "unstaffed": [],
+ "assumed": {
+  "break_after_period": 5,
+  "all_named_teachers_busy": true,
+  "blank_after_lab_is_a_double": false,
+  "double_subjects": [],
+  "blocks": {
+   "MAL/ SKT": [
+    "6C",
+    "6D",
+    "7C",
+    "7D",
+    "8C",
+    "8D"
+   ],
+   "CC/GK": [
+    "6C",
+    "7D",
+    "8C",
+    "8D"
+   ]
+  },
+  "block_teachers_shared_out": [
+   "CC/GK",
+   "MAL/ SKT"
+  ],
+  "split_cells_book_every_teacher": true
+ }
+}
