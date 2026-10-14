@@ -113,6 +113,21 @@ def test_shared_resource():
             assert not (a[p][d] == "MTS" and b[p][d] == "MTS")
 
 
+
+
+def test_sequenced_bands_have_no_clash():
+    from solve import commitments
+    a = solve(S.subset(["A"]), [], seconds=20)
+    assert a["ok"]
+    com = commitments(S.subset(["A"]), a["grids"])
+    b = solve(S.subset(["B"], com), [], seconds=20)
+    assert b["ok"]
+    for p, row in enumerate(b["grids"]["B"]):
+        for d, sub in enumerate(row):
+            t = sub and S.teacher_of("B", sub)
+            if t: assert (d, p) not in com.get(t, ())
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

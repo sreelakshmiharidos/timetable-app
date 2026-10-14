@@ -4,7 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.4"
+VERSION = "v0.5"
 SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
 SCHOOLS = {"KMBVM Pottore, grades 9 and 10 (real data)": "data/kmbvm_9_10.json",
            "Sample school (small and fast)": "data/sample.json"}

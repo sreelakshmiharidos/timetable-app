@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.5 - sequenced bands
+- A school can now be split into bands and solved one after another, which is how the committee
+  works: `School.subset(sections, committed)` builds a band, and `commitments()` reports the teacher
+  slots a solved band has used.
+- Teacher time committed by an earlier band becomes fixed unavailability in the next one, so no
+  teacher is double-booked across bands.
+- Demonstrated on the real data: grade 9 solves in 4.3s, grade 10 then solves against grade 9's fixed
+  commitments in 0.2s, with zero cross-band clashes. Solving both bands in a single pass takes 2.4s,
+  so sequencing costs time and freedom but reproduces the school's own process.
+- Test added for cross-band clashes; 11 tests in total.
+
 ## v0.4 - parallel blocks and shared specialists
 - `parallel_block`: named sections take a subject in the same periods as each other, so students can
   be re-grouped across sections. This is the elective and language block structure that the school

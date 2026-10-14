@@ -17,6 +17,12 @@ it reports the smallest set of rules that cannot hold together.
     app.py           Streamlit interface, running the current engine
     pipeline.py      v0.1 single-file prototype (kept for reference)
 
+## Bands
+
+The school builds grades 11-12 first, then 9-10, then 6-8, then 1-5, because teachers are shared
+between bands. `School.subset(sections, committed)` and `solve.commitments()` reproduce that: solve one
+band, extract the teacher slots it used, pass them to the next band as fixed unavailability.
+
 ## Run
 
     pip install -r requirements.txt

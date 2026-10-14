@@ -53,6 +53,17 @@ def solve(school, rules, seconds=60):
     return out
 
 
+def commitments(school, grids):
+    """Teacher slots used by a solved band, to pass to the next band as fixed unavailability."""
+    out = {}
+    for c, g in grids.items():
+        for p, row in enumerate(g):
+            for d, sub in enumerate(row):
+                t = sub and school.teacher_of(c, sub)
+                if t: out.setdefault(t, set()).add((d, p))
+    return out
+
+
 def print_grid(school, grids, section):
     g = grids[section]
     print(f"\n=== {section} ===")

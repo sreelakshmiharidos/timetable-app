@@ -41,6 +41,8 @@ class Build:
                     e = sum(self.x[c, d, p, sub] for (c, sub) in school.taught[t])
                     self.busy[t, d, p] = e
                     self.m.Add(e <= 1)             # one room at a time
+                    if (d, p) in school.committed.get(t, ()):
+                        self.m.Add(e == 0)         # already teaching another band here
         self.idle = {}
         self.switch = {}
 
