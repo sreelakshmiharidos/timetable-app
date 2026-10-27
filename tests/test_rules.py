@@ -137,3 +137,51 @@ if __name__ == "__main__":
             except AssertionError:
                 fails += 1; print("FAIL", name)
     raise SystemExit(fails)
+
+
+# ---- the data model itself -------------------------------------------------
+def _base(**extra):
+    d = {"name": "t", "days": ["Mon", "Tue"], "periods": 2, "lunch_after": 1,
+         "sections": ["A", "B"], "subjects": ["X", "Y"],
+         "requirements": {"A": {"X": 1}, "B": {"X": 1}},
+         "assignment": {"A": {"X": ["t1"]}, "B": {"X": ["t1"]}}, "unstaffed": []}
+    d.update(extra); return d
+
+
+def test_regrouped_sections_share_one_teacher():
+    """Two sections taught together count as one occupation, so one teacher can cover both."""
+    from school import School
+    from solve import solve
+    apart = solve(School(_base()), [], seconds=10)
+    assert apart["ok"]                                  # four slots, so they can be kept apart
+    together = School(_base(co_taught=[[["A", "X"], ["B", "X"]]],
+                            block_groups=[{"subject": "X", "sections": ["A", "B"]}]))
+    r = solve(together, [], seconds=10)
+    assert r["ok"]                                      # and aligned, they still fit
+    a = [(d, p) for p, row in enumerate(r["grids"]["A"]) for d, s in enumerate(row) if s]
+    b = [(d, p) for p, row in enumerate(r["grids"]["B"]) for d, s in enumerate(row) if s]
+    assert a == b                                       # in the same period, as a block must be
+
+
+def test_shared_load_splits_a_subject_between_two_teachers():
+    """Two teachers over the week is not a split class: each takes her own share."""
+    from school import School
+    from solve import solve
+    sc = School(_base(requirements={"A": {"X": 3}, "B": {"X": 1}},
+                      assignment={"A": {"X": ["t1", "t2"]}, "B": {"X": ["t1"]}},
+                      teacher_load={"A": {"X": {"t1": 1, "t2": 2}}}))
+    r = solve(sc, [], seconds=10)
+    assert r["ok"]            # t1 takes one of A's three lessons, so B's lesson still fits
+
+
+def test_closed_slots_are_never_used():
+    """Grades 1-5 open with a zero period on Thursday only; the others do not exist."""
+    from school import School
+    from solve import solve
+    sc = School(_base(requirements={"A": {"X": 3}, "B": {"X": 1}},
+                      assignment={"A": {"X": ["t1"]}, "B": {"X": ["t2"]}},
+                      closed=[[0, 0], ["B", 1, 1]]))
+    r = solve(sc, [], seconds=10)
+    assert r["ok"]
+    assert r["grids"]["A"][0][0] is None               # closed for the whole school
+    assert r["grids"]["B"][1][1] is None               # closed for section B only

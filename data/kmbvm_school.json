@@ -1,0 +1,15 @@
+{
+ "name": "KMBVM Pottore",
+ "order": [
+  "11_12",
+  "9_10",
+  "6_8",
+  "1_5"
+ ],
+ "bands": {
+  "11_12": "data/kmbvm_11_12.json",
+  "9_10": "data/kmbvm_9_10.json",
+  "6_8": "data/kmbvm_6_8.json",
+  "1_5": "data/kmbvm_1_5.json"
+ }
+}

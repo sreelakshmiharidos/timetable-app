@@ -1,0 +1,9 @@
+{
+ "name": "Sample school",
+ "order": [
+  "all"
+ ],
+ "bands": {
+  "all": "data/sample.json"
+ }
+}

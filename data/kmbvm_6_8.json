@@ -1,5 +1,5 @@
 {
- "name": "KMBVM Pottore (grades 6 and 8)",
+ "name": "KMBVM Pottore (grades 6-8)",
  "days": [
   "Mon",
   "Tue",
@@ -8,7 +8,7 @@
   "Fri"
  ],
  "periods": 9,
- "lunch_after": 5,
+ "lunch_after": 6,
  "sections": [
   "6A",
   "6B",
@@ -24,23 +24,18 @@
   "8D"
  ],
  "subjects": [
-  "APA",
   "BIO",
   "CC/GK",
-  "CCGK",
-  "CLAB/ CFT",
   "CLAB/CFT",
   "COM",
   "COM/CFT",
   "COMP",
   "DMD",
-  "ELAB/ GITA",
+  "ELAB/GITA",
   "ENG",
   "HIN",
   "LIB",
   "MAL",
-  "MAL/ SAN",
-  "MAL/ SKT",
   "MAL/SKT",
   "MTS",
   "PT",
@@ -61,7 +56,7 @@
    "Y/KB": 1,
    "MAL": 5,
    "ROBO": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "PT": 3,
    "CC/GK": 1,
    "LIB": 1,
@@ -78,15 +73,15 @@
    "LIB": 1,
    "SCI": 6,
    "COMP": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "ROBO": 1,
    "PT": 3,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "CC/GK": 1
   },
   "6C": {
    "SCI": 6,
-   "MAL/ SKT": 5,
+   "MAL/SKT": 5,
    "COMP": 1,
    "MTS": 7,
    "ENG": 5,
@@ -95,15 +90,15 @@
    "SS": 6,
    "DMD": 1,
    "LIB": 1,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "ROBO": 1,
    "CC/GK": 1,
    "Y/KB": 1,
-   "ELAB/ GITA": 1
+   "ELAB/GITA": 1
   },
   "6D": {
    "SS": 6,
-   "MAL/ SKT": 4,
+   "MAL/SKT": 5,
    "ENG": 5,
    "SCI": 6,
    "MTS": 7,
@@ -113,10 +108,9 @@
    "DMD": 1,
    "LIB": 1,
    "COMP": 1,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "Y/KB": 1,
-   "MAL/ SAN": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "ROBO": 1
   },
   "7A": {
@@ -125,20 +119,20 @@
    "DMD": 1,
    "SS": 6,
    "MTS": 7,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "MAL": 5,
    "SCI": 6,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "Y/KB": 1,
    "PT": 3,
-   "CCGK": 1,
+   "CC/GK": 1,
    "COMP": 1,
    "ROBO": 1,
    "LIB": 1
   },
   "7B": {
    "MTS": 7,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "DMD": 1,
    "SS": 6,
    "HIN": 5,
@@ -151,7 +145,7 @@
    "CC/GK": 1,
    "LIB": 1,
    "COM": 1,
-   "ELAB/ GITA": 1
+   "ELAB/GITA": 1
   },
   "7C": {
    "SCI": 6,
@@ -159,12 +153,12 @@
    "ENG": 5,
    "ROBO": 1,
    "MTS": 7,
-   "MAL/ SKT": 5,
-   "ELAB/ GITA": 1,
+   "MAL/SKT": 5,
+   "ELAB/GITA": 1,
    "HIN": 5,
    "PT": 3,
    "COMP": 1,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "Y/KB": 1,
    "CC/GK": 1,
    "DMD": 1,
@@ -176,13 +170,13 @@
    "SCI": 6,
    "MTS": 7,
    "LIB": 1,
-   "MAL/ SKT": 5,
-   "CLAB/ CFT": 1,
+   "MAL/SKT": 5,
+   "CLAB/CFT": 1,
    "SS": 6,
    "PT": 3,
    "COMP": 1,
    "CC/GK": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "Y/KB": 1,
    "ROBO": 1,
    "DMD": 1
@@ -197,7 +191,7 @@
    "MAL": 5,
    "PT": 3,
    "ROBO": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "BIO": 2,
    "Y/KB": 1,
    "CLAB/CFT": 1,
@@ -212,17 +206,16 @@
    "MTS": 7,
    "SS": 6,
    "HIN": 5,
-   "MAL": 4,
+   "MAL": 5,
    "ENG": 5,
    "BIO": 2,
-   "APA": 1,
    "ROBO": 1,
    "CC/GK": 1,
    "LIB": 1,
    "COMP": 1,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "Y/KB": 1,
-   "ELAB/ GITA": 1
+   "ELAB/GITA": 1
   },
   "8C": {
    "SCI": 4,
@@ -233,11 +226,11 @@
    "HIN": 5,
    "SS": 6,
    "ROBO": 1,
-   "MAL/ SKT": 5,
+   "MAL/SKT": 5,
    "LIB": 1,
-   "CLAB/ CFT": 1,
+   "CLAB/CFT": 1,
    "COMP": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "CC/GK": 1,
    "Y/KB": 1,
    "DMD": 1
@@ -251,15 +244,14 @@
    "ROBO": 1,
    "BIO": 2,
    "MTS": 7,
-   "MAL/ SKT": 4,
+   "MAL/SKT": 5,
    "COMP": 1,
    "LIB": 1,
    "Y/KB": 1,
-   "MAL/SKT": 1,
-   "ELAB/ GITA": 1,
+   "ELAB/GITA": 1,
    "CC/GK": 1,
    "DMD": 1,
-   "CLAB/ CFT": 1
+   "CLAB/CFT": 1
   }
  },
  "assignment": {
@@ -285,22 +277,21 @@
     "V"
    ],
    "SS": [
-    "JJN",
-    "SJJN"
+    "JJN"
    ],
    "Y/KB": [
-    " NH CFT",
-    "ASK"
+    "ASK",
+    "NH"
    ],
    "MAL": [
     "HCN"
    ],
    "ROBO": [
-    " DPU",
-    "AVANI"
+    "AVANI",
+    "DPU"
    ],
-   "ELAB/ GITA": [
-    " HCN",
+   "ELAB/GITA": [
+    "HCN",
     "UDK"
    ],
    "PT": [
@@ -325,8 +316,8 @@
     "RMY"
    ],
    "Y/KB": [
-    " NH CFT",
-    "ASK"
+    "ASK",
+    "NH"
    ],
    "ENG": [
     "ARY"
@@ -351,20 +342,20 @@
    "COMP": [
     "NPR"
    ],
-   "ELAB/ GITA": [
-    " JPR",
-    "ARY"
+   "ELAB/GITA": [
+    "ARY",
+    "JPR"
    ],
    "ROBO": [
-    " SJN",
-    "AVANI"
+    "AVANI",
+    "SJN"
    ],
    "PT": [
     "UKS"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "NPR"
+   "CLAB/CFT": [
+    "NPR",
+    "SIG"
    ],
    "CC/GK": [
     "ANR"
@@ -374,22 +365,22 @@
    "SCI": [
     "DPK"
    ],
-   "MAL/ SKT": [
-    " JPR"
+   "MAL/SKT": [
+    "APA",
+    "JPR",
+    "MNK"
    ],
    "COMP": [
     "NPR"
    ],
    "MTS": [
-    "SNA",
     "SNS"
    ],
    "ENG": [
     "ANP"
    ],
    "HIN": [
-    "ANG",
-    "ANP"
+    "ANG"
    ],
    "PT": [
     "UKS"
@@ -405,36 +396,37 @@
    "LIB": [
     "PRC"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "NPR"
+   "CLAB/CFT": [
+    "NPR",
+    "SIG"
    ],
    "ROBO": [
-    " BIN",
-    "AVANI"
+    "AVANI",
+    "BIN"
    ],
    "CC/GK": [
-    "ANR"
+    "MSM"
    ],
    "Y/KB": [
-    " NH CFT",
-    "ASK"
+    "ASK",
+    "NH"
    ],
-   "ELAB/ GITA": [
-    " APA",
-    "ANP"
+   "ELAB/GITA": [
+    "ANP",
+    "APA"
    ]
   },
   "6D": {
    "SS": [
     "AVR"
    ],
-   "MAL/ SKT": [
-    " MNK"
+   "MAL/SKT": [
+    "APA",
+    "JPR",
+    "MNK"
    ],
    "ENG": [
-    "ANR",
-    "PMN"
+    "ANR"
    ],
    "SCI": [
     "SMG"
@@ -462,36 +454,83 @@
    "COMP": [
     "NPR"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "NPR"
+   "CLAB/CFT": [
+    "NPR",
+    "SIG"
    ],
    "Y/KB": [
     "ASK",
     "SIG"
    ],
-   "MAL/ SAN": [
-    " JPR",
-    " MNK",
-    "APA"
-   ],
-   "ELAB/ GITA": [
-    " JPR",
-    "ANR"
+   "ELAB/GITA": [
+    "ANR",
+    "JPR"
    ],
    "ROBO": [
-    " BIN",
-    "AVANI"
+    "AVANI",
+    "BIN"
    ]
   },
-  "7A": {},
+  "7A": {
+   "ENG": [
+    "SLK"
+   ],
+   "HIN": [
+    "MSM"
+   ],
+   "DMD": [
+    "A",
+    "S",
+    "V"
+   ],
+   "SS": [
+    "JJN"
+   ],
+   "MTS": [
+    "SPS"
+   ],
+   "CLAB/CFT": [
+    "NPR",
+    "SIG"
+   ],
+   "MAL": [
+    "APA"
+   ],
+   "SCI": [
+    "SMG"
+   ],
+   "ELAB/GITA": [
+    "APA",
+    "SLK"
+   ],
+   "Y/KB": [
+    "ASK",
+    "NH"
+   ],
+   "PT": [
+    "UKS"
+   ],
+   "CC/GK": [
+    "SJN"
+   ],
+   "COMP": [
+    "NPR"
+   ],
+   "ROBO": [
+    "AVANI",
+    "JJN"
+   ],
+   "LIB": [
+    "PRC"
+   ]
+  },
   "7B": {
    "MTS": [
     "SPS"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "JYP"
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
    ],
    "DMD": [
     "A",
@@ -514,15 +553,15 @@
     "DVM"
    ],
    "ROBO": [
-    " MSM",
-    "AVANI"
+    "AVANI",
+    "MSM"
    ],
    "PT": [
     "UKS"
    ],
    "Y/KB": [
-    " SIG",
-    "ASK"
+    "ASK",
+    "SIG"
    ],
    "CC/GK": [
     "SBB"
@@ -533,9 +572,9 @@
    "COM": [
     "JYP"
    ],
-   "ELAB/ GITA": [
-    " JPR",
-    "ANR"
+   "ELAB/GITA": [
+    "ANR",
+    "JPR"
    ]
   },
   "7C": {
@@ -549,17 +588,18 @@
     "SLK"
    ],
    "ROBO": [
-    " MSM",
-    "AVANI"
+    "AVANI",
+    "MSM"
    ],
    "MTS": [
     "VJB"
    ],
-   "MAL/ SKT": [
-    "APA"
+   "MAL/SKT": [
+    "HCN",
+    "MNK"
    ],
-   "ELAB/ GITA": [
-    " JPR",
+   "ELAB/GITA": [
+    "JPR",
     "SLK"
    ],
    "HIN": [
@@ -571,13 +611,13 @@
    "COMP": [
     "JYP"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "JYP"
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
    ],
    "Y/KB": [
-    " NH CFT",
-    "ASK"
+    "ASK",
+    "NH"
    ],
    "CC/GK": [
     "BIN"
@@ -607,12 +647,13 @@
    "LIB": [
     "PRC"
    ],
-   "MAL/ SKT": [
-    "DVM"
+   "MAL/SKT": [
+    "HCN",
+    "MNK"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "NPR"
+   "CLAB/CFT": [
+    "NPR",
+    "SIG"
    ],
    "SS": [
     "BBK"
@@ -624,18 +665,18 @@
     "NPR"
    ],
    "CC/GK": [
-    "BIN"
+    "ANR"
    ],
-   "ELAB/ GITA": [
-    " APA",
+   "ELAB/GITA": [
+    "APA",
     "DPU"
    ],
    "Y/KB": [
-    " SIG",
-    "ASK"
+    "ASK",
+    "SIG"
    ],
    "ROBO": [
-    " ADS",
+    "ADS",
     "AVANI"
    ],
    "DMD": [
@@ -672,19 +713,19 @@
     "RKM"
    ],
    "ROBO": [
-    " ADS",
+    "ADS",
     "AVANI"
    ],
-   "ELAB/ GITA": [
-    " HCN",
-    "ANP"
+   "ELAB/GITA": [
+    "ANP",
+    "HCN"
    ],
    "BIO": [
     "TSD"
    ],
    "Y/KB": [
     "ASK",
-    "NH CFT"
+    "NH"
    ],
    "CLAB/CFT": [
     "JYP",
@@ -705,7 +746,9 @@
     "AMB"
    ],
    "DMD": [
-    "VAS"
+    "A",
+    "S",
+    "V"
    ],
    "PT": [
     "RKM"
@@ -728,9 +771,6 @@
    "BIO": [
     "SRM"
    ],
-   "APA": [
-    "MAL"
-   ],
    "ROBO": [
     "AVANI",
     "MSM"
@@ -744,16 +784,16 @@
    "COMP": [
     "JYP"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "JYP"
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
    ],
    "Y/KB": [
     "ASK",
-    "NHCR"
+    "NH"
    ],
-   "ELAB/ GITA": [
-    " APA",
+   "ELAB/GITA": [
+    "APA",
     "DPU"
    ]
   },
@@ -780,32 +820,34 @@
     "JAV"
    ],
    "ROBO": [
-    " RMJ",
-    "AVANI"
+    "AVANI",
+    "RMJ"
    ],
-   "MAL/ SKT": [
-    "HCN"
+   "MAL/SKT": [
+    "DVM",
+    "JPR",
+    "MNK"
    ],
    "LIB": [
     "PRC"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "JYP"
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
    ],
    "COMP": [
     "JYP"
    ],
-   "ELAB/ GITA": [
-    " APA",
-    "ANP"
+   "ELAB/GITA": [
+    "ANP",
+    "APA"
    ],
    "CC/GK": [
-    "MSM"
+    "BIN"
    ],
    "Y/KB": [
-    " NH CFT",
-    "ASK"
+    "ASK",
+    "NH"
    ],
    "DMD": [
     "A",
@@ -830,8 +872,8 @@
     "SLK"
    ],
    "ROBO": [
-    " DPU",
-    "AVANI"
+    "AVANI",
+    "DPU"
    ],
    "BIO": [
     "SMG"
@@ -839,8 +881,10 @@
    "MTS": [
     "SNS"
    ],
-   "MAL/ SKT": [
-    "X-MAL/ S-6"
+   "MAL/SKT": [
+    "DVM",
+    "JPR",
+    "MNK"
    ],
    "COMP": [
     "JYP"
@@ -852,55 +896,215 @@
     "ASK",
     "SIG"
    ],
-   "MAL/SKT": [
-    " JPR",
-    " MNK",
-    "DVM"
-   ],
-   "ELAB/ GITA": [
-    " HCN",
+   "ELAB/GITA": [
+    "HCN",
     "SLK"
    ],
    "CC/GK": [
-    "X-CC/GK-4"
+    "BIN"
    ],
    "DMD": [
     "A",
     "S",
     "V"
    ],
-   "CLAB/ CFT": [
-    " SIGMA",
-    "JYP"
+   "CLAB/CFT": [
+    "JYP",
+    "SIG"
    ]
   }
  },
  "unstaffed": [],
- "assumed": {
-  "break_after_period": 5,
-  "all_named_teachers_busy": true,
-  "blank_after_lab_is_a_double": false,
-  "double_subjects": [],
-  "blocks": {
-   "MAL/ SKT": [
+ "closed": [],
+ "teacher_load": {},
+ "co_taught": [
+  [
+   [
     "6C",
-    "6D",
-    "7C",
-    "7D",
-    "8C",
-    "8D"
+    "MAL/SKT"
    ],
-   "CC/GK": [
-    "6C",
+   [
+    "6D",
+    "MAL/SKT"
+   ]
+  ],
+  [
+   [
+    "8A",
+    "DMD"
+   ],
+   [
+    "8B",
+    "DMD"
+   ]
+  ],
+  [
+   [
+    "7A",
+    "DMD"
+   ],
+   [
+    "7B",
+    "DMD"
+   ]
+  ],
+  [
+   [
+    "6A",
+    "DMD"
+   ],
+   [
+    "6B",
+    "DMD"
+   ]
+  ],
+  [
+   [
+    "7C",
+    "MAL/SKT"
+   ],
+   [
     "7D",
+    "MAL/SKT"
+   ]
+  ],
+  [
+   [
+    "8C",
+    "MAL/SKT"
+   ],
+   [
+    "8D",
+    "MAL/SKT"
+   ]
+  ],
+  [
+   [
+    "6C",
+    "DMD"
+   ],
+   [
+    "6D",
+    "DMD"
+   ]
+  ],
+  [
+   [
+    "8C",
+    "DMD"
+   ],
+   [
+    "8D",
+    "DMD"
+   ]
+  ],
+  [
+   [
+    "7C",
+    "DMD"
+   ],
+   [
+    "7D",
+    "DMD"
+   ]
+  ]
+ ],
+ "block_groups": [
+  {
+   "subject": "MAL/SKT",
+   "sections": [
+    "6C",
+    "6D"
+   ]
+  },
+  {
+   "subject": "DMD",
+   "sections": [
+    "8A",
+    "8B"
+   ]
+  },
+  {
+   "subject": "DMD",
+   "sections": [
+    "7A",
+    "7B"
+   ]
+  },
+  {
+   "subject": "DMD",
+   "sections": [
+    "6A",
+    "6B"
+   ]
+  },
+  {
+   "subject": "MAL/SKT",
+   "sections": [
+    "7C",
+    "7D"
+   ]
+  },
+  {
+   "subject": "MAL/SKT",
+   "sections": [
     "8C",
     "8D"
    ]
   },
-  "block_teachers_shared_out": [
-   "CC/GK",
-   "MAL/ SKT"
+  {
+   "subject": "DMD",
+   "sections": [
+    "6C",
+    "6D"
+   ]
+  },
+  {
+   "subject": "DMD",
+   "sections": [
+    "8C",
+    "8D"
+   ]
+  },
+  {
+   "subject": "DMD",
+   "sections": [
+    "7C",
+    "7D"
+   ]
+  }
+ ],
+ "assumed": {
+  "break_after_period": 6,
+  "teachers_named_in_source": true,
+  "blank_after_lab_is_a_double": false,
+  "double_subjects": [],
+  "regroups": 9,
+  "regroups_aligned": 9,
+  "suspect_cells": [
+   [
+    "ANP",
+    "2",
+    "8",
+    "('6C', 'HIN')",
+    "('8C', 'ENG')"
+   ],
+   [
+    "ANP",
+    "-",
+    "-",
+    "('6C', 'HIN')",
+    "('teaches HIN nowhere else',)"
+   ],
+   [
+    "PMN",
+    "-",
+    "-",
+    "('6D', 'ENG')",
+    "('teaches ENG nowhere else',)"
+   ]
   ],
-  "split_cells_book_every_teacher": true
+  "split_cells_book_every_teacher": true,
+  "shared_load_pairs": 0
  }
 }

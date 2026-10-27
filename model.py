@@ -30,15 +30,82 @@ class Build:
         for c in S:
             for d in D:
                 for p in P:
-                    self.m.Add(sum(self.x[c, d, p, sub] for sub in school.req[c]) <= 1)
+                    shut = ((d, p) in getattr(school, "closed", ())
+                            or (d, p) in getattr(school, "closed_for", {}).get(c, ()))
+                    cap = 0 if shut else 1
+                    self.m.Add(sum(self.x[c, d, p, sub] for sub in school.req[c]) <= cap)
             for sub, n in school.req[c].items():
                 self.m.Add(sum(self.x[c, d, p, sub] for d in D for p in P) == n)
+        # A block (M/IP/P across 11E, 11F, 11G) is one lesson: those sections' students regroup
+        # and a teacher takes a combined group. The sections are aligned in time, and the teacher
+        # is counted once rather than once per section.
+        self.rep = {}
+        for g in getattr(school, "block_groups", []):
+            lab, secs = g["subject"], g["sections"]
+            here = [c for c in secs if c in school.sections and lab in school.req[c]]
+            if len(here) < 2: continue
+            rep = here[0]
+            for c in here[1:]:
+                for d in D:
+                    for p in P:
+                        self.m.Add(self.x[c, d, p, lab] == self.x[rep, d, p, lab])
+                self.rep[c, lab] = rep
+
+        # Lessons taught to several sections at once are one occupation of the teacher, not one
+        # each. A teacher is busy when any of the group's lessons that she herself takes is
+        # running, so the sharing is counted per teacher rather than for the group as a whole.
+        self.together = {}          # (section, subject) -> group id
+        self.members = {}           # group id -> [(section, subject)]
+        for gi, grp in enumerate(getattr(school, "co_taught", [])):
+            members = [(c, sub) for c, sub in grp
+                       if c in school.sections and sub in school.req.get(c, {})]
+            if len(members) < 2: continue
+            self.members[gi] = members
+            for m in members: self.together[m] = gi
+        self.shared = {}            # (teacher, group id, d, p) -> BoolVar
+
+        # A plain subject whose lessons are divided between two teachers (12B English: five
+        # periods with ANR, one with BIN) is not a split class. One teacher takes each lesson,
+        # and each teacher's own share of the week is what their grid shows.
+        self.who = {}               # (section, subject, teacher) -> {(d, p): BoolVar}
+        for c in S:
+            for sub, shares in getattr(school, "load", {}).get(c, {}).items():
+                if sub not in school.req.get(c, {}) or len(shares) < 2: continue
+                if (c, sub) in self.together or (c, sub) in self.rep: continue
+                ts = sorted(shares)
+                y = {(t, d, p): self.m.NewBoolVar(f"y_{c}_{sub}_{t}_{d}_{p}")
+                     for t in ts for d in D for p in P}
+                for d in D:
+                    for p in P:
+                        self.m.Add(sum(y[t, d, p] for t in ts) == self.x[c, d, p, sub])
+                for t in ts:
+                    self.m.Add(sum(y[t, d, p] for d in D for p in P) == shares[t])
+                    self.who[c, sub, t] = {(d, p): y[t, d, p] for d in D for p in P}
+
         # teacher occupancy: a teacher may take several (section, subject) pairs
         self.busy = {}
         for t in school.teachers:
             for d in D:
                 for p in P:
-                    e = sum(self.x[c, d, p, sub] for (c, sub) in school.taught[t])
+                    pairs = [(c, sub) for (c, sub) in school.taught[t]
+                             if (c, sub) not in self.rep]
+                    mine = {}
+                    for q in pairs:
+                        if q in self.together: mine.setdefault(self.together[q], []).append(q)
+                    terms = []
+                    for g, qs in mine.items():
+                        if len(qs) == 1:
+                            terms.append(self.x[qs[0][0], d, p, qs[0][1]]); continue
+                        z = self.m.NewBoolVar(f"shared_{t}_{g}_{d}_{p}")
+                        for (c, sub) in qs: self.m.Add(z >= self.x[c, d, p, sub])
+                        self.m.Add(z <= sum(self.x[c, d, p, sub] for (c, sub) in qs))
+                        self.shared[t, g, d, p] = z
+                        terms.append(z)
+                    for (c, sub) in pairs:
+                        if (c, sub) in self.together: continue
+                        share = self.who.get((c, sub, t))
+                        terms.append(share[d, p] if share else self.x[c, d, p, sub])
+                    e = sum(terms)
                     self.busy[t, d, p] = e
                     self.m.Add(e <= 1)             # one room at a time
                     if (d, p) in school.committed.get(t, ()):

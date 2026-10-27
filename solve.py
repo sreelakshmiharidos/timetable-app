@@ -1,10 +1,16 @@
 """Solve, explain conflicts, and print. v0.2"""
+import os
 from ortools.sat.python import cp_model
+
+WORKERS = max(1, min(8, os.cpu_count() or 1))   # the hosted app has one core
 from model import Build
 
 
-def _solve(school, rules, seconds=60, hard_labels=None, workers=8):
+def _solve(school, rules, seconds=60, hard_labels=None, workers=None, hints=None):
     b = Build(school)
+    if hints:                       # warm start: the school's own timetable as a starting point
+        for (c, d, p), sub in hints.items():
+            if (c, d, p, sub) in b.x: b.m.AddHint(b.x[c, d, p, sub], 1)
     soft = []
     for label, f in rules:
         on = b.add_rule(label, f)
@@ -15,7 +21,7 @@ def _solve(school, rules, seconds=60, hard_labels=None, workers=8):
     if hard: b.m.AddAssumptions(hard)
     s = cp_model.CpSolver()
     s.parameters.max_time_in_seconds = seconds
-    s.parameters.num_workers = workers
+    s.parameters.num_workers = workers or WORKERS
     st = s.Solve(b.m)
     return st, s, b
 
@@ -36,8 +42,8 @@ def explain_conflict(school, rules, seconds=30):
     return core
 
 
-def solve(school, rules, seconds=60):
-    st, s, b = _solve(school, rules, seconds)
+def solve(school, rules, seconds=60, hints=None):
+    st, s, b = _solve(school, rules, seconds, hints=hints)
     out = {"status": s.StatusName(st), "wall": round(s.WallTime(), 2)}
     if st in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         grids = {}
@@ -45,7 +51,14 @@ def solve(school, rules, seconds=60):
             grids[c] = [[next((sub for sub in school.req[c]
                                if s.Value(b.x[c, d, p, sub])), None)
                          for d in range(len(school.days))] for p in range(school.periods)]
-        out |= {"ok": True, "grids": grids,
+        # which teachers are occupied where, read from the model rather than re-derived: for a
+        # shared load it is the teacher the solver chose, and a regroup counts once
+        busy = {}
+        for t in school.teachers:
+            for d in range(len(school.days)):
+                for p in range(school.periods):
+                    if s.Value(b.busy[t, d, p]) > 0: busy.setdefault(t, set()).add((d, p))
+        out |= {"ok": True, "grids": grids, "busy": busy,
                 "broken": [l for l, (on, f) in b.switch.items()
                            if not f.get("hard", True) and not s.Value(on)]}
     else:
@@ -59,8 +72,8 @@ def commitments(school, grids):
     for c, g in grids.items():
         for p, row in enumerate(g):
             for d, sub in enumerate(row):
-                t = sub and school.teacher_of(c, sub)
-                if t: out.setdefault(t, set()).add((d, p))
+                for t in (school.teachers_of(c, sub) if sub else ()):
+                    out.setdefault(t, set()).add((d, p))
     return out
 
 

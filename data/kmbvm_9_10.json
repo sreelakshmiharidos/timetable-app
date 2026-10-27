@@ -1,5 +1,5 @@
 {
- "name": "KMBVM Pottore (grades 9 and 10)",
+ "name": "KMBVM Pottore (grades 9-10)",
  "days": [
   "Mon",
   "Tue",
@@ -8,7 +8,7 @@
   "Fri"
  ],
  "periods": 9,
- "lunch_after": 5,
+ "lunch_after": 6,
  "sections": [
   "9A",
   "9B",
@@ -21,27 +21,20 @@
  ],
  "subjects": [
   "AI",
-  "ANR",
-  "ART/ CRAFT",
   "ART/CRAFT",
   "BIO",
   "CHE",
-  "COMP/ CRAFT",
-  "COMP/ YOGA",
   "COMP/CRAFT",
   "COMP/YOGA",
   "D/M",
   "D/M/D",
   "ENG",
-  "ENG LAB/ ROB",
   "ENG LAB/ROB",
   "HIN",
   "KV",
-  "KV LAB/ COMP",
   "KV LAB/COMP",
   "KV LAB/YOGA",
   "KV/AI",
-  "KVLAB/ YOGA",
   "LANG",
   "LIB",
   "MAL",
@@ -85,7 +78,7 @@
    "SCI LAB": 1,
    "BIO": 2,
    "PHY": 2,
-   "KV LAB/ COMP": 1,
+   "KV LAB/COMP": 1,
    "LIB": 1,
    "SS ID": 2,
    "R3": 1,
@@ -97,7 +90,7 @@
    "CHE": 2,
    "SS": 8,
    "ENG": 6,
-   "KVLAB/ YOGA": 1,
+   "KV LAB/YOGA": 1,
    "LANG": 4,
    "KV": 1,
    "BIO": 2,
@@ -117,9 +110,9 @@
    "BIO": 2,
    "KV": 1,
    "ENG": 6,
-   "KVLAB/ YOGA": 1,
+   "KV LAB/YOGA": 1,
    "LANG": 4,
-   "ART/ CRAFT": 1,
+   "ART/CRAFT": 1,
    "PT": 4,
    "CHE": 2,
    "D/M": 1,
@@ -133,7 +126,7 @@
   "10A": {
    "CHE": 2,
    "SS": 8,
-   "COMP/ CRAFT": 1,
+   "COMP/CRAFT": 1,
    "LANG": 6,
    "ENG": 6,
    "LIB": 1,
@@ -142,24 +135,23 @@
    "PT": 4,
    "PHY": 2,
    "BIO": 2,
-   "ENG LAB/ ROB": 1,
+   "ENG LAB/ROB": 1,
    "SCI LAB": 1,
    "COMP/YOGA": 1,
    "D/M/D": 1
   },
   "10B": {
-   "ENG": 6,
+   "ENG": 7,
    "MTS": 6,
    "SS": 8,
    "LANG": 6,
    "PHY": 2,
    "PT": 4,
    "CHE": 2,
-   "COMP/ YOGA": 1,
+   "COMP/YOGA": 1,
    "BIO": 2,
    "LIB": 1,
    "AI": 2,
-   "ANR": 1,
    "ENG LAB/ROB": 1,
    "SCI LAB": 1,
    "COMP/CRAFT": 1,
@@ -175,7 +167,7 @@
    "ENG": 6,
    "CHE": 2,
    "SCI LAB": 1,
-   "COMP/ YOGA": 1,
+   "COMP/YOGA": 1,
    "BIO": 2,
    "D/M/D": 1,
    "ENG LAB/ROB": 1,
@@ -191,9 +183,9 @@
    "ENG": 6,
    "MTS": 7,
    "AI": 2,
-   "COMP/ CRAFT": 1,
+   "COMP/CRAFT": 1,
    "PHY": 2,
-   "ENG LAB/ ROB": 1,
+   "ENG LAB/ROB": 1,
    "D/M/D": 1,
    "CHE": 2,
    "COMP/YOGA": 1,
@@ -221,16 +213,16 @@
     "AVR"
    ],
    "SCI LAB": [
-    " TSD",
     "REM",
+    "TSD",
     "UPR"
    ],
    "KV LAB/YOGA": [
-    " ASK",
+    "ASK",
     "UPR"
    ],
    "D/M": [
-    " SMC",
+    "SMC",
     "VIS"
    ],
    "PT": [
@@ -247,7 +239,7 @@
     "UPR"
    ],
    "R3": [
-    "MAL HCN"
+    "HCN"
    ],
    "ART/CRAFT": [
     "AJK",
@@ -287,8 +279,8 @@
     "TSD"
    ],
    "SCI LAB": [
-    " REM",
-    " TSD",
+    "REM",
+    "TSD",
     "UPR"
    ],
    "BIO": [
@@ -297,8 +289,8 @@
    "PHY": [
     "UPR"
    ],
-   "KV LAB/ COMP": [
-    " NPR",
+   "KV LAB/COMP": [
+    "NPR",
     "TSD"
    ],
    "LIB": [
@@ -308,7 +300,7 @@
     "AVR"
    ],
    "R3": [
-    "HIN ANG"
+    "ANG"
    ],
    "D/M": [
     "SMC",
@@ -332,8 +324,8 @@
    "ENG": [
     "SLK"
    ],
-   "KVLAB/ YOGA": [
-    " ASK",
+   "KV LAB/YOGA": [
+    "ASK",
     "SRM"
    ],
    "LANG": [
@@ -361,7 +353,7 @@
     "VIS"
    ],
    "R3": [
-    "HIN MSM"
+    "MSM"
    ],
    "ART/CRAFT": [
     "AJK",
@@ -396,8 +388,8 @@
    "ENG": [
     "DPU"
    ],
-   "KVLAB/ YOGA": [
-    " ASK",
+   "KV LAB/YOGA": [
+    "ASK",
     "NMV"
    ],
    "LANG": [
@@ -405,9 +397,9 @@
     "JPR",
     "MSM"
    ],
-   "ART/ CRAFT": [
-    " SIG",
-    "AJK"
+   "ART/CRAFT": [
+    "AJK",
+    "SIG"
    ],
    "PT": [
     "RKM"
@@ -416,23 +408,22 @@
     "DPK"
    ],
    "D/M": [
-    " SMC",
+    "SMC",
     "VIS"
    ],
    "SCI LAB": [
-    " DPK",
-    " SRM",
-    "AMB"
+    "AMB",
+    "DPK",
+    "SRM"
    ],
    "LIB": [
     "PRC"
    ],
    "SS ID": [
-    "AVR",
-    "AVR ID"
+    "AVR"
    ],
    "R3": [
-    "SAN JPR"
+    "JPR"
    ],
    "PHY": [
     "AMB"
@@ -449,14 +440,12 @@
    "SS": [
     "MJD"
    ],
-   "COMP/ CRAFT": [
-    " SIG",
-    "JYP"
+   "COMP/CRAFT": [
+    "JYP",
+    "SIG"
    ],
    "LANG": [
-    " JPR",
     "DVM",
-    "DVM ",
     "JPR"
    ],
    "ENG": [
@@ -480,21 +469,23 @@
    "BIO": [
     "SRM"
    ],
-   "ENG LAB/ ROB": [
-    " MMN",
-    "ANR"
+   "ENG LAB/ROB": [
+    "ANR",
+    "MMN"
    ],
    "SCI LAB": [
-    " SRM",
     "DSH",
-    "NMV"
+    "NMV",
+    "SRM"
    ],
    "COMP/YOGA": [
     "ASK",
     "JYP"
    ],
    "D/M/D": [
-    "AJK"
+    "AJK",
+    "SMC",
+    "VIS"
    ]
   },
   "10B": {
@@ -508,7 +499,6 @@
     "BBK"
    ],
    "LANG": [
-    " JPR",
     "APA",
     "JPR"
    ],
@@ -521,8 +511,8 @@
    "CHE": [
     "DPK"
    ],
-   "COMP/ YOGA": [
-    " ASK",
+   "COMP/YOGA": [
+    "ASK",
     "JYP"
    ],
    "BIO": [
@@ -533,9 +523,6 @@
    ],
    "AI": [
     "JYP"
-   ],
-   "ANR": [
-    "ADS"
    ],
    "ENG LAB/ROB": [
     "DPU",
@@ -551,7 +538,9 @@
     "SIG"
    ],
    "D/M/D": [
-    "SMC"
+    "AJK",
+    "SMC",
+    "VIS"
    ]
   },
   "10C": {
@@ -581,18 +570,20 @@
     "NMV"
    ],
    "SCI LAB": [
-    " NMY",
-    " TSD",
+    "NMY",
+    "TSD",
     "UPR"
    ],
-   "COMP/ YOGA": [
-    " ASK",
+   "COMP/YOGA": [
+    "ASK",
     "NPR"
    ],
    "BIO": [
     "TSD"
    ],
    "D/M/D": [
+    "AJK",
+    "SMC",
     "VIS"
    ],
    "ENG LAB/ROB": [
@@ -632,19 +623,21 @@
    "AI": [
     "NPR"
    ],
-   "COMP/ CRAFT": [
-    " SIG",
-    "NPR"
+   "COMP/CRAFT": [
+    "NPR",
+    "SIG"
    ],
    "PHY": [
     "UPR"
    ],
-   "ENG LAB/ ROB": [
-    " MMN",
+   "ENG LAB/ROB": [
+    "MMN",
     "SLK"
    ],
    "D/M/D": [
-    "X-D/M/D-4"
+    "AJK",
+    "SMC",
+    "VIS"
    ],
    "CHE": [
     "DPK"
@@ -661,22 +654,102 @@
   }
  },
  "unstaffed": [],
- "assumed": {
-  "break_after_period": 5,
-  "all_named_teachers_busy": true,
-  "blank_after_lab_is_a_double": false,
-  "double_subjects": [],
-  "blocks": {
-   "D/M/D": [
+ "closed": [],
+ "teacher_load": {},
+ "co_taught": [
+  [
+   [
+    "10A",
+    "LANG"
+   ],
+   [
+    "10B",
+    "LANG"
+   ],
+   [
+    "10C",
+    "LANG"
+   ]
+  ],
+  [
+   [
+    "9C",
+    "LANG"
+   ],
+   [
+    "9D",
+    "LANG"
+   ]
+  ],
+  [
+   [
+    "10C",
+    "D/M/D"
+   ],
+   [
+    "10D",
+    "D/M/D"
+   ]
+  ],
+  [
+   [
+    "10A",
+    "D/M/D"
+   ],
+   [
+    "10B",
+    "D/M/D"
+   ]
+  ]
+ ],
+ "block_groups": [
+  {
+   "subject": "LANG",
+   "sections": [
     "10A",
     "10B",
+    "10C"
+   ]
+  },
+  {
+   "subject": "LANG",
+   "sections": [
+    "9C",
+    "9D"
+   ]
+  },
+  {
+   "subject": "D/M/D",
+   "sections": [
     "10C",
     "10D"
    ]
   },
-  "block_teachers_shared_out": [
-   "D/M/D"
+  {
+   "subject": "D/M/D",
+   "sections": [
+    "10A",
+    "10B"
+   ]
+  }
+ ],
+ "assumed": {
+  "break_after_period": 6,
+  "teachers_named_in_source": true,
+  "blank_after_lab_is_a_double": false,
+  "double_subjects": [],
+  "regroups": 4,
+  "regroups_aligned": 4,
+  "suspect_cells": [
+   [
+    "ADS",
+    "-",
+    "-",
+    "('10B', 'ENG')",
+    "('teaches ENG nowhere else',)"
+   ]
   ],
-  "split_cells_book_every_teacher": true
+  "split_cells_book_every_teacher": true,
+  "shared_load_pairs": 0
  }
 }

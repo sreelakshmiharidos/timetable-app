@@ -1,0 +1,1458 @@
+{
+ "name": "KMBVM Pottore (grades 1-5)",
+ "days": [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri"
+ ],
+ "periods": 10,
+ "lunch_after": 6,
+ "sections": [
+  "1A",
+  "1B",
+  "1C",
+  "2A",
+  "2B",
+  "2C",
+  "3A",
+  "3B",
+  "3C",
+  "3D",
+  "4A",
+  "4B",
+  "4C",
+  "4D",
+  "5A",
+  "5B",
+  "5C",
+  "5D"
+ ],
+ "subjects": [
+  "ACTIVITY",
+  "CC",
+  "COMP",
+  "COMP/ENG",
+  "CRAFT",
+  "DANCE",
+  "DRAW",
+  "ENG",
+  "EVS",
+  "GITA",
+  "GK",
+  "HIN",
+  "LIB",
+  "MAL",
+  "MAL/SKT",
+  "MAT ACTI",
+  "MTS",
+  "MUSIC",
+  "PF",
+  "PT",
+  "ROBO",
+  "SPO ENG",
+  "YOGA/CRAFT"
+ ],
+ "requirements": {
+  "1A": {
+   "ENG": 9,
+   "MTS": 8,
+   "HIN": 6,
+   "PT": 5,
+   "MAL": 6,
+   "GITA": 1,
+   "CRAFT": 1,
+   "LIB": 1,
+   "CC": 1,
+   "DANCE": 1,
+   "GK": 1,
+   "SPO ENG": 2,
+   "MAT ACTI": 1,
+   "DRAW": 1,
+   "PF": 1,
+   "MUSIC": 1
+  },
+  "1B": {
+   "HIN": 6,
+   "ENG": 9,
+   "MTS": 8,
+   "MAL": 6,
+   "DANCE": 1,
+   "PT": 5,
+   "CC": 1,
+   "DRAW": 1,
+   "MUSIC": 1,
+   "CRAFT": 1,
+   "MAT ACTI": 2,
+   "SPO ENG": 1,
+   "LIB": 1,
+   "GITA": 1,
+   "PF": 1,
+   "GK": 1
+  },
+  "1C": {
+   "ENG": 9,
+   "HIN": 6,
+   "MAL": 6,
+   "MTS": 8,
+   "MUSIC": 1,
+   "PT": 5,
+   "GK": 1,
+   "GITA": 1,
+   "LIB": 1,
+   "CC": 1,
+   "MAT ACTI": 2,
+   "SPO ENG": 1,
+   "DANCE": 1,
+   "PF": 1,
+   "DRAW": 1,
+   "CRAFT": 1
+  },
+  "2A": {
+   "ENG": 9,
+   "MAL": 6,
+   "HIN": 6,
+   "PT": 5,
+   "MTS": 8,
+   "GK": 1,
+   "LIB": 1,
+   "DANCE": 1,
+   "DRAW": 1,
+   "MUSIC": 1,
+   "CRAFT": 1,
+   "GITA": 1,
+   "SPO ENG": 2,
+   "MAT ACTI": 1,
+   "CC": 1,
+   "PF": 1
+  },
+  "2B": {
+   "MTS": 8,
+   "HIN": 6,
+   "ENG": 9,
+   "MAL": 6,
+   "LIB": 1,
+   "PT": 5,
+   "GK": 1,
+   "DRAW": 1,
+   "CRAFT": 1,
+   "SPO ENG": 2,
+   "MAT ACTI": 1,
+   "GITA": 1,
+   "CC": 1,
+   "MUSIC": 1,
+   "PF": 1,
+   "DANCE": 1
+  },
+  "2C": {
+   "MAL": 6,
+   "MTS": 8,
+   "ENG": 9,
+   "PT": 5,
+   "HIN": 6,
+   "DANCE": 1,
+   "LIB": 1,
+   "CRAFT": 1,
+   "GITA": 1,
+   "MAT ACTI": 2,
+   "SPO ENG": 1,
+   "MUSIC": 1,
+   "GK": 1,
+   "PF": 1,
+   "CC": 1,
+   "DRAW": 1
+  },
+  "3A": {
+   "MTS": 6,
+   "ROBO": 1,
+   "PT": 4,
+   "HIN": 5,
+   "ENG": 5,
+   "EVS": 6,
+   "MAL": 5,
+   "COMP/ENG": 1,
+   "MUSIC": 1,
+   "CC": 1,
+   "LIB": 1,
+   "ACTIVITY": 3,
+   "DRAW": 1,
+   "GK": 1,
+   "PF": 1,
+   "COMP": 1,
+   "CRAFT": 1,
+   "GITA": 1,
+   "DANCE": 1
+  },
+  "3B": {
+   "EVS": 6,
+   "MAL": 5,
+   "HIN": 5,
+   "ENG": 5,
+   "MTS": 6,
+   "PT": 4,
+   "LIB": 1,
+   "DANCE": 1,
+   "ROBO": 1,
+   "COMP": 1,
+   "GITA": 1,
+   "COMP/ENG": 1,
+   "ACTIVITY": 3,
+   "GK": 2,
+   "DRAW": 1,
+   "CRAFT": 1,
+   "PF": 1,
+   "CC": 1
+  },
+  "3C": {
+   "MAL": 5,
+   "EVS": 6,
+   "MTS": 6,
+   "HIN": 5,
+   "ENG": 5,
+   "PT": 4,
+   "GK": 1,
+   "COMP": 1,
+   "LIB": 1,
+   "CRAFT": 1,
+   "GITA": 1,
+   "DRAW": 1,
+   "DANCE": 1,
+   "MUSIC": 1,
+   "ACTIVITY": 3,
+   "COMP/ENG": 1,
+   "ROBO": 1,
+   "CC": 1,
+   "PF": 1
+  },
+  "3D": {
+   "EVS": 6,
+   "MTS": 6,
+   "PT": 4,
+   "ENG": 5,
+   "LIB": 1,
+   "MAL": 5,
+   "HIN": 5,
+   "CC": 1,
+   "COMP/ENG": 1,
+   "COMP": 1,
+   "MUSIC": 1,
+   "ROBO": 1,
+   "ACTIVITY": 3,
+   "DRAW": 1,
+   "GK": 1,
+   "DANCE": 1,
+   "PF": 1,
+   "CRAFT": 1,
+   "GITA": 1
+  },
+  "4A": {
+   "ENG": 5,
+   "EVS": 6,
+   "ROBO": 1,
+   "MTS": 6,
+   "PT": 4,
+   "CRAFT": 1,
+   "HIN": 5,
+   "MAL": 5,
+   "COMP/ENG": 1,
+   "DANCE": 1,
+   "GK": 1,
+   "LIB": 1,
+   "ACTIVITY": 3,
+   "GITA": 1,
+   "DRAW": 1,
+   "PF": 1,
+   "MUSIC": 1,
+   "CC": 1,
+   "COMP": 1
+  },
+  "4B": {
+   "EVS": 6,
+   "PT": 4,
+   "COMP/ENG": 1,
+   "MTS": 6,
+   "DRAW": 1,
+   "HIN": 5,
+   "ENG": 5,
+   "CC": 1,
+   "MAL": 5,
+   "ROBO": 1,
+   "CRAFT": 1,
+   "DANCE": 1,
+   "ACTIVITY": 3,
+   "LIB": 1,
+   "GK": 1,
+   "COMP": 1,
+   "PF": 1,
+   "MUSIC": 1,
+   "GITA": 1
+  },
+  "4C": {
+   "ENG": 5,
+   "CRAFT": 1,
+   "PT": 4,
+   "MTS": 6,
+   "MAL": 5,
+   "HIN": 5,
+   "GK": 1,
+   "EVS": 6,
+   "COMP": 1,
+   "GITA": 1,
+   "COMP/ENG": 1,
+   "DRAW": 1,
+   "ACTIVITY": 3,
+   "ROBO": 1,
+   "MUSIC": 1,
+   "DANCE": 1,
+   "PF": 1,
+   "LIB": 1,
+   "CC": 1
+  },
+  "4D": {
+   "MTS": 6,
+   "GITA": 1,
+   "PT": 4,
+   "EVS": 6,
+   "GK": 1,
+   "MAL": 5,
+   "ENG": 5,
+   "HIN": 5,
+   "CC": 1,
+   "LIB": 1,
+   "DRAW": 1,
+   "MUSIC": 1,
+   "ACTIVITY": 3,
+   "DANCE": 1,
+   "CRAFT": 1,
+   "COMP": 1,
+   "PF": 1,
+   "ROBO": 1,
+   "COMP/ENG": 1
+  },
+  "5A": {
+   "EVS": 6,
+   "CC": 1,
+   "HIN": 5,
+   "MTS": 6,
+   "ENG": 5,
+   "GK": 1,
+   "MUSIC": 1,
+   "PT": 3,
+   "MAL": 5,
+   "GITA": 1,
+   "COMP": 1,
+   "DRAW": 1,
+   "COMP/ENG": 1,
+   "YOGA/CRAFT": 2,
+   "ACTIVITY": 3,
+   "DANCE": 1,
+   "LIB": 1,
+   "PF": 1,
+   "ROBO": 1
+  },
+  "5B": {
+   "MAL": 5,
+   "HIN": 5,
+   "GITA": 1,
+   "DRAW": 1,
+   "MTS": 6,
+   "EVS": 6,
+   "ENG": 5,
+   "GK": 1,
+   "PT": 3,
+   "YOGA/CRAFT": 2,
+   "ROBO": 1,
+   "LIB": 1,
+   "ACTIVITY": 3,
+   "CC": 1,
+   "COMP": 1,
+   "DANCE": 1,
+   "PF": 1,
+   "COMP/ENG": 1,
+   "MUSIC": 1
+  },
+  "5C": {
+   "HIN": 5,
+   "PT": 3,
+   "CC": 1,
+   "COMP/ENG": 1,
+   "MAL/SKT": 5,
+   "EVS": 6,
+   "MTS": 6,
+   "ENG": 5,
+   "GITA": 1,
+   "YOGA/CRAFT": 2,
+   "DRAW": 1,
+   "COMP": 1,
+   "ACTIVITY": 3,
+   "LIB": 1,
+   "ROBO": 1,
+   "MUSIC": 1,
+   "PF": 1,
+   "GK": 1,
+   "DANCE": 1
+  },
+  "5D": {
+   "MTS": 6,
+   "ENG": 5,
+   "EVS": 6,
+   "YOGA/CRAFT": 2,
+   "MAL/SKT": 5,
+   "PT": 3,
+   "HIN": 5,
+   "DANCE": 1,
+   "COMP/ENG": 1,
+   "GK": 1,
+   "COMP": 1,
+   "DRAW": 1,
+   "ACTIVITY": 3,
+   "CC": 1,
+   "GITA": 1,
+   "MUSIC": 1,
+   "PF": 1,
+   "LIB": 1,
+   "ROBO": 1
+  }
+ },
+ "assignment": {
+  "1A": {
+   "ENG": [
+    "1A-CT"
+   ],
+   "MTS": [
+    "1A-CT"
+   ],
+   "HIN": [
+    "1A-CT"
+   ],
+   "PT": [
+    "1A-CT"
+   ],
+   "MAL": [
+    "1A-CT"
+   ],
+   "GITA": [
+    "1A-CT"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "CC": [
+    "1A-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "GK": [
+    "1A-CT"
+   ],
+   "SPO ENG": [
+    "1A-CT"
+   ],
+   "MAT ACTI": [
+    "1A-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "PF": [
+    "1A-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ]
+  },
+  "1B": {
+   "HIN": [
+    "1B-CT"
+   ],
+   "ENG": [
+    "1B-CT"
+   ],
+   "MTS": [
+    "1B-CT"
+   ],
+   "MAL": [
+    "1B-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "PT": [
+    "1B-CT"
+   ],
+   "CC": [
+    "1B-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "MAT ACTI": [
+    "1B-CT"
+   ],
+   "SPO ENG": [
+    "1B-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "GITA": [
+    "1B-CT"
+   ],
+   "PF": [
+    "1B-CT"
+   ],
+   "GK": [
+    "1B-CT"
+   ]
+  },
+  "1C": {
+   "ENG": [
+    "1C-CT"
+   ],
+   "HIN": [
+    "1C-CT"
+   ],
+   "MAL": [
+    "1C-CT"
+   ],
+   "MTS": [
+    "1C-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "PT": [
+    "1C-CT"
+   ],
+   "GK": [
+    "1C-CT"
+   ],
+   "GITA": [
+    "1C-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "CC": [
+    "1C-CT"
+   ],
+   "MAT ACTI": [
+    "1C-CT"
+   ],
+   "SPO ENG": [
+    "1C-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "PF": [
+    "1C-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ]
+  },
+  "2A": {
+   "ENG": [
+    "2A-CT"
+   ],
+   "MAL": [
+    "2A-CT"
+   ],
+   "HIN": [
+    "2A-CT"
+   ],
+   "PT": [
+    "2A-CT"
+   ],
+   "MTS": [
+    "2A-CT"
+   ],
+   "GK": [
+    "2A-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "GITA": [
+    "2A-CT"
+   ],
+   "SPO ENG": [
+    "2A-CT"
+   ],
+   "MAT ACTI": [
+    "2A-CT"
+   ],
+   "CC": [
+    "2A-CT"
+   ],
+   "PF": [
+    "2A-CT"
+   ]
+  },
+  "2B": {
+   "MTS": [
+    "2B-CT"
+   ],
+   "HIN": [
+    "2B-CT"
+   ],
+   "ENG": [
+    "2B-CT"
+   ],
+   "MAL": [
+    "2B-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "PT": [
+    "2B-CT"
+   ],
+   "GK": [
+    "2B-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "SPO ENG": [
+    "2B-CT"
+   ],
+   "MAT ACTI": [
+    "2B-CT"
+   ],
+   "GITA": [
+    "2B-CT"
+   ],
+   "CC": [
+    "2B-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "PF": [
+    "2B-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ]
+  },
+  "2C": {
+   "MAL": [
+    "2C-CT"
+   ],
+   "MTS": [
+    "2C-CT"
+   ],
+   "ENG": [
+    "2C-CT"
+   ],
+   "PT": [
+    "2C-CT"
+   ],
+   "HIN": [
+    "2C-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "GITA": [
+    "2C-CT"
+   ],
+   "MAT ACTI": [
+    "2C-CT"
+   ],
+   "SPO ENG": [
+    "2C-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "GK": [
+    "2C-CT"
+   ],
+   "PF": [
+    "2C-CT"
+   ],
+   "CC": [
+    "2C-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ]
+  },
+  "3A": {
+   "MTS": [
+    "3A-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "PT": [
+    "3A-CT"
+   ],
+   "HIN": [
+    "3A-CT"
+   ],
+   "ENG": [
+    "3A-CT"
+   ],
+   "EVS": [
+    "3A-CT"
+   ],
+   "MAL": [
+    "3A-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "CC": [
+    "3A-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "ACTIVITY": [
+    "3A-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "GK": [
+    "3A-CT"
+   ],
+   "PF": [
+    "3A-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "GITA": [
+    "3A-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ]
+  },
+  "3B": {
+   "EVS": [
+    "3B-CT"
+   ],
+   "MAL": [
+    "3B-CT"
+   ],
+   "HIN": [
+    "3B-CT"
+   ],
+   "ENG": [
+    "3B-CT"
+   ],
+   "MTS": [
+    "3B-CT"
+   ],
+   "PT": [
+    "3B-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "GITA": [
+    "3B-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "ACTIVITY": [
+    "3B-CT"
+   ],
+   "GK": [
+    "3B-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "PF": [
+    "3B-CT"
+   ],
+   "CC": [
+    "3B-CT"
+   ]
+  },
+  "3C": {
+   "MAL": [
+    "3C-CT"
+   ],
+   "EVS": [
+    "3C-CT"
+   ],
+   "MTS": [
+    "3C-CT"
+   ],
+   "HIN": [
+    "3C-CT"
+   ],
+   "ENG": [
+    "3C-CT"
+   ],
+   "PT": [
+    "3C-CT"
+   ],
+   "GK": [
+    "3C-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "GITA": [
+    "3C-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "ACTIVITY": [
+    "3C-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "CC": [
+    "3C-CT"
+   ],
+   "PF": [
+    "3C-CT"
+   ]
+  },
+  "3D": {
+   "EVS": [
+    "3D-CT"
+   ],
+   "MTS": [
+    "3D-CT"
+   ],
+   "PT": [
+    "3D-CT"
+   ],
+   "ENG": [
+    "3D-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "MAL": [
+    "3D-CT"
+   ],
+   "HIN": [
+    "3D-CT"
+   ],
+   "CC": [
+    "3D-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "ACTIVITY": [
+    "3D-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "GK": [
+    "3D-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "PF": [
+    "3D-CT"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "GITA": [
+    "3D-CT"
+   ]
+  },
+  "4A": {
+   "ENG": [
+    "4A-CT"
+   ],
+   "EVS": [
+    "4A-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "MTS": [
+    "4A-CT"
+   ],
+   "PT": [
+    "4A-CT"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "HIN": [
+    "4A-CT"
+   ],
+   "MAL": [
+    "4A-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "GK": [
+    "4A-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "ACTIVITY": [
+    "4A-CT"
+   ],
+   "GITA": [
+    "4A-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "PF": [
+    "4A-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "CC": [
+    "4A-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ]
+  },
+  "4B": {
+   "EVS": [
+    "4B-CT"
+   ],
+   "PT": [
+    "4B-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "MTS": [
+    "4B-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "HIN": [
+    "4B-CT"
+   ],
+   "ENG": [
+    "4B-CT"
+   ],
+   "CC": [
+    "4B-CT"
+   ],
+   "MAL": [
+    "4B-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "ACTIVITY": [
+    "4B-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "GK": [
+    "4B-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "PF": [
+    "4B-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "GITA": [
+    "4B-CT"
+   ]
+  },
+  "4C": {
+   "ENG": [
+    "4C-CT"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "PT": [
+    "4C-CT"
+   ],
+   "MTS": [
+    "4C-CT"
+   ],
+   "MAL": [
+    "4C-CT"
+   ],
+   "HIN": [
+    "4C-CT"
+   ],
+   "GK": [
+    "4C-CT"
+   ],
+   "EVS": [
+    "4C-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "GITA": [
+    "4C-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "ACTIVITY": [
+    "4C-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "PF": [
+    "4C-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "CC": [
+    "4C-CT"
+   ]
+  },
+  "4D": {
+   "MTS": [
+    "4D-CT"
+   ],
+   "GITA": [
+    "4D-CT"
+   ],
+   "PT": [
+    "4D-CT"
+   ],
+   "EVS": [
+    "4D-CT"
+   ],
+   "GK": [
+    "4D-CT"
+   ],
+   "MAL": [
+    "4D-CT"
+   ],
+   "ENG": [
+    "4D-CT"
+   ],
+   "HIN": [
+    "4D-CT"
+   ],
+   "CC": [
+    "4D-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "ACTIVITY": [
+    "4D-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "CRAFT": [
+    "SP-CRAFT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "PF": [
+    "4D-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ]
+  },
+  "5A": {
+   "EVS": [
+    "5A-CT"
+   ],
+   "CC": [
+    "5A-CT"
+   ],
+   "HIN": [
+    "5A-CT"
+   ],
+   "MTS": [
+    "5A-CT"
+   ],
+   "ENG": [
+    "5A-CT"
+   ],
+   "GK": [
+    "5A-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "PT": [
+    "5A-CT"
+   ],
+   "MAL": [
+    "5A-CT"
+   ],
+   "GITA": [
+    "5A-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "YOGA/CRAFT": [
+    "SP-YOGA/CRAFT"
+   ],
+   "ACTIVITY": [
+    "5A-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "PF": [
+    "5A-CT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ]
+  },
+  "5B": {
+   "MAL": [
+    "5B-CT"
+   ],
+   "HIN": [
+    "5B-CT"
+   ],
+   "GITA": [
+    "5B-CT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "MTS": [
+    "5B-CT"
+   ],
+   "EVS": [
+    "5B-CT"
+   ],
+   "ENG": [
+    "5B-CT"
+   ],
+   "GK": [
+    "5B-CT"
+   ],
+   "PT": [
+    "5B-CT"
+   ],
+   "YOGA/CRAFT": [
+    "SP-YOGA/CRAFT"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "ACTIVITY": [
+    "5B-CT"
+   ],
+   "CC": [
+    "5B-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "PF": [
+    "5B-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ]
+  },
+  "5C": {
+   "HIN": [
+    "5C-CT"
+   ],
+   "PT": [
+    "5C-CT"
+   ],
+   "CC": [
+    "5C-CT"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "MAL/SKT": [
+    "5C-CT"
+   ],
+   "EVS": [
+    "5C-CT"
+   ],
+   "MTS": [
+    "5C-CT"
+   ],
+   "ENG": [
+    "5C-CT"
+   ],
+   "GITA": [
+    "5C-CT"
+   ],
+   "YOGA/CRAFT": [
+    "SP-YOGA/CRAFT"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "ACTIVITY": [
+    "5C-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "PF": [
+    "5C-CT"
+   ],
+   "GK": [
+    "5C-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ]
+  },
+  "5D": {
+   "MTS": [
+    "5D-CT"
+   ],
+   "ENG": [
+    "5D-CT"
+   ],
+   "EVS": [
+    "5D-CT"
+   ],
+   "YOGA/CRAFT": [
+    "SP-YOGA/CRAFT"
+   ],
+   "MAL/SKT": [
+    "5D-CT"
+   ],
+   "PT": [
+    "5D-CT"
+   ],
+   "HIN": [
+    "5D-CT"
+   ],
+   "DANCE": [
+    "SP-DANCE"
+   ],
+   "COMP/ENG": [
+    "SP-COMP/ENG"
+   ],
+   "GK": [
+    "5D-CT"
+   ],
+   "COMP": [
+    "SP-COMP"
+   ],
+   "DRAW": [
+    "SP-DRAW"
+   ],
+   "ACTIVITY": [
+    "5D-CT"
+   ],
+   "CC": [
+    "5D-CT"
+   ],
+   "GITA": [
+    "5D-CT"
+   ],
+   "MUSIC": [
+    "SP-MUSIC"
+   ],
+   "PF": [
+    "5D-CT"
+   ],
+   "LIB": [
+    "SP-LIB"
+   ],
+   "ROBO": [
+    "SP-ROBO"
+   ]
+  }
+ },
+ "unstaffed": [],
+ "closed": [
+  [
+   0,
+   0
+  ],
+  [
+   1,
+   0
+  ],
+  [
+   2,
+   0
+  ],
+  [
+   4,
+   0
+  ]
+ ],
+ "teacher_load": {},
+ "co_taught": [],
+ "block_groups": [],
+ "assumed": {
+  "break_after_period": 6,
+  "teachers_named_in_source": false,
+  "blank_after_lab_is_a_double": false,
+  "double_subjects": [],
+  "regroups": 0,
+  "regroups_aligned": 0,
+  "suspect_cells": [],
+  "split_cells_book_every_teacher": true,
+  "shared_load_pairs": 0
+ }
+}

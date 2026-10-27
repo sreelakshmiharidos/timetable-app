@@ -1,8 +1,49 @@
 # Changelog
 
+## v0.7 - 27 October 2026
+
+The data model, rewritten. Four patterns in a school's grid that look identical and mean
+different things are now told apart: an in-section split, a regroup across sections, a shared
+load between two teachers, and a double-period continuation. Written up in
+`kmbvm-data-model.md`; the provenance of every rule is in `rule-record.md`.
+
+- **Reproduction.** The school's own 2026-27 timetable is now feasible in the model for all four
+  bands (474, 360, 540 and 828 lessons pinned). Every band was infeasible before this release.
+- **Cold start.** The whole school builds from the instance alone, in the committee's own band
+  order, with 0 wrong lesson counts and 0 teachers in two places at once.
+- Grades 1-5 added, including the Thursday zero period: the model carries closed slots, declared
+  for the whole school or for one section.
+- Teacher occupancy is read from the solved model rather than re-derived, so a regrouped lesson
+  counts once and a shared load counts for whoever took it.
+- Regroups are detected from the grid: shared teacher plus overlapping subject name, treating a
+  laboratory and its subject as the same subject.
+- Sections are aligned in time only where their own grid never separates them. Sharing a teacher
+  is not enough.
+- Cells the model cannot explain are reported: four teachers appearing in a subject they teach
+  nowhere else (ANR, ADS, ANP, PMN), read as cells written in the wrong row.
+- `across_break` for lab doubles dropped as an assumption: six of the school's own doubles cross
+  the break.
+- The app loads a single band on its own, picks workers to suit a one-core host, and no longer
+  uses the old teacher-booking path.
+- 14 tests, three of them covering the new data model.
+
+## v0.6.1 - correctness fixes and an honest negative result
+- `commitments()` recorded the joined string "DPK/TSD" as one teacher, so teachers with shared
+  lessons were never blocked in the next band: 39 cross-band double-bookings. Fixed.
+- The loader accepts both the single-teacher and multi-teacher instance formats and reports a
+  readable error instead of a redacted TypeError.
+- One school, not three: the app takes a workbook (or a demo school) and builds its bands in order,
+  carrying each band's teacher commitments into the next.
+- **Negative result, recorded rather than hidden.** With commitments correct, building 11-12 then
+  9-10 makes 6-8 provably infeasible (216s to prove). Solving all 32 sections in one model does not
+  finish in 7 minutes either. The likely cause is the data model, not the solver: when sections
+  regroup, the same lesson is counted once per section, so a teacher taking one combined group
+  appears to need two or three slots. Treating a regrouped lesson as one occupation shared by
+  several sections is v0.7.
+
 ## v0.6 - the real workbook, every secondary band, and a school-facing input format
 Corrections first, all of them mistakes the earlier versions made:
-- Codes such as PRC, VIS, SMC, ASK, REM are **teachers** (Praveen, Vismaya, Suma, Ashok...), not
+- Codes such as PRC, VIS, SMC, ASK, REM are **teachers** (PRC is Praveen), not
   support markers. They were excluded from clash checking; they no longer are.
 - A cell naming several teachers inside one section means the class **splits**: SCI LAB under
   UPR/REM/TSD is physics, chemistry and biology in three rooms. All named teachers are now booked.

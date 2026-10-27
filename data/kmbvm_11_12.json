@@ -1,5 +1,5 @@
 {
- "name": "KMBVM Pottore (grades 11 and 12)",
+ "name": "KMBVM Pottore (grades 11-12)",
  "days": [
   "Mon",
   "Tue",
@@ -8,7 +8,7 @@
   "Fri"
  ],
  "periods": 9,
- "lunch_after": 5,
+ "lunch_after": 6,
  "sections": [
   "11A",
   "11B",
@@ -56,9 +56,7 @@
   "PHY/CS LAB",
   "PS",
   "PT",
-  "PT/IP LAB",
-  "RMJ",
-  "SHN"
+  "PT/IP LAB"
  ],
  "requirements": {
   "11A": {
@@ -69,8 +67,7 @@
    "MTS": 4,
    "ENG": 6,
    "CS/CHE LAB": 2,
-   "LIB/BIO LAB": 1,
-   "SHN": 1,
+   "LIB/BIO LAB": 2,
    "CHE/PHY LAB": 2
   },
   "11B": {
@@ -81,7 +78,6 @@
    "BIO": 3,
    "PHY": 3,
    "CHE/PHY LAB": 2,
-   "RMJ": 1,
    "CHE/BIO LAB": 2
   },
   "11C": {
@@ -252,15 +248,14 @@
     "DPK"
    ],
    "BIO/PHY LAB": [
-    "AMD",
+    "AMB",
     "TSD"
    ],
    "BIO": [
     "TSD"
    ],
    "PHY": [
-    "AMB",
-    "ANR"
+    "AMB"
    ],
    "CHE/PHY LAB": [
     "AMB",
@@ -295,7 +290,9 @@
     "SNV"
    ],
    "AI/MM/YOGA": [
-    "ASK"
+    "ASK",
+    "BIN",
+    "JYP"
    ],
    "PHY/CHE LAB": [
     "NMV",
@@ -327,7 +324,6 @@
     "JYP"
    ],
    "CHE": [
-    "DCH",
     "DCS"
    ],
    "PHY/CHE LAB": [
@@ -335,7 +331,9 @@
     "DSH"
    ],
    "AI/MM/YOGA": [
-    "BIN"
+    "ASK",
+    "BIN",
+    "JYP"
    ],
    "PHY/CS LAB": [
     "DSH",
@@ -353,7 +351,9 @@
     "DSH"
    ],
    "M/IP/P": [
-    "ADS"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "BIO/PHY LAB": [
     "DSH",
@@ -375,9 +375,13 @@
     "SNV"
    ],
    "IP LAB/M/P": [
-    "ADS"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "AI/MM/YOGA": [
+    "ASK",
+    "BIN",
     "JYP"
    ],
    "BIO/CHE LAB": [
@@ -394,7 +398,9 @@
     "SWE"
    ],
    "M/IP/P": [
-    "DAN"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "ACC": [
     "SPD"
@@ -406,16 +412,22 @@
     "BIN"
    ],
    "IP LAB/M/P": [
-    "DAN"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "AI/MM/YOGA": [
-    "X-AI/MM/-4"
+    "ASK",
+    "BIN",
+    "JYP"
    ],
    "PT": [
     "SNV"
    ],
    "IPLAB/PT/LIB": [
-    "PRC"
+    "PRC",
+    "SMT",
+    "SNV"
    ]
   },
   "11G": {
@@ -423,7 +435,9 @@
     "JAV"
    ],
    "M/IP/P": [
-    "DKP"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "ECO": [
     "MJD"
@@ -435,13 +449,19 @@
     "BBK"
    ],
    "IP LAB/M/P": [
-    "DKP"
+    "DAN",
+    "DKP",
+    "SMT"
    ],
    "AI/MM/YOGA": [
-    "X-AI/MM/-5"
+    "ASK",
+    "BIN",
+    "JYP"
    ],
    "IPLAB/PT/LIB": [
-    "SMT"
+    "PRC",
+    "SMT",
+    "SNV"
    ]
   },
   "12A": {
@@ -455,6 +475,8 @@
     "KCM"
    ],
    "IP LAB/M/P": [
+    "ADS",
+    "DAN",
     "SMT"
    ],
    "PHY": [
@@ -465,6 +487,8 @@
     "SPR"
    ],
    "M/IP/P": [
+    "ADS",
+    "DAN",
     "SMT"
    ],
    "BIO": [
@@ -569,7 +593,9 @@
     "SBB"
    ],
    "IP LAB/M/P": [
-    "X-IP LAB-5"
+    "ADS",
+    "DAN",
+    "SMT"
    ],
    "BS": [
     "SWE"
@@ -578,7 +604,9 @@
     "SWE"
    ],
    "M/IP/P": [
-    "SMT "
+    "ADS",
+    "DAN",
+    "SMT"
    ],
    "PT": [
     "SNV"
@@ -599,7 +627,9 @@
     "SJN"
    ],
    "IP LAB/M/P": [
-    "X-IP LAB-6"
+    "ADS",
+    "DAN",
+    "SMT"
    ],
    "ENG": [
     "ANR"
@@ -608,7 +638,9 @@
     "JAV"
    ],
    "M/IP/P": [
-    "X-M/IP/P-6"
+    "ADS",
+    "DAN",
+    "SMT"
    ],
    "IP LAB/LIB": [
     "PRC",
@@ -620,9 +652,224 @@
   }
  },
  "unstaffed": [],
+ "closed": [],
+ "teacher_load": {},
+ "co_taught": [
+  [
+   [
+    "11E",
+    "M/IP/P"
+   ],
+   [
+    "11F",
+    "M/IP/P"
+   ],
+   [
+    "11G",
+    "M/IP/P"
+   ]
+  ],
+  [
+   [
+    "11C",
+    "ENG"
+   ],
+   [
+    "11G",
+    "ENG"
+   ]
+  ],
+  [
+   [
+    "12A",
+    "IP LAB/M/P"
+   ],
+   [
+    "12D",
+    "IP LAB/M/P"
+   ],
+   [
+    "12E",
+    "IP LAB/M/P"
+   ]
+  ],
+  [
+   [
+    "11A",
+    "CS/BIO"
+   ],
+   [
+    "11E",
+    "BIO"
+   ],
+   [
+    "12B",
+    "BIO/CS LAB"
+   ]
+  ],
+  [
+   [
+    "12B",
+    "ENG"
+   ],
+   [
+    "12E",
+    "ENG"
+   ]
+  ],
+  [
+   [
+    "12A",
+    "M/IP/P"
+   ],
+   [
+    "12D",
+    "M/IP/P"
+   ],
+   [
+    "12E",
+    "M/IP/P"
+   ]
+  ],
+  [
+   [
+    "11E",
+    "PT"
+   ],
+   [
+    "12D",
+    "PT/IP LAB"
+   ],
+   [
+    "12E",
+    "IP LAB/LIB"
+   ]
+  ],
+  [
+   [
+    "11E",
+    "IP LAB/M/P"
+   ],
+   [
+    "11F",
+    "IP LAB/M/P"
+   ],
+   [
+    "11G",
+    "IP LAB/M/P"
+   ]
+  ],
+  [
+   [
+    "11C",
+    "AI/MM/YOGA"
+   ],
+   [
+    "11D",
+    "AI/MM/YOGA"
+   ],
+   [
+    "11E",
+    "AI/MM/YOGA"
+   ],
+   [
+    "11F",
+    "AI/MM/YOGA"
+   ],
+   [
+    "11G",
+    "AI/MM/YOGA"
+   ]
+  ],
+  [
+   [
+    "11A",
+    "LIB/BIO LAB"
+   ],
+   [
+    "11E",
+    "BIO/CHE LAB"
+   ]
+  ],
+  [
+   [
+    "11C",
+    "LIB"
+   ],
+   [
+    "11F",
+    "IPLAB/PT/LIB"
+   ],
+   [
+    "11G",
+    "IPLAB/PT/LIB"
+   ]
+  ],
+  [
+   [
+    "12D",
+    "PT"
+   ],
+   [
+    "12E",
+    "PT"
+   ]
+  ]
+ ],
+ "block_groups": [
+  {
+   "subject": "M/IP/P",
+   "sections": [
+    "11E",
+    "11F",
+    "11G"
+   ]
+  },
+  {
+   "subject": "ENG",
+   "sections": [
+    "11C",
+    "11G"
+   ]
+  },
+  {
+   "subject": "IP LAB/M/P",
+   "sections": [
+    "12A",
+    "12D",
+    "12E"
+   ]
+  },
+  {
+   "subject": "M/IP/P",
+   "sections": [
+    "12A",
+    "12D",
+    "12E"
+   ]
+  },
+  {
+   "subject": "IP LAB/M/P",
+   "sections": [
+    "11E",
+    "11F",
+    "11G"
+   ]
+  },
+  {
+   "subject": "AI/MM/YOGA",
+   "sections": [
+    "11C",
+    "11D",
+    "11E",
+    "11F",
+    "11G"
+   ]
+  }
+ ],
  "assumed": {
-  "break_after_period": 5,
-  "all_named_teachers_busy": true,
+  "break_after_period": 6,
+  "teachers_named_in_source": true,
   "blank_after_lab_is_a_double": true,
   "double_subjects": [
    "BIO/CHE LAB",
@@ -635,46 +882,24 @@
    "IP LAB/LIB",
    "IP LAB/M/P",
    "IPLAB/PT/LIB",
+   "LIB/BIO LAB",
    "PHY/BIO LAB",
    "PHY/CHE LAB",
    "PHY/CS LAB",
    "PT/IP LAB"
   ],
-  "blocks": {
-   "M/IP/P": [
-    "11E",
-    "11F",
-    "11G",
-    "12A",
-    "12D",
-    "12E"
-   ],
-   "IP LAB/M/P": [
-    "11E",
-    "11F",
-    "11G",
-    "12A",
-    "12D",
-    "12E"
-   ],
-   "AI/MM/YOGA": [
-    "11C",
-    "11D",
-    "11E",
-    "11F",
-    "11G"
-   ],
-   "IPLAB/PT/LIB": [
-    "11F",
-    "11G"
+  "regroups": 12,
+  "regroups_aligned": 6,
+  "suspect_cells": [
+   [
+    "ANR",
+    "-",
+    "-",
+    "('11B', 'PHY')",
+    "('teaches PHY nowhere else',)"
    ]
-  },
-  "block_teachers_shared_out": [
-   "AI/MM/YOGA",
-   "IP LAB/M/P",
-   "IPLAB/PT/LIB",
-   "M/IP/P"
   ],
-  "split_cells_book_every_teacher": true
+  "split_cells_book_every_teacher": true,
+  "shared_load_pairs": 0
  }
 }

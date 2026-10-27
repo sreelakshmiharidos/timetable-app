@@ -1,0 +1,178 @@
+% ---------------------------------------------------------------------------
+% Paste into chapters/04-design.tex (the data model section) and
+% chapters/05-implementation.tex or 05-evaluation.tex (the results section).
+% Needs \usepackage{booktabs} in main.tex. No other new packages.
+% ---------------------------------------------------------------------------
+
+\section{The data model}
+\label{sec:datamodel}
+
+A school timetable, as schools actually keep it, is a grid of two layers: a subject label and a
+teacher label in each cell. The central finding of this phase of the project is that
+\emph{the same visual pattern in that grid carries four different meanings}, and that nothing in
+the file distinguishes them. A model that reads the grid under a single interpretation cannot
+reproduce the school's own timetable. Before the four were separated, the real 2026--27 timetable
+of KMBVM Pottore was \emph{infeasible} under our constraints in every band. After they were
+separated, all four bands reproduce.
+
+\subsection{Four patterns that look alike}
+
+\paragraph{An in-section split.} One cell, several teacher codes, one section: the class divides
+and goes to several rooms at once. \texttt{SCI LAB} under \texttt{UPR/REM/TSD} is physics,
+chemistry and biology running simultaneously for thirds of one class. Every named teacher is
+occupied for every lesson of that pair.
+
+\paragraph{A regroup across sections.} The same teacher code appears in two sections in the same
+period. Since a teacher cannot be in two rooms, those two groups are one class: the sections'
+students regroup. This covers \texttt{DMD} (dance, music and drawing for two sections at a time
+under three specialists), \texttt{M/IP/P} across 11E--11G, the languages of 10A, 10B and 10C
+taken together, and 11A's biology students sitting in 11E's biology lesson. The teacher is
+occupied once, not once per section. Groups are detected from the grid itself: a shared teacher
+together with an overlapping subject name, treating a laboratory and its subject as the same
+subject, so that \texttt{BIO LAB} matches \texttt{BIO}. That equivalence is what identifies the
+cross-label cases.
+
+\paragraph{A shared load.} One teacher per cell, but two teachers across the week. 12B English is
+ANR five times and BIN once. This is not a split: one teacher takes each lesson and each
+teacher's weekly share is fixed. It is modelled with a per-teacher choice variable beneath each
+lesson variable, constrained to sum to the lesson and to meet each teacher's observed share.
+
+\paragraph{A double-period continuation.} In grades 11--12 every laboratory is a double period,
+written as a label followed by a blank cell. The blank is not free time: the class and its
+teachers are still present. This must be filled in \emph{before} anything else is measured,
+because regroups, teacher loads and conflicts are all counted from the expanded grid.
+
+\subsection{What a shared teacher does not imply}
+
+Two sections taught by the same teacher are not automatically one block. ANR teaches 12B and 12E
+English together five times a week and separately once. They share a teacher; they are not tied
+to a common period. Sections are therefore aligned in time only where their own grid never
+separates them, rather than wherever their lesson counts happen to agree.
+
+\subsection{Cells the model cannot explain}
+
+The same reasoning detects errors in the source. A single appearance by a teacher who takes that
+subject nowhere else in the band is read as a cell written in the wrong row rather than as a
+teaching assignment; the lesson is given to the teacher who takes the rest, and the cell is
+reported. Four were found this way, listed in Table~\ref{tab:wrongrow}. One further cell is
+reported and remains unexplained: ANP appears in 6C Hindi and 8C English in the same period,
+across different grades and unrelated subjects.
+
+\begin{table}[ht]
+\centering
+\caption{Cells in which a teacher appears in a subject she teaches nowhere else.}
+\label{tab:wrongrow}
+\begin{tabular}{lll}
+\toprule
+Teacher & Appears in & Actually teaches \\
+\midrule
+ANR & 11B physics  & English \\
+ADS & 10B English  & mathematics \\
+ANP & 6C Hindi     & English \\
+PMN & 6D English   & computer science / mathematics \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Slots that do not exist}
+
+Grades 1--5 open with a zero period on Thursday only, giving 46 slots in a week rather than 45.
+The model carries a set of closed slots, declared for the whole school or for an individual
+section, so that an irregular day requires no special case anywhere else in the formulation. In a
+single whole-school solve the zero period is closed for every secondary section and open for the
+primary ones.
+
+% ---------------------------------------------------------------------------
+
+\section{Evaluation}
+\label{sec:evaluation}
+
+\subsection{Reproduction as the test of a model}
+
+The literature on automated timetabling generally reports that a feasible timetable was produced.
+That demonstrates less than it appears to, because a cold solve conceals modelling error: a model
+that misstates the school will still return \emph{some} timetable, and there is nothing to compare
+it against. We therefore adopt a stronger and falsifiable test.
+
+\begin{quote}
+\emph{Is the school's own working timetable feasible under our constraints?}
+\end{quote}
+
+The school's timetable is known to work, since the school is running on it. If it is infeasible in
+our model, the model asserts something false about the school, and the fault is ours. Every lesson
+is pinned to the slot the school actually used and the model is asked whether that assignment
+holds. Table~\ref{tab:reproduction} gives the result. Each of the four failures that this test
+exposed corresponded to one of the four patterns of Section~\ref{sec:datamodel}; none of them
+would have been visible from a cold solve alone.
+
+\begin{table}[ht]
+\centering
+\caption{Reproduction: the school's own timetable, every lesson pinned where the school put it.}
+\label{tab:reproduction}
+\begin{tabular}{lrrl}
+\toprule
+Band & Sections & Lessons pinned & Result \\
+\midrule
+Grades 11--12 & 12 & 474 & feasible \\
+Grades 9--10  &  8 & 360 & feasible \\
+Grades 6--8   & 12 & 540 & feasible \\
+Grades 1--5   & 18 & 828 & feasible \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cold start}
+
+The second test is construction: given only the derived instance and the stated rules, with no
+reference to the existing timetable, can the system build one? Bands are solved in the order the
+school's own committee works in, each against the teacher time the earlier bands have already
+consumed, since 30 teacher codes appear in both grades 6--8 and 9--10 and 11 appear in all three
+secondary bands. Table~\ref{tab:coldstart} gives the result. An independent check of the output
+found no section with the wrong lesson counts and no teacher in two places at once anywhere in the
+school.
+
+\begin{table}[ht]
+\centering
+\caption{Cold start: built from the instance alone, in the school's own build order.}
+\label{tab:coldstart}
+\begin{tabular}{llrr}
+\toprule
+Band & Result & Time (s) & Rules \\
+\midrule
+Grades 11--12 & feasible, 9 preferences relaxed & 110 & 51 \\
+Grades 9--10  & optimal                         &  11 & 32 \\
+Grades 6--8   & optimal                         & 108 & 24 \\
+Grades 1--5   & feasible, 4 preferences relaxed & 110 & 26 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Preferences that cannot be met are reported rather than silently discarded, which is the
+behaviour the project argues for: the system states what it gave up.
+
+\subsection{One pass against band by band}
+
+Solving all 50 sections in a single pass returns \textsc{unknown} after five and a half minutes.
+Fixing the band-by-band solution into that same one-pass model and asking whether it holds returns
+\emph{optimal}, which establishes that the one-pass formulation is correct and merely hard to
+search. Separating a modelling fault from a search cost in this way is only possible because the
+reproduction test exists.
+
+Obtaining that result also exposed a genuine fault in our own work, and the system rather than the
+author found it. An early attempt placed the four bands on a common grid by starting the shorter
+days later, which moved the lunch break relative to each band's own period numbering, so that a
+laboratory double legal within its band straddled the break. Of the 100 rules in the model, the
+conflict explainer named the single offending rule, \texttt{BIO/CS LAB is a double period}, in
+0.2 seconds. Each band now retains its own period numbering, with surplus slots at the end of the
+day closed instead.
+
+\subsection{Discussion}
+
+The measured result of this phase is that the dominant source of error was neither the solver nor
+the natural-language layer. Solving was never the bottleneck, at 11 to 110 seconds per band, and
+the language layer was in place from September. What made the system wrong about a real school was
+the data model, and specifically four ambiguities that no one had written down, because the person
+who builds the timetable has never needed to write them down. This locates the project's
+contribution more precisely than the original framing did: the system must detect that it is
+guessing not only about what the coordinator \emph{says}, but about what her existing timetable
+\emph{already encodes}.
