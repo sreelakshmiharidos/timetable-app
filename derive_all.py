@@ -82,9 +82,21 @@ def build(source, name, doubles_from_blank, day_periods=None):
     at, periods, closed = layout(day_periods or [n // len(DAYS)] * len(DAYS))
     assert len(at) == n, (len(at), n)
     where = dict(enumerate(at))
-    grid = {}                                  # section -> (labels, teacher cells)
+    grid, shut = {}, {}                        # section -> (labels, teacher cells); section -> slots
     for sec, (subs, teas) in rows.items():
         subs = [norm(x) for x in subs]; teas = [norm(x) for x in teas]
+        # A section whose day ends early: periods empty on every day of the week, counting back
+        # from the end of the day, are not free periods but slots the section does not have.
+        # 11A and 11B are empty in periods 7, 8 and 9 all week because those students leave for
+        # outside coaching after the break. Computed before laboratory doubles are expanded, so
+        # that a blank following a laboratory in the last period they attend is read as going
+        # home rather than as the second half of a double.
+        gone = set()
+        for p in range(periods - 1, -1, -1):
+            cells_p = [subs[i] for i, (dd, pp) in where.items() if pp == p]
+            if cells_p and not any(cells_p): gone |= {(dd, p) for dd in range(len(DAYS))}
+            else: break
+        shut[sec] = {(d, p) for (d, p) in gone if (d, p) in set(at)}
         if doubles_from_blank:
             # a blank after a laboratory is the second half of that double period: the class
             # and its teachers are still there, so fill it in before anything else is measured
@@ -92,12 +104,13 @@ def build(source, name, doubles_from_blank, day_periods=None):
             for i in range(n):
                 if where[i][1] == 0 or (i and where[i][0] != where[i - 1][0]): last = None
                 if subs[i]: last = i
-                elif last is not None and "LAB" in subs[last]:
+                elif last is not None and "LAB" in subs[last] and where[i] not in shut[sec]:
                     subs[i], teas[i] = subs[last], teas[last]; last = None
                 else: last = None
         grid[sec] = (subs, teas)
 
     req, cells, slots = {}, defaultdict(list), defaultdict(set)
+    slots_by = defaultdict(lambda: defaultdict(set))   # subject -> section -> slots
     doubles = set()
     for sec, (subs, teas) in grid.items():
         c = Counter(); prev = None
@@ -106,7 +119,7 @@ def build(source, name, doubles_from_blank, day_periods=None):
             if not lab: prev = None; continue
             c[lab] += 1
             cells[sec, lab].append([t for t in teas[i].split("/") if t])
-            slots[sec, lab].add(where[i])
+            slots[sec, lab].add(where[i]); slots_by[lab][sec].add(where[i])
             if prev == lab and doubles_from_blank and "LAB" in lab: doubles.add(lab)
             prev = lab
         req[sec] = dict(c)
@@ -199,11 +212,26 @@ def build(source, name, doubles_from_blank, day_periods=None):
                if len({lab for _, lab in g["members"]}) == 1
                and len({frozenset(slots[m]) for m in g["members"]}) == 1]
 
+    # Slots the school never moves. Jyothy Tr: the activity periods have to be fixed because
+    # outside teachers come in; R3 is common across all of grade 9, whose classes pool and split
+    # into Malayalam, Hindi and Sanskrit; PF is a performance for grades 1-5 together in the main
+    # auditorium. The grid shows them as a subject that every section taking it takes at exactly
+    # the same small set of slots.
+    fixed = []
+    for lab, m in slots_by.items():
+        if len(m) < 3: continue
+        here = {frozenset(v) for v in m.values()}
+        if len(here) == 1 and len(next(iter(here))) <= 4:
+            for (d, p) in sorted(next(iter(here))):
+                fixed.append([lab, sorted(m), d, p])
+
     return {"name": name, "days": DAYS, "periods": periods, "lunch_after": LUNCH_AFTER,
             "sections": sorted(req, key=lambda s: (len(s), s)),
             "subjects": sorted({x for r in req.values() for x in r}),
             "requirements": req, "assignment": assign, "unstaffed": [],
-            "closed": sorted(map(list, closed)),
+            "fixed": fixed,
+            "closed": (sorted(map(list, closed))
+                       + sorted([c, d, p] for c in shut for (d, p) in shut[c])),
             "teacher_load": {s: v for s, v in load.items() if v},
             "co_taught": [[list(m) for m in g["members"]] for g in groups],
             "block_groups": aligned,
@@ -212,6 +240,8 @@ def build(source, name, doubles_from_blank, day_periods=None):
                         "blank_after_lab_is_a_double": bool(doubles_from_blank),
                         "double_subjects": sorted(doubles),
                         "regroups": len(groups), "regroups_aligned": len(aligned),
+                        "fixed_slots": len(fixed),
+                        "short_day_sections": {c: len(v) for c, v in shut.items() if v},
                         "suspect_cells": [list(map(str, x)) for x in suspect],
                         "split_cells_book_every_teacher": True,
                         "shared_load_pairs": sum(len(v) for v in load.values())}}

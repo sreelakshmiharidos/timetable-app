@@ -4,7 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.7"
+VERSION = "v0.9"
 SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
 UPLOAD = "Our school (upload the workbook)"
 DEMOS = {"KMBVM Pottore, grades 9 and 10 (fastest real band)": "data/kmbvm_9_10.json",
@@ -96,14 +96,15 @@ pick = st.radio("School", [UPLOAD] + list(DEMOS), label_visibility="collapsed")
 sheet_rules = []
 bands = {}
 if pick == UPLOAD:
-    st.markdown('<div class="muted">One workbook, six tabs: Structure, Sections, Curriculum, '
-                'Allocation, Groups and Rules. Download the filled KMBVM example from the repo '
-                'to see the shape.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="muted">One workbook, six tabs: Read me, School, Classes, Teaching, '
+                'Fixed slots and Rules. Only Teaching is long, and one row there can cover a '
+                'whole grade. Download the filled KMBVM example from the repo to see the '
+                'shape.</div>', unsafe_allow_html=True)
     up = st.file_uploader("School workbook (.xlsx)", type=["xlsx"], label_visibility="collapsed")
     if not up: st.stop()
     import template
     raw, sheet_rules = template.read_workbook(up)
-    if not raw: st.error("No bands found. Check the Structure and Sections tabs."); st.stop()
+    if not raw: st.error("No bands found. Check the School and Classes tabs."); st.stop()
     bands = {k: School(v) for k, v in raw.items()}
     path = "upload"
 else:
@@ -141,7 +142,7 @@ if school.unstaffed:
 
 # ---------------------------------------------------------------- 2. rules
 step(2, "Your rules")
-default = ("\n".join(r[1] for r in sheet_rules) if sheet_rules
+default = ("\n".join(r[0] for r in sheet_rules) if sheet_rules
            else EXAMPLES.get(path, "No teacher should teach more than 4 periods in a row"))
 if sheet_rules:
     st.markdown(f'<div class="muted">{len(sheet_rules)} rules came from the workbook\'s Rules tab. '

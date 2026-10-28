@@ -915,6 +915,7 @@
   }
  },
  "unstaffed": [],
+ "fixed": [],
  "closed": [],
  "teacher_load": {},
  "co_taught": [
@@ -1081,6 +1082,8 @@
   "double_subjects": [],
   "regroups": 9,
   "regroups_aligned": 9,
+  "fixed_slots": 0,
+  "short_day_sections": {},
   "suspect_cells": [
    [
     "ANP",

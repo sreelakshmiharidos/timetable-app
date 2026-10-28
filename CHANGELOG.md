@@ -1,5 +1,57 @@
 # Changelog
 
+## v0.9 - 28 October 2026
+
+The coordinator's answers, applied. Three questions answered, two rules reclassified, and the
+regroup rule confirmed by arithmetic.
+
+- **The regroup rule, confirmed.** SMT appears in 61 cells of the grades 11-12 grid and teaches
+  33 periods. The coordinator's explanation is the rule in her own words: where her name appears
+  across several classes in the same period, those classes are regrouped into one group she
+  takes. Collapsing regroups as the model does gives exactly 33.
+- **Two rules are preferences, not rules.** No laboratory in the first period (broken once in 37,
+  because nothing else fit) and no laboratory double across lunch (broken six times; the class
+  goes to lunch and comes back). Both are now preferences the system reports when it breaks them,
+  and the cold start keeps both in all four bands, which the school's own timetable does not.
+- **Seven fixed slots derived**, on the coordinator's statement that the activity periods cannot
+  move because outside teachers come in. Found as a subject every section taking it takes at
+  exactly the same slots: the activity block on Wednesday periods 8 and 9 and the Thursday zero
+  period, PF on Friday period 1, R3 on Wednesday period 9, and AI/MM/YOGA on Wednesday period 4
+  and Friday period 7. The template's Fixed slots tab carries them, and they round-trip.
+- R3 noted as a regroup the shared-teacher criterion cannot find, since its four cells name four
+  different teachers, one to each language group. The occupancy is right regardless; what the
+  grid needed from it was the fixed time.
+- ANP in 6C Hindi and 8C English confirmed as a mistake in the sheet.
+- All four bands still reproduce. Cold start: grades 11-12, 9-10 and 6-8 optimal, grades 1-5
+  feasible with 5 preferences given up. 0 wrong lesson counts, 0 teachers in two places.
+
+## v0.8 - 28 October 2026
+
+The school-facing template, rebuilt around the four structures of the data model, and the round
+trip it exists for: hand over the template, get a timetable back.
+
+- One row per subject a class takes, replacing separate Curriculum and Allocation tabs that made
+  a coordinator type every pair twice. A row may name a whole grade (`9A-9D`, `grade 9`), so the
+  school's 753 section-subject pairs fit in 467 rows.
+- The four things a grid cannot show are now asked as questions: whether the teachers named are
+  all busy at once or share the week, how the week divides between them, which classes join the
+  lesson, and whether it runs as a double.
+- `always at the same time?` added after the first version made grades 11-12 infeasible: joining
+  a lesson had implied running at the same period, and 12B and 12E take English together five
+  times a week and apart once. The grid can show that; a template that only records the join
+  cannot, so the template asks.
+- Their own timetable is feasible in a model built from the template alone, all four bands.
+  Cold from the template: grades 11-12, 9-10 and 6-8 optimal; grades 1-5 needs a warm start,
+  which is search cost rather than a modelling fault.
+- 11A and 11B modelled as six-period days: those students leave for outside coaching after the
+  break, so their afternoon slots are closed rather than free. Previously read as an incomplete
+  record. Section day lengths are derived before laboratory doubles are expanded, since a blank
+  in the last period attended means going home, not a continuation.
+- Break position confirmed after period 6, and the six laboratory doubles that cross it recorded
+  as an open question.
+- A Read me tab with worked examples in the school's own labels, and dropdowns on the yes/no
+  columns.
+
 ## v0.7 - 27 October 2026
 
 The data model, rewritten. Four patterns in a school's grid that look identical and mean

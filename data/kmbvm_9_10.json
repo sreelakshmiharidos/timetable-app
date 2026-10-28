@@ -654,6 +654,19 @@
   }
  },
  "unstaffed": [],
+ "fixed": [
+  [
+   "R3",
+   [
+    "9A",
+    "9B",
+    "9C",
+    "9D"
+   ],
+   2,
+   8
+  ]
+ ],
  "closed": [],
  "teacher_load": {},
  "co_taught": [
@@ -740,6 +753,8 @@
   "double_subjects": [],
   "regroups": 4,
   "regroups_aligned": 4,
+  "fixed_slots": 1,
+  "short_day_sections": {},
   "suspect_cells": [
    [
     "ADS",

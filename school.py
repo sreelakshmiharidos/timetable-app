@@ -36,6 +36,8 @@ class School:
         self.closed_for = defaultdict(set)
         for x in d.get("closed", []):
             if len(x) == 3: self.closed_for[x[0]].add((x[1], x[2]))
+        self.doubles = list(d.get("doubles") or [])
+        self.fixed = [list(x) for x in (d.get("fixed") or [])]
         self.unstaffed = [tuple(x) for x in d.get("unstaffed", [])]
         # How a (section, subject)'s lessons are divided between teachers when more than one
         # takes them: {section: {subject: {teacher: lessons}}}. Absent means the class splits
@@ -80,6 +82,7 @@ class School:
              "requirements": {c: self.req[c] for c in sections},
              "assignment": {c: self.assign.get(c, {}) for c in sections},
              "unstaffed": [list(x) for x in self.unstaffed if x[0] in sections],
+             "doubles": list(self.doubles), "fixed": [list(x) for x in self.fixed],
              "closed": ([list(x) for x in self.closed]
                         + [[c, d, p] for c in sections for d, p in self.closed_for.get(c, ())]),
              "teacher_load": {c: self.load[c] for c in sections if c in self.load},
