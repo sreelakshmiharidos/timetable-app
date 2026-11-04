@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.11 - 4 November 2026
+
+Fixes found by testing the deployment rather than the local machine.
+
+- Solve limit raised from 150s to 300s a band. The deployment runs on slower hardware than the
+  machine the report's timings were measured on, and grades 1-5 was exceeding the old limit.
+- The timeout message said 60s while the solver had actually run for the full limit. It now
+  reports the real limit and says plainly that a timeout is not a proof of infeasibility.
+- The footer no longer names which rule reader is active; it was an internal detail.
+- Gemini requests were timing out on the deployment. The request timeout is raised from 45s to
+  90s and sentences are now read one at a time rather than four, so the burst is 3 concurrent
+  requests instead of 12, which the free tier tolerates.
+- A rule was dropped when the reader returned a reply with no JSON in it. Each sample now retries
+  once, output tokens raised from 700 to 1200, and the failure is reported in plain English with
+  the reason in brackets rather than as a raw Python exception.
+
 ## v0.10 - 4 November 2026
 
 The template is now downloadable from the web application itself rather than from the

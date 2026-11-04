@@ -4,8 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.10"
-SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
+VERSION = "v0.11"
 UPLOAD = "Our school (upload the workbook)"
 DEMOS = {"KMBVM Pottore, grades 9 and 10 (fastest real band)": "data/kmbvm_9_10.json",
          "KMBVM Pottore, grades 11 and 12": "data/kmbvm_11_12.json",
@@ -15,7 +14,8 @@ DEMOS = {"KMBVM Pottore, grades 9 and 10 (fastest real band)": "data/kmbvm_9_10.
          "Sample school (small and fast)": "data/sample_school.json"}
 BAND_LABEL = {"11_12": "grades 11 and 12", "9_10": "grades 9 and 10",
               "6_8": "grades 6 to 8", "1_5": "grades 1 to 5", "all": "the whole school"}
-CAP = 150          # seconds per band
+CAP = 300          # seconds per band; the primary band is the slow one, and the
+                   # deployment is on slower hardware than the figures in the report
 EXAMPLES = {
  "data/kmbvm_school.json": "No teacher should teach more than 4 periods in a row\n"
                            "No subject more than twice a day\n"
@@ -167,7 +167,7 @@ st.markdown('<div class="muted">Understands: periods in a row, periods per day, 
             'limits, a required mid-day break, fixed slots, and double periods. Words like <i>ideally</i> '
             'make a rule a preference.</div><div style="height:.6rem"></div>', unsafe_allow_html=True)
 sentences = [l.strip() for l in text.splitlines() if l.strip()]
-name, READER = R.get_reader()
+_reader_name, READER = R.get_reader()   # name no longer shown in the UI
 
 if st.button("Read my rules", type="primary"):
     todo = [s for s in sentences if s not in ss.parsed]
@@ -177,7 +177,8 @@ if st.button("Read my rules", type="primary"):
         try: return s, R.interpretations(school, s, READER)
         except Exception as e: return s, str(e)
     done = 0
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=1) as pool:   # the free tier throttles bursts;
+                                                  # 3 samples at a time, not 12
         for s, got in pool.map(one, todo):
             ss.parsed[s] = got; done += 1
             bar.progress(done / max(len(todo), 1), text=f"Read {done} of {len(todo)}…")
@@ -191,7 +192,9 @@ if ss.read_for == sentences and sentences:
         got = ss.parsed.get(s)
         q = f'<div class="quote">Rule {i} · “{html.escape(s)}”</div>'
         if isinstance(got, str) or got is None:
-            st.markdown(f'<div class="card bad">{q}<div class="meaning">Skipped: {html.escape(got or "")}</div></div>',
+            st.markdown(f'<div class="card bad">{q}<div class="meaning">I could not read this rule.</div>'
+                        f'<div class="muted">Try rewording it, or press Read my rules again. '
+                        f'({html.escape(got or "no reason given")})</div></div>',
                         unsafe_allow_html=True); continue
         opts, why = got
         key = f"r{i}_{abs(hash(s))}"
@@ -273,9 +276,12 @@ if ss.read_for == sentences and sentences:
                                 'try the other reading of a rule, or make one a preference.</div></div>',
                                 unsafe_allow_html=True)
                 else:
-                    st.markdown(f'<div class="card bad"><div class="meaning">No timetable found in {SOLVE_CAP}s.</div>'
-                                '<div class="muted">Rules about teachers\' free periods are the expensive ones. '
-                                'Try removing one, or run it from the command line with a longer limit.</div></div>',
+                    st.markdown(f'<div class="card bad"><div class="meaning">No timetable found within the '
+                                f'{CAP}s limit.</div>'
+                                '<div class="muted">This is a time limit, not a proof that no timetable exists. '
+                                'Rules about teachers\' free periods are the expensive ones, and grades 1 to 5 is '
+                                'the slow band. Try one band on its own, remove a free-period rule, or run it from '
+                                'the command line with a longer limit.</div></div>',
                                 unsafe_allow_html=True)
 
 st.markdown("<div style='height:2rem'></div><div class='eyebrow'>How it works</div>"
@@ -283,5 +289,5 @@ st.markdown("<div style='height:2rem'></div><div class='eyebrow'>How it works</d
             "form and never writes solver code. Each rule is read three times: where the readings disagree, "
             "or a detail was never stated, the system asks. A constraint solver then builds the timetable, "
             "or finds the smallest set of rules that clash.</div>", unsafe_allow_html=True)
-st.markdown(f'<div class="muted" style="margin-top:1rem">{VERSION} · 12 rule types · rule reader: {name}</div>',
+st.markdown(f'<div class="muted" style="margin-top:1rem">{VERSION} · 12 rule types</div>',
             unsafe_allow_html=True)

@@ -76,10 +76,10 @@ def _gemini(text, key, temperature=1.0):
     for model in ("gemini-2.5-flash", "gemini-flash-latest"):
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         cfg = {"temperature": temperature, "responseMimeType": "application/json",
-               "maxOutputTokens": 700}
+               "maxOutputTokens": 1200}
         if "2.5" in model: cfg["thinkingConfig"] = {"thinkingBudget": 0}
         for attempt in range(3):
-            r = requests.post(url, headers={"x-goog-api-key": key}, timeout=45,
+            r = requests.post(url, headers={"x-goog-api-key": key}, timeout=90,
                               json={"contents": [{"parts": [{"text": text}]}],
                                     "generationConfig": cfg})
             if r.status_code == 404: break
@@ -231,12 +231,18 @@ def interpretations(school, sentence, reader=None, samples=3):
         forms = [clean(school, offline(school, sentence))]
     else:
         def one(_):
-            try:
-                txt = reader(prompt(school, sentence))
-                txt = txt[txt.find("{"): txt.rfind("}") + 1]
-                return clean(school, json.loads(txt))
-            except Exception as e:
-                return {"type": "error", "why": str(e)}
+            last = "no reply"
+            for attempt in range(2):          # one retry: an empty or brace-less reply is transient
+                try:
+                    txt = reader(prompt(school, sentence))
+                    cut = txt[txt.find("{"): txt.rfind("}") + 1]
+                    if not cut.strip():
+                        last = "the reader returned no JSON"
+                        continue
+                    return clean(school, json.loads(cut))
+                except Exception as e:
+                    last = str(e)
+            return {"type": "error", "why": last}
         with ThreadPoolExecutor(max_workers=samples) as pool:
             forms = list(pool.map(one, range(samples)))
     good = [f for f in forms if f.get("type") != "error"]
