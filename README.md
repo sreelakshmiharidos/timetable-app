@@ -6,9 +6,11 @@ it reports the smallest set of rules that cannot hold together.
 
 ## Layout
 
-    derive.py        timetable grid -> machine-readable school (sections, requirements, teachers)
-    derive1112.py    the same for the senior grid: doubles, streams, elective blocks
-    run_1112.py      solves 11-12 and then 9-10 against its teacher commitments
+    derive_all.py    timetable grid -> machine-readable school, all four bands
+    derive.py        the same for one band (earlier, kept for reference)
+    template.py      the input workbook: writing a blank or filled one, and reading one back
+    rules.py         the typed constraint forms for each band
+    run_all.py       solves the bands in order, each against the earlier ones' teacher commitments
     school.py        the data model
     model.py         Layer 2: the translator (constraint forms -> CP-SAT)
     solve.py         solving, conflict extraction, printing
@@ -21,10 +23,12 @@ it reports the smallest set of rules that cannot hold together.
 
 ## Input format
 
-A school fills one workbook: Structure, Sections, Curriculum, Allocation, Groups, Rules
-(`template.py`, example in `data/kmbvm_input_template.xlsx`). That is the production input. Reading a
-school's finished timetable (`parse_xl.py`, `derive_all.py`) is how the example was produced and how a
-school with no template can start.
+A school fills one workbook with six tabs: Read me, School, Classes, Teaching, Fixed slots and
+Rules (`template.py`). Only Teaching is long, and one row there can cover a whole grade. The blank
+template is `data/template_blank.xlsx`, and both it and a filled example are downloadable from the
+web application itself. That workbook is the production input. Reading a school's finished timetable
+(`parse_xl.py`, `derive_all.py`) is how the example was produced and how a school with no template
+can start.
 
 ## Bands
 
@@ -41,7 +45,10 @@ band, extract the teacher slots it used, pass them to the next band as fixed una
 
 ## Data
 
-`data/` holds school instances derived from KMBVM Pottore's 2026-27 timetable. The grid
+`data/` holds school instances derived from KMBVM Pottore's 2026-27 timetable. **Those files and
+`data_raw/` are not in this repository.** They name real teachers and give their whole working week,
+so they are kept out until the school agrees to their release. `data/sample_school.json` and
+`data/template_blank.xlsx` are here, and they are enough to run everything. The grid
 the school produced is the *output* of their manual process; what the solver needs is the
 *input* behind it, which `derive.py` extracts: how many lessons each section takes of each
 subject, and which teacher takes which (section, subject) pair.

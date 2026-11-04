@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.10 - 4 November 2026
+
+The template is now downloadable from the web application itself rather than from the
+repository, after the comment that the code is not what a reader looks at.
+
+- `app.py`: two download buttons on the upload step, a blank template and the filled KMBVM
+  example, served from `data/`.
+- `data/template_blank.xlsx`: the six tabs with their headings and the Read me, nothing filled in,
+  built by `template.write_workbook({}, ...)`.
+
 ## v0.9 - 28 October 2026
 
 The coordinator's answers, applied. Three questions answered, two rules reclassified, and the

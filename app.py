@@ -4,7 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.9"
+VERSION = "v0.10"
 SOLVE_CAP = 60          # seconds; the free-period rules are expensive on the real school
 UPLOAD = "Our school (upload the workbook)"
 DEMOS = {"KMBVM Pottore, grades 9 and 10 (fastest real band)": "data/kmbvm_9_10.json",
@@ -98,8 +98,22 @@ bands = {}
 if pick == UPLOAD:
     st.markdown('<div class="muted">One workbook, six tabs: Read me, School, Classes, Teaching, '
                 'Fixed slots and Rules. Only Teaching is long, and one row there can cover a '
-                'whole grade. Download the filled KMBVM example from the repo to see the '
-                'shape.</div>', unsafe_allow_html=True)
+                'whole grade. Start from the blank template, or open the filled example to see '
+                'the shape.</div>', unsafe_allow_html=True)
+    MIME = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    def offer(col, label, path, name, help):
+        try:
+            data = open(path, "rb").read()
+        except FileNotFoundError:
+            col.caption(f"{label}: not in this deployment")
+            return
+        col.download_button(label, data, file_name=name, mime=MIME,
+                            help=help, use_container_width=True)
+    c1, c2 = st.columns(2)
+    offer(c1, "Blank template", "data/template_blank.xlsx", "school-template.xlsx",
+          "The six tabs with their headings and the Read me, nothing filled in.")
+    offer(c2, "Filled example", "data/kmbvm_template_filled.xlsx", "kmbvm-example.xlsx",
+          "The same template filled from KMBVM Pottore's own timetable.")
     up = st.file_uploader("School workbook (.xlsx)", type=["xlsx"], label_visibility="collapsed")
     if not up: st.stop()
     import template
