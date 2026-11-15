@@ -1,5 +1,41 @@
 # Changelog
 
+## v0.13 - 16 November 2026
+
+The built-in reader tested against 35 sentences phrased the way a new user might type them.
+Before: 26 read correctly, 5 declined, 4 misread. After: 33 correct, 2 declined, 0 misread.
+
+- "Physics should be in the afternoon" was read as "no physics in period 1", and "PT should not be
+  after lunch" the same way. Morning, afternoon, before lunch and after lunch now map to the
+  school's own periods either side of the break, in the direction the sentence states.
+- A sentence naming a subject but no time now declines instead of defaulting to period 1.
+- "ANR can teach at most 2 periods back to back" was read as a same-subject rule; back to back
+  about a teacher is now a run-length rule for that teacher.
+- "Once" is understood as 1. "Maths", "social studies" and "physical education" map to MTS, SS and
+  PT where those subjects exist.
+- "Try not to", "where possible" and similar now make a rule a preference.
+- "ANR should not teach in the last period" is read as that teacher being unavailable then.
+- The two sentences still declined are ones the reader cannot settle: "labs" when the school has
+  four kinds of lab, and a minimum number of lessons per day, which has no rule type yet.
+
+## v0.12 - 16 November 2026
+
+Fixes to the built-in rule reader, found while rehearsing the demonstration.
+
+- "9A should have PT in the first period" was read as "No PT in period 1, every section": the
+  built-in reader had no case for placing a subject, so any sentence naming a subject and a
+  period fell through to forbidding it. Positive placement ("should have", "must be", "is in")
+  now becomes a fixed slot, with the section and day taken from the sentence where stated. A
+  sentence that forbids a subject now also respects a named section.
+- Names were matched as raw substrings. "SS" matched inside "assembly" and "class", teacher codes
+  such as "DAN" inside "dance", "CHE" inside "teaches", and the single-letter code "A" matched the
+  English word "a". Subjects now match whole words, teacher codes match case-sensitively and only
+  from two characters, and the "science lab" style fallback matches from the start of a word.
+- Where a phrase matches several subjects equally well, the reader now declines rather than
+  picking the first one.
+- Tested on grades 9-10: the four demonstration rules solve in about 13 s; adding "9A should
+  have PT in the first period on Monday" is reported as a conflict between those two rules.
+
 ## v0.11 - 4 November 2026
 
 Fixes found by testing the deployment rather than the local machine.

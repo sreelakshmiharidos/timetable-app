@@ -4,7 +4,7 @@ from school import School
 import reader as R
 from solve import solve
 
-VERSION = "v0.11"
+VERSION = "v0.13"
 UPLOAD = "Our school (upload the workbook)"
 DEMOS = {"KMBVM Pottore, grades 9 and 10 (fastest real band)": "data/kmbvm_9_10.json",
          "KMBVM Pottore, grades 11 and 12": "data/kmbvm_11_12.json",

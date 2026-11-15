@@ -107,18 +107,28 @@ def get_reader():
 def offline(school, s):
     t = s.lower()
     nums = [int(n) for n in re.findall(r"\b(\d+)\b", t)]
-    words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "twice": 2}
+    words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "twice": 2, "once": 1}
     nums += [v for w, v in words.items() if re.search(rf"\b{w}\b", t)]
-    teacher = next((x for x in school.teachers if x.lower() in t), "ALL")
-    subject = next((x for x in school.subjects if x.lower() in t), None)
+    word = lambda x: re.search(rf"(?<![a-z0-9]){re.escape(x.lower())}(?![a-z0-9])", t)
+    code = lambda x: len(x) >= 2 and re.search(rf"(?<![A-Za-z0-9]){re.escape(x)}(?![A-Za-z0-9])", s)
+    teacher = next((x for x in school.teachers if code(x)), "ALL")
+    subject = next((x for x in sorted(school.subjects, key=len, reverse=True) if word(x)), None)
+    if subject is None:                      # everyday names whose code is not a prefix of them
+        for names, cd in (("maths|math|mathematics", "MTS"), ("social studies|social science", "SS"),
+                          ("physical education|p\\.e\\.|games", "PT")):
+            if cd in school.subjects and re.search(rf"(?<![a-z])({names})(?![a-z])", t):
+                subject = cd; break
     if subject is None:                      # try word overlap, e.g. "science lab" -> "SCI LAB"
-        best, score = None, 0
+        best, score = [], 0
         for x in school.subjects:
             w = [p for p in re.split(r"[^a-z]+", x.lower()) if len(p) > 2]
-            hit = sum(1 for p in w if p in t or (len(p) > 3 and p[:4] in t))
-            if w and hit == len(w) and hit > score: best, score = x, hit
-        subject = best
-    hard = not any(w in t for w in ("prefer", "ideally", "if possible", "try to"))
+            hit = sum(1 for p in w if re.search(rf"(?<![a-z]){re.escape(p if len(p) <= 3 else p[:4])}", t))
+            if w and hit == len(w):
+                if hit > score: best, score = [x], hit
+                elif hit == score: best.append(x)
+        subject = best[0] if len(best) == 1 else None     # several equal matches: do not guess
+    hard = not any(w in t for w in ("prefer", "ideally", "if possible", "try to", "try not",
+                                    "where possible", "if we can", "as far as possible"))
     un = [] if any(w in t for w in ("must", "never", "prefer", "ideally")) else ["hard"]
     if subject and ("at the same time" in t or "parallel" in t or "same period" in t):
         secs = [c for c in school.sections if c.lower() in t] or "ALL"
@@ -130,10 +140,11 @@ def offline(school, s):
     if "double" in t and subject:
         return {"type": "double_period", "subject": subject, "sections": "ALL",
                 "across_break": False, "hard": hard, "unstated": un + ["across_break"]}
-    if "same subject" in t or "twice in a row" in t or "back to back" in t:
+    about_teacher = teacher != "ALL" or "teacher" in t or "teach" in t
+    if "same subject" in t or "twice in a row" in t or ("back to back" in t and not about_teacher):
         return {"type": "no_consecutive_same_subject", "subject": subject or "ALL",
                 "sections": "ALL", "hard": hard, "unstated": un}
-    if "in a row" in t or "consecutive period" in t:
+    if "in a row" in t or "consecutive" in t or "back to back" in t:
         return {"type": "max_consecutive", "teacher": teacher, "max": nums[0] if nums else 3,
                 "lunch_breaks_run": False, "hard": hard, "unstated": un + ["lunch_breaks_run"]}
     if "middle of the day" in t or "midday" in t:
@@ -150,19 +161,46 @@ def offline(school, s):
     if "a day" in t or "per day" in t:
         return {"type": "max_per_day", "teacher": teacher, "max": nums[0] if nums else 5,
                 "hard": hard, "unstated": un}
-    if teacher != "ALL" and any(w in t for w in ("not available", "cannot", "can't", "unavailable", "off")):
+    if teacher != "ALL" and any(w in t for w in ("not available", "cannot", "can't", "unavailable", " off",
+                                                 "not teach", "shouldn't teach", "no lessons", "no classes")):
         days = [d for d in school.days if d.lower() in t] or school.days
-        if "morning" in t: per = list(range(1, (school.lunch_after or 4) + 1))
+        if "first period" in t: per = [1]
+        elif "last period" in t: per = [school.periods]
+        elif "morning" in t: per = list(range(1, (school.lunch_after or 4) + 1))
         elif "afternoon" in t: per = list(range((school.lunch_after or 4) + 1, school.periods + 1))
         else: per = list(range(1, school.periods + 1))
         return {"type": "teacher_unavailable", "teacher": teacher, "days": days,
                 "periods": per, "hard": hard, "unstated": un}
+    secs = [c for c in school.sections if re.search(rf"\b{re.escape(c.lower())}\b", t)] or "ALL"
+    lunch = school.lunch_after or 4
+    am, pm = list(range(1, lunch + 1)), list(range(lunch + 1, school.periods + 1))
+    neg_early = re.search(r"\b(no|not|never|avoid|don't|dont|cannot|can't|without)\b", t)
+    if subject and ("afternoon" in t or "after lunch" in t or "morning" in t or "before lunch" in t) \
+            and "period " not in t and "first period" not in t and "last period" not in t:
+        late = "afternoon" in t or "after lunch" in t
+        per = (pm if late else am) if neg_early else (am if late else pm)
+        return {"type": "subject_not_in_periods", "subject": subject, "sections": secs,
+                "periods": per, "hard": hard, "unstated": un}
+    negated = re.search(r"\b(no|not|never|avoid|don't|dont|cannot|can't|without)\b", t)
+    placed = re.search(r"\b(should|must|has to|have to|needs? to|always)\s+(have|be|take|get|go)\b", t) \
+        or re.search(r"\b(fixed|is in|are in)\b", t)
+    if subject and placed and not negated and ("period" in t or nums):
+        if "first period" in t: per = [1]
+        elif "last period" in t: per = [school.periods]
+        else:
+            m = re.search(r"period\s+(\d+)", t)
+            per = [int(m.group(1))] if m else (nums[-1:] or [1])
+        days = [d for d in school.days if re.search(rf"\b{d.lower()}", t)]
+        extra = [] if days else ["days"]
+        return {"type": "fixed_slot", "subject": subject, "sections": secs,
+                "days": days or list(school.days), "periods": per, "hard": hard,
+                "unstated": un + extra}
     if subject:
         if "first period" in t: per = [1]
         elif "last period" in t: per = [school.periods]
-        elif "morning" in t: per = list(range(1, (school.lunch_after or 4) + 1))
-        else: per = nums or [1]
-        return {"type": "subject_not_in_periods", "subject": subject, "sections": "ALL",
+        elif nums: per = nums
+        else: return {"type": "unsupported"}
+        return {"type": "subject_not_in_periods", "subject": subject, "sections": secs,
                 "periods": per, "hard": hard, "unstated": un}
     return {"type": "unsupported"}
 
